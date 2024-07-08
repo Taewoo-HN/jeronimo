@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: finale
+    datasource:
+        url: jdbc:mariadb://localhost:3306/finale
+        username: big18
+        password: big181234
+        driver-class-name: mariadb-java-client
+    jpa:
+        hibernate:
+            ddl-auto: update
+        show-sql: true
