@@ -1,0 +1,1250 @@
+<div class="flex-auto flex-col min-h-screen">
+    <header class="fixed top-0 left-0 right-0 z-50 flex items-center navbar justify-between h-16 px-4 border-b bg-white">
+        <div class="flex items-center">
+            <img
+                    src="/img/quantum.png"
+                    alt="Logo"
+                    class="h-8 w-8"
+                    width="32"
+                    height="32"
+                    style="aspect-ratio: 32 / 32; object-fit: cover;"
+            />
+            <span class="ml-2 text-lg font-bold"> Jeronimo </span>
+        </div>
+        <div class="flex items-end space-x-4">
+            <input
+                    class="flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-64"
+                    placeholder="주식, 메뉴, 종목코드 검색"
+                    type="search"
+            />
+            <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
+                로그인
+            </button>
+            <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+                시작하기
+            </button>
+        </div>
+    </header>
+    <div class="flex flex-1">
+        <aside class=" flex flex-col items-center w-16 py-4 space-y-4 border-r">
+            <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="w-6 h-6"
+            >
+                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="w-6 h-6"
+            >
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.3-4.3"></path>
+            </svg>
+            <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="w-6 h-6"
+            >
+                <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="w-6 h-6"
+            >
+                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
+                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
+            </svg>
+            <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="w-6 h-6"
+            >
+                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+        </aside>
+        <main class="flex-1 p-4">
+            <div class="flex justify-between mb-4">
+                <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+                    국내
+                </button>
+            </div>
+            <div class="grid grid-cols-5 gap-4 mb-8">
+                <div class="rounded-lg border text-card-foreground shadow-sm bg-blue-100" data-v0-t="card">
+                    <div class="p-6">
+                        <div class="text-lg font-bold">금</div>
+                        <div class="text-2xl font-bold">2,363.50</div>
+                        <div class="text-sm text-blue-500">34.20 (1.43%)</div>
+                        <div class="w-full h-16">
+                            <div
+                                    class="flex aspect-video justify-center text-xs [&amp;_.recharts-cartesian-axis-tick_text]:fill-muted-foreground [&amp;_.recharts-cartesian-grid_line]:stroke-border/50 [&amp;_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&amp;_.recharts-dot[stroke='#fff']]:stroke-transparent [&amp;_.recharts-layer]:outline-none [&amp;_.recharts-polar-grid_[stroke='#ccc']]:stroke-border [&amp;_.recharts-radial-bar-background-sector]:fill-muted [&amp;_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&amp;_.recharts-reference-line-line]:stroke-border [&amp;_.recharts-sector[stroke='#fff']]:stroke-transparent [&amp;_.recharts-sector]:outline-none [&amp;_.recharts-surface]:outline-none"
+                                    data-chart="chart-r0"
+                            >
+                                <div class="recharts-responsive-container"
+                                     style="width: 100%; height: 100%; min-width: 0px;">
+                                    <div
+                                            class="recharts-wrapper"
+                                            style="position: relative; cursor: default; width: 100%; height: 100%; max-height: 98px; max-width: 174px;"
+                                    >
+                                        <svg
+                                                tabindex="0"
+                                                role="application"
+                                                class="recharts-surface"
+                                                width="174"
+                                                height="98"
+                                                viewBox="0 0 174 98"
+                                                style="width: 100%; height: 100%;"
+                                        >
+                                            <defs>
+                                                <clipPath id="recharts6-clip">
+                                                    <rect x="12" y="0" height="68" width="150"></rect>
+                                                </clipPath>
+                                            </defs>
+                                            <g class="recharts-cartesian-grid">
+                                                <g class="recharts-cartesian-grid-horizontal">
+                                                    <line
+                                                            stroke="#ccc"
+                                                            fill="none"
+                                                            x="12"
+                                                            y="0"
+                                                            width="150"
+                                                            height="68"
+                                                            x1="12"
+                                                            y1="51"
+                                                            x2="162"
+                                                            y2="51"
+                                                    ></line>
+                                                    <line
+                                                            stroke="#ccc"
+                                                            fill="none"
+                                                            x="12"
+                                                            y="0"
+                                                            width="150"
+                                                            height="68"
+                                                            x1="12"
+                                                            y1="0"
+                                                            x2="162"
+                                                            y2="0"
+                                                    ></line>
+                                                    <line
+                                                            stroke="#ccc"
+                                                            fill="none"
+                                                            x="12"
+                                                            y="0"
+                                                            width="150"
+                                                            height="68"
+                                                            x1="12"
+                                                            y1="68"
+                                                            x2="162"
+                                                            y2="68"
+                                                    ></line>
+                                                </g>
+                                            </g>
+                                            <g class="recharts-layer recharts-cartesian-axis recharts-xAxis xAxis">
+                                                <g class="recharts-cartesian-axis-ticks">
+                                                    <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                        <text
+                                                                orientation="bottom"
+                                                                width="150"
+                                                                height="30"
+                                                                stroke="none"
+                                                                x="12"
+                                                                y="82"
+                                                                class="recharts-text recharts-cartesian-axis-tick-value"
+                                                                text-anchor="middle"
+                                                                fill="#666"
+                                                        >
+                                                            <tspan x="12" dy="0.71em">
+                                                                Jan
+                                                            </tspan>
+                                                        </text>
+                                                    </g>
+                                                    <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                        <text
+                                                                orientation="bottom"
+                                                                width="150"
+                                                                height="30"
+                                                                stroke="none"
+                                                                x="42"
+                                                                y="82"
+                                                                class="recharts-text recharts-cartesian-axis-tick-value"
+                                                                text-anchor="middle"
+                                                                fill="#666"
+                                                        >
+                                                            <tspan x="42" dy="0.71em">
+                                                                Feb
+                                                            </tspan>
+                                                        </text>
+                                                    </g>
+                                                    <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                        <text
+                                                                orientation="bottom"
+                                                                width="150"
+                                                                height="30"
+                                                                stroke="none"
+                                                                x="72"
+                                                                y="82"
+                                                                class="recharts-text recharts-cartesian-axis-tick-value"
+                                                                text-anchor="middle"
+                                                                fill="#666"
+                                                        >
+                                                            <tspan x="72" dy="0.71em">
+                                                                Mar
+                                                            </tspan>
+                                                        </text>
+                                                    </g>
+                                                    <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                        <text
+                                                                orientation="bottom"
+                                                                width="150"
+                                                                height="30"
+                                                                stroke="none"
+                                                                x="102"
+                                                                y="82"
+                                                                class="recharts-text recharts-cartesian-axis-tick-value"
+                                                                text-anchor="middle"
+                                                                fill="#666"
+                                                        >
+                                                            <tspan x="102" dy="0.71em">
+                                                                Apr
+                                                            </tspan>
+                                                        </text>
+                                                    </g>
+                                                    <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                        <text
+                                                                orientation="bottom"
+                                                                width="150"
+                                                                height="30"
+                                                                stroke="none"
+                                                                x="132"
+                                                                y="82"
+                                                                class="recharts-text recharts-cartesian-axis-tick-value"
+                                                                text-anchor="middle"
+                                                                fill="#666"
+                                                        >
+                                                            <tspan x="132" dy="0.71em">
+                                                                May
+                                                            </tspan>
+                                                        </text>
+                                                    </g>
+                                                    <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                        <text
+                                                                orientation="bottom"
+                                                                width="150"
+                                                                height="30"
+                                                                stroke="none"
+                                                                x="162"
+                                                                y="82"
+                                                                class="recharts-text recharts-cartesian-axis-tick-value"
+                                                                text-anchor="middle"
+                                                                fill="#666"
+                                                        >
+                                                            <tspan x="162" dy="0.71em">
+                                                                Jun
+                                                            </tspan>
+                                                        </text>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                            <g class="recharts-layer recharts-line">
+                                                <path
+                                                        stroke="var(--color-desktop)"
+                                                        stroke-width="2"
+                                                        fill="none"
+                                                        width="150"
+                                                        height="68"
+                                                        class="recharts-curve recharts-line-curve"
+                                                        d="M12,28.475C22,17.436,32,6.397,42,3.188C52,-0.022,62,4.599,72,17.638C82,30.676,92,52.132,102,52.488C112,52.843,122,32.098,132,23.588C142,15.077,152,18.801,162,22.525"
+                                                ></path>
+                                                <g class="recharts-layer"></g>
+                                            </g>
+                                        </svg>
+                                        <div
+                                                tabindex="-1"
+                                                class="recharts-tooltip-wrapper"
+                                                style="visibility: hidden; pointer-events: none; position: absolute; top: 0px; left: 0px;"
+                                        ></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-lg border text-card-foreground shadow-sm bg-red-100" data-v0-t="card">
+                    <div class="p-6">
+                        <div class="text-lg font-bold">코스피 종합</div>
+                        <div class="text-2xl font-bold">2,867.38</div>
+                        <div class="text-sm text-red-500">9.62 (0.34%)</div>
+                        <div class="w-full h-16">
+                            <div
+                                    class="flex aspect-video justify-center text-xs [&amp;_.recharts-cartesian-axis-tick_text]:fill-muted-foreground [&amp;_.recharts-cartesian-grid_line]:stroke-border/50 [&amp;_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&amp;_.recharts-dot[stroke='#fff']]:stroke-transparent [&amp;_.recharts-layer]:outline-none [&amp;_.recharts-polar-grid_[stroke='#ccc']]:stroke-border [&amp;_.recharts-radial-bar-background-sector]:fill-muted [&amp;_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&amp;_.recharts-reference-line-line]:stroke-border [&amp;_.recharts-sector[stroke='#fff']]:stroke-transparent [&amp;_.recharts-sector]:outline-none [&amp;_.recharts-surface]:outline-none"
+                                    data-chart="chart-r1"
+                            >
+                                <div class="recharts-responsive-container"
+                                     style="width: 100%; height: 100%; min-width: 0px;">
+                                    <div
+                                            class="recharts-wrapper"
+                                            style="position: relative; cursor: default; width: 100%; height: 100%; max-height: 98px; max-width: 174px;"
+                                    >
+                                        <svg
+                                                tabindex="0"
+                                                role="application"
+                                                class="recharts-surface"
+                                                width="174"
+                                                height="98"
+                                                viewBox="0 0 174 98"
+                                                style="width: 100%; height: 100%;"
+                                        >
+
+                                            <defs>
+                                                <clipPath id="recharts9-clip">
+                                                    <rect x="12" y="0" height="68" width="150"></rect>
+                                                </clipPath>
+                                            </defs>
+                                            <g class="recharts-cartesian-grid">
+                                                <g class="recharts-cartesian-grid-horizontal">
+                                                    <line
+                                                            stroke="#ccc"
+                                                            fill="none"
+                                                            x="12"
+                                                            y="0"
+                                                            width="150"
+                                                            height="68"
+                                                            x1="12"
+                                                            y1="51"
+                                                            x2="162"
+                                                            y2="51"
+                                                    ></line>
+                                                    <line
+                                                            stroke="#ccc"
+                                                            fill="none"
+                                                            x="12"
+                                                            y="0"
+                                                            width="150"
+                                                            height="68"
+                                                            x1="12"
+                                                            y1="0"
+                                                            x2="162"
+                                                            y2="0"
+                                                    ></line>
+                                                    <line
+                                                            stroke="#ccc"
+                                                            fill="none"
+                                                            x="12"
+                                                            y="0"
+                                                            width="150"
+                                                            height="68"
+                                                            x1="12"
+                                                            y1="68"
+                                                            x2="162"
+                                                            y2="68"
+                                                    ></line>
+                                                </g>
+                                            </g>
+                                            <g class="recharts-layer recharts-cartesian-axis recharts-xAxis xAxis">
+                                                <g class="recharts-cartesian-axis-ticks">
+                                                    <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                        <text
+                                                                orientation="bottom"
+                                                                width="150"
+                                                                height="30"
+                                                                stroke="none"
+                                                                x="12"
+                                                                y="82"
+                                                                class="recharts-text recharts-cartesian-axis-tick-value"
+                                                                text-anchor="middle"
+                                                                fill="#666"
+                                                        >
+                                                            <tspan x="12" dy="0.71em">
+                                                                Jan
+                                                            </tspan>
+                                                        </text>
+                                                    </g>
+                                                    <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                        <text
+                                                                orientation="bottom"
+                                                                width="150"
+                                                                height="30"
+                                                                stroke="none"
+                                                                x="42"
+                                                                y="82"
+                                                                class="recharts-text recharts-cartesian-axis-tick-value"
+                                                                text-anchor="middle"
+                                                                fill="#666"
+                                                        >
+                                                            <tspan x="42" dy="0.71em">
+                                                                Feb
+                                                            </tspan>
+                                                        </text>
+                                                    </g>
+                                                    <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                        <text
+                                                                orientation="bottom"
+                                                                width="150"
+                                                                height="30"
+                                                                stroke="none"
+                                                                x="72"
+                                                                y="82"
+                                                                class="recharts-text recharts-cartesian-axis-tick-value"
+                                                                text-anchor="middle"
+                                                                fill="#666"
+                                                        >
+                                                            <tspan x="72" dy="0.71em">
+                                                                Mar
+                                                            </tspan>
+                                                        </text>
+                                                    </g>
+                                                    <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                        <text
+                                                                orientation="bottom"
+                                                                width="150"
+                                                                height="30"
+                                                                stroke="none"
+                                                                x="102"
+                                                                y="82"
+                                                                class="recharts-text recharts-cartesian-axis-tick-value"
+                                                                text-anchor="middle"
+                                                                fill="#666"
+                                                        >
+                                                            <tspan x="102" dy="0.71em">
+                                                                Apr
+                                                            </tspan>
+                                                        </text>
+                                                    </g>
+                                                    <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                        <text
+                                                                orientation="bottom"
+                                                                width="150"
+                                                                height="30"
+                                                                stroke="none"
+                                                                x="132"
+                                                                y="82"
+                                                                class="recharts-text recharts-cartesian-axis-tick-value"
+                                                                text-anchor="middle"
+                                                                fill="#666"
+                                                        >
+                                                            <tspan x="132" dy="0.71em">
+                                                                May
+                                                            </tspan>
+                                                        </text>
+                                                    </g>
+                                                    <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                        <text
+                                                                orientation="bottom"
+                                                                width="150"
+                                                                height="30"
+                                                                stroke="none"
+                                                                x="162"
+                                                                y="82"
+                                                                class="recharts-text recharts-cartesian-axis-tick-value"
+                                                                text-anchor="middle"
+                                                                fill="#666"
+                                                        >
+                                                            <tspan x="162" dy="0.71em">
+                                                                Jun
+                                                            </tspan>
+                                                        </text>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                            <g class="recharts-layer recharts-line">
+                                                <path
+                                                        stroke="var(--color-desktop)"
+                                                        stroke-width="2"
+                                                        fill="none"
+                                                        width="150"
+                                                        height="68"
+                                                        class="recharts-curve recharts-line-curve"
+                                                        d="M12,28.475C22,17.436,32,6.397,42,3.188C52,-0.022,62,4.599,72,17.638C82,30.676,92,52.132,102,52.488C112,52.843,122,32.098,132,23.588C142,15.077,152,18.801,162,22.525"
+                                                ></path>
+                                                <g class="recharts-layer"></g>
+                                            </g>
+                                        </svg>
+                                        <div
+                                                tabindex="-1"
+                                                class="recharts-tooltip-wrapper"
+                                                style="visibility: hidden; pointer-events: none; position: absolute; top: 0px; left: 0px;"
+                                        ></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-lg border text-card-foreground shadow-sm bg-red-100" data-v0-t="card">
+                    <div class="p-6">
+                        <div class="text-lg font-bold">코스닥 종합</div>
+                        <div class="text-2xl font-bold">860.42</div>
+                        <div class="text-sm text-red-500">1.15 (0.13%)</div>
+                        <div class="w-full h-16">
+                            <div
+                                    class="flex aspect-video justify-center text-xs [&amp;_.recharts-cartesian-axis-tick_text]:fill-muted-foreground [&amp;_.recharts-cartesian-grid_line]:stroke-border/50 [&amp;_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&amp;_.recharts-dot[stroke='#fff']]:stroke-transparent [&amp;_.recharts-layer]:outline-none [&amp;_.recharts-polar-grid_[stroke='#ccc']]:stroke-border [&amp;_.recharts-radial-bar-background-sector]:fill-muted [&amp;_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&amp;_.recharts-reference-line-line]:stroke-border [&amp;_.recharts-sector[stroke='#fff']]:stroke-transparent [&amp;_.recharts-sector]:outline-none [&amp;_.recharts-surface]:outline-none"
+                                    data-chart="chart-r2"
+                            >
+                                <div class="recharts-responsive-container"
+                                     style="width: 100%; height: 100%; min-width: 0px;">
+                                    <div
+                                            class="recharts-wrapper"
+                                            style="position: relative; cursor: default; width: 100%; height: 100%; max-height: 98px; max-width: 174px;"
+                                    >
+                                        <svg
+                                                tabindex="0"
+                                                role="application"
+                                                class="recharts-surface"
+                                                width="174"
+                                                height="98"
+                                                viewBox="0 0 174 98"
+                                                style="width: 100%; height: 100%;"
+                                        >
+                                            <defs>
+                                                <clipPath id="recharts12-clip">
+                                                    <rect x="12" y="0" height="68" width="150"></rect>
+                                                </clipPath>
+                                            </defs>
+                                            <g class="recharts-cartesian-grid">
+                                                <g class="recharts-cartesian-grid-horizontal">
+                                                    <line
+                                                            stroke="#ccc"
+                                                            fill="none"
+                                                            x="12"
+                                                            y="0"
+                                                            width="150"
+                                                            height="68"
+                                                            x1="12"
+                                                            y1="51"
+                                                            x2="162"
+                                                            y2="51"
+                                                    ></line>
+                                                    <line
+                                                            stroke="#ccc"
+                                                            fill="none"
+                                                            x="12"
+                                                            y="0"
+                                                            width="150"
+                                                            height="68"
+                                                            x1="12"
+                                                            y1="0"
+                                                            x2="162"
+                                                            y2="0"
+                                                    ></line>
+                                                    <line
+                                                            stroke="#ccc"
+                                                            fill="none"
+                                                            x="12"
+                                                            y="0"
+                                                            width="150"
+                                                            height="68"
+                                                            x1="12"
+                                                            y1="68"
+                                                            x2="162"
+                                                            y2="68"
+                                                    ></line>
+                                                </g>
+                                            </g>
+                                            <g class="recharts-layer recharts-cartesian-axis recharts-xAxis xAxis">
+                                                <g class="recharts-cartesian-axis-ticks">
+                                                    <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                        <text
+                                                                orientation="bottom"
+                                                                width="150"
+                                                                height="30"
+                                                                stroke="none"
+                                                                x="12"
+                                                                y="82"
+                                                                class="recharts-text recharts-cartesian-axis-tick-value"
+                                                                text-anchor="middle"
+                                                                fill="#666"
+                                                        >
+                                                            <tspan x="12" dy="0.71em">
+                                                                Jan
+                                                            </tspan>
+                                                        </text>
+                                                    </g>
+                                                    <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                        <text
+                                                                orientation="bottom"
+                                                                width="150"
+                                                                height="30"
+                                                                stroke="none"
+                                                                x="42"
+                                                                y="82"
+                                                                class="recharts-text recharts-cartesian-axis-tick-value"
+                                                                text-anchor="middle"
+                                                                fill="#666"
+                                                        >
+                                                            <tspan x="42" dy="0.71em">
+                                                                Feb
+                                                            </tspan>
+                                                        </text>
+                                                    </g>
+                                                    <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                        <text
+                                                                orientation="bottom"
+                                                                width="150"
+                                                                height="30"
+                                                                stroke="none"
+                                                                x="72"
+                                                                y="82"
+                                                                class="recharts-text recharts-cartesian-axis-tick-value"
+                                                                text-anchor="middle"
+                                                                fill="#666"
+                                                        >
+                                                            <tspan x="72" dy="0.71em">
+                                                                Mar
+                                                            </tspan>
+                                                        </text>
+                                                    </g>
+                                                    <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                        <text
+                                                                orientation="bottom"
+                                                                width="150"
+                                                                height="30"
+                                                                stroke="none"
+                                                                x="102"
+                                                                y="82"
+                                                                class="recharts-text recharts-cartesian-axis-tick-value"
+                                                                text-anchor="middle"
+                                                                fill="#666"
+                                                        >
+                                                            <tspan x="102" dy="0.71em">
+                                                                Apr
+                                                            </tspan>
+                                                        </text>
+                                                    </g>
+                                                    <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                        <text
+                                                                orientation="bottom"
+                                                                width="150"
+                                                                height="30"
+                                                                stroke="none"
+                                                                x="132"
+                                                                y="82"
+                                                                class="recharts-text recharts-cartesian-axis-tick-value"
+                                                                text-anchor="middle"
+                                                                fill="#666"
+                                                        >
+                                                            <tspan x="132" dy="0.71em">
+                                                                May
+                                                            </tspan>
+                                                        </text>
+                                                    </g>
+                                                    <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                        <text
+                                                                orientation="bottom"
+                                                                width="150"
+                                                                height="30"
+                                                                stroke="none"
+                                                                x="162"
+                                                                y="82"
+                                                                class="recharts-text recharts-cartesian-axis-tick-value"
+                                                                text-anchor="middle"
+                                                                fill="#666"
+                                                        >
+                                                            <tspan x="162" dy="0.71em">
+                                                                Jun
+                                                            </tspan>
+                                                        </text>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                            <g class="recharts-layer recharts-line">
+                                                <path
+                                                        stroke="var(--color-desktop)"
+                                                        stroke-width="2"
+                                                        fill="none"
+                                                        width="150"
+                                                        height="68"
+                                                        class="recharts-curve recharts-line-curve"
+                                                        d="M12,28.475C22,17.436,32,6.397,42,3.188C52,-0.022,62,4.599,72,17.638C82,30.676,92,52.132,102,52.488C112,52.843,122,32.098,132,23.588C142,15.077,152,18.801,162,22.525"
+                                                ></path>
+                                                <g class="recharts-layer"></g>
+                                            </g>
+                                        </svg>
+                                        <div
+                                                tabindex="-1"
+                                                class="recharts-tooltip-wrapper recharts-tooltip-wrapper-left recharts-tooltip-wrapper-top"
+                                                style="visibility: hidden; pointer-events: none; position: absolute; top: 0px; left: 0px; transform: translate(24px, 32.4px);"
+                                        ></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-lg border text-card-foreground shadow-sm bg-blue-100" data-v0-t="card">
+                    <div class="p-6">
+                        <div class="text-lg font-bold">다우 산업</div>
+                        <div class="text-2xl font-bold">39,344.79</div>
+                        <div class="text-sm text-blue-500">31.08 (0.08%)</div>
+                        <div class="w-full h-16">
+                            <div
+                                    class="flex aspect-video justify-center text-xs [&amp;_.recharts-cartesian-axis-tick_text]:fill-muted-foreground [&amp;_.recharts-cartesian-grid_line]:stroke-border/50 [&amp;_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&amp;_.recharts-dot[stroke='#fff']]:stroke-transparent [&amp;_.recharts-layer]:outline-none [&amp;_.recharts-polar-grid_[stroke='#ccc']]:stroke-border [&amp;_.recharts-radial-bar-background-sector]:fill-muted [&amp;_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&amp;_.recharts-reference-line-line]:stroke-border [&amp;_.recharts-sector[stroke='#fff']]:stroke-transparent [&amp;_.recharts-sector]:outline-none [&amp;_.recharts-surface]:outline-none"
+                                    data-chart="chart-r3"
+                            >
+                                <div class="recharts-responsive-container"
+                                     style="width: 100%; height: 100%; min-width: 0px;">
+                                    <div
+                                            class="recharts-wrapper"
+                                            style="position: relative; cursor: default; width: 100%; height: 100%; max-height: 98px; max-width: 174px;"
+                                    >
+                                        <svg
+                                                tabindex="0"
+                                                role="application"
+                                                class="recharts-surface"
+                                                width="174"
+                                                height="98"
+                                                viewBox="0 0 174 98"
+                                                style="width: 100%; height: 100%;"
+                                        >
+                                            <g class="recharts-cartesian-grid">
+                                                <g class="recharts-cartesian-grid-horizontal">
+                                                    <line
+                                                            stroke="#ccc"
+                                                            fill="none"
+                                                            x="12"
+                                                            y="0"
+                                                            width="150"
+                                                            height="68"
+                                                            x1="12"
+                                                            y1="51"
+                                                            x2="162"
+                                                            y2="51"
+                                                    ></line>
+                                                    <line
+                                                            stroke="#ccc"
+                                                            fill="none"
+                                                            x="12"
+                                                            y="0"
+                                                            width="150"
+                                                            height="68"
+                                                            x1="12"
+                                                            y1="0"
+                                                            x2="162"
+                                                            y2="0"
+                                                    ></line>
+                                                    <line
+                                                            stroke="#ccc"
+                                                            fill="none"
+                                                            x="12"
+                                                            y="0"
+                                                            width="150"
+                                                            height="68"
+                                                            x1="12"
+                                                            y1="68"
+                                                            x2="162"
+                                                            y2="68"
+                                                    ></line>
+                                                </g>
+                                            </g>
+                                            <g class="recharts-layer recharts-cartesian-axis recharts-xAxis xAxis">
+                                                <g class="recharts-cartesian-axis-ticks">
+                                                    <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                        <text
+                                                                orientation="bottom"
+                                                                width="150"
+                                                                height="30"
+                                                                stroke="none"
+                                                                x="12"
+                                                                y="82"
+                                                                class="recharts-text recharts-cartesian-axis-tick-value"
+                                                                text-anchor="middle"
+                                                                fill="#666"
+                                                        >
+                                                            <tspan x="12" dy="0.71em">
+                                                                Jan
+                                                            </tspan>
+                                                        </text>
+                                                    </g>
+                                                    <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                        <text
+                                                                orientation="bottom"
+                                                                width="150"
+                                                                height="30"
+                                                                stroke="none"
+                                                                x="42"
+                                                                y="82"
+                                                                class="recharts-text recharts-cartesian-axis-tick-value"
+                                                                text-anchor="middle"
+                                                                fill="#666"
+                                                        >
+                                                            <tspan x="42" dy="0.71em">
+                                                                Feb
+                                                            </tspan>
+                                                        </text>
+                                                    </g>
+                                                    <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                        <text
+                                                                orientation="bottom"
+                                                                width="150"
+                                                                height="30"
+                                                                stroke="none"
+                                                                x="72"
+                                                                y="82"
+                                                                class="recharts-text recharts-cartesian-axis-tick-value"
+                                                                text-anchor="middle"
+                                                                fill="#666"
+                                                        >
+                                                            <tspan x="72" dy="0.71em">
+                                                                Mar
+                                                            </tspan>
+                                                        </text>
+                                                    </g>
+                                                    <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                        <text
+                                                                orientation="bottom"
+                                                                width="150"
+                                                                height="30"
+                                                                stroke="none"
+                                                                x="102"
+                                                                y="82"
+                                                                class="recharts-text recharts-cartesian-axis-tick-value"
+                                                                text-anchor="middle"
+                                                                fill="#666"
+                                                        >
+                                                            <tspan x="102" dy="0.71em">
+                                                                Apr
+                                                            </tspan>
+                                                        </text>
+                                                    </g>
+                                                    <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                        <text
+                                                                orientation="bottom"
+                                                                width="150"
+                                                                height="30"
+                                                                stroke="none"
+                                                                x="132"
+                                                                y="82"
+                                                                class="recharts-text recharts-cartesian-axis-tick-value"
+                                                                text-anchor="middle"
+                                                                fill="#666"
+                                                        >
+                                                            <tspan x="132" dy="0.71em">
+                                                                May
+                                                            </tspan>
+                                                        </text>
+                                                    </g>
+                                                    <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                        <text
+                                                                orientation="bottom"
+                                                                width="150"
+                                                                height="30"
+                                                                stroke="none"
+                                                                x="162"
+                                                                y="82"
+                                                                class="recharts-text recharts-cartesian-axis-tick-value"
+                                                                text-anchor="middle"
+                                                                fill="#666"
+                                                        >
+                                                            <tspan x="162" dy="0.71em">
+                                                                Jun
+                                                            </tspan>
+                                                        </text>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                            <g class="recharts-layer recharts-line">
+                                                <path
+                                                        stroke="var(--color-desktop)"
+                                                        stroke-width="2"
+                                                        fill="none"
+                                                        width="150"
+                                                        height="68"
+                                                        class="recharts-curve recharts-line-curve"
+                                                        d="M12,28.475C22,17.436,32,6.397,42,3.188C52,-0.022,62,4.599,72,17.638C82,30.676,92,52.132,102,52.488C112,52.843,122,32.098,132,23.588C142,15.077,152,18.801,162,22.525"
+                                                ></path>
+                                                <g class="recharts-layer"></g>
+                                            </g>
+                                        </svg>
+                                        <div
+                                                tabindex="-1"
+                                                class="recharts-tooltip-wrapper recharts-tooltip-wrapper-left recharts-tooltip-wrapper-top"
+                                                style="visibility: hidden; pointer-events: none; position: absolute; top: 0px; left: 0px; transform: translate(12px, 1.4px);"
+                                        ></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-lg border text-card-foreground shadow-sm bg-red-100" data-v0-t="card">
+                    <div class="p-6">
+                        <div class="text-lg font-bold">나스닥 종합</div>
+                        <div class="text-2xl font-bold">18,403.74</div>
+                        <div class="text-sm text-red-500">50.98 (0.28%)</div>
+                        <div class="w-full h-16">
+                            <div
+                                    class="flex aspect-video justify-center text-xs [&amp;_.recharts-cartesian-axis-tick_text]:fill-muted-foreground [&amp;_.recharts-cartesian-grid_line]:stroke-border/50 [&amp;_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&amp;_.recharts-dot[stroke='#fff']]:stroke-transparent [&amp;_.recharts-layer]:outline-none [&amp;_.recharts-polar-grid_[stroke='#ccc']]:stroke-border [&amp;_.recharts-radial-bar-background-sector]:fill-muted [&amp;_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&amp;_.recharts-reference-line-line]:stroke-border [&amp;_.recharts-sector[stroke='#fff']]:stroke-transparent [&amp;_.recharts-sector]:outline-none [&amp;_.recharts-surface]:outline-none"
+                                    data-chart="chart-r4"
+                            >
+                                <div class="recharts-responsive-container"
+                                     style="width: 100%; height: 100%; min-width: 0px;">
+                                    <div
+                                            class="recharts-wrapper"
+                                            style="position: relative; cursor: default; width: 100%; height: 100%; max-height: 98px; max-width: 174px;"
+                                    >
+                                        <svg
+                                                tabindex="0"
+                                                role="application"
+                                                class="recharts-surface"
+                                                width="174"
+                                                height="98"
+                                                viewBox="0 0 174 98"
+                                                style="width: 100%; height: 100%;"
+                                        >
+                                            <title></title>
+                                            <desc></desc>
+                                            <defs>
+                                                <clipPath id="recharts18-clip">
+                                                    <rect x="12" y="0" height="68" width="150"></rect>
+                                                </clipPath>
+                                            </defs>
+                                            <g class="recharts-cartesian-grid">
+                                                <g class="recharts-cartesian-grid-horizontal">
+                                                    <line
+                                                            stroke="#ccc"
+                                                            fill="none"
+                                                            x="12"
+                                                            y="0"
+                                                            width="150"
+                                                            height="68"
+                                                            x1="12"
+                                                            y1="51"
+                                                            x2="162"
+                                                            y2="51"
+                                                    ></line>
+                                                    <line
+                                                            stroke="#ccc"
+                                                            fill="none"
+                                                            x="12"
+                                                            y="0"
+                                                            width="150"
+                                                            height="68"
+                                                            x1="12"
+                                                            y1="0"
+                                                            x2="162"
+                                                            y2="0"
+                                                    ></line>
+                                                    <line
+                                                            stroke="#ccc"
+                                                            fill="none"
+                                                            x="12"
+                                                            y="0"
+                                                            width="150"
+                                                            height="68"
+                                                            x1="12"
+                                                            y1="68"
+                                                            x2="162"
+                                                            y2="68"
+                                                    ></line>
+                                                </g>
+                                            </g>
+                                            <g class="recharts-layer recharts-cartesian-axis recharts-xAxis xAxis">
+                                                <g class="recharts-cartesian-axis-ticks">
+                                                    <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                        <text
+                                                                orientation="bottom"
+                                                                width="150"
+                                                                height="30"
+                                                                stroke="none"
+                                                                x="12"
+                                                                y="82"
+                                                                class="recharts-text recharts-cartesian-axis-tick-value"
+                                                                text-anchor="middle"
+                                                                fill="#666"
+                                                        >
+                                                            <tspan x="12" dy="0.71em">
+                                                                Jan
+                                                            </tspan>
+                                                        </text>
+                                                    </g>
+                                                    <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                        <text
+                                                                orientation="bottom"
+                                                                width="150"
+                                                                height="30"
+                                                                stroke="none"
+                                                                x="42"
+                                                                y="82"
+                                                                class="recharts-text recharts-cartesian-axis-tick-value"
+                                                                text-anchor="middle"
+                                                                fill="#666"
+                                                        >
+                                                            <tspan x="42" dy="0.71em">
+                                                                Feb
+                                                            </tspan>
+                                                        </text>
+                                                    </g>
+                                                    <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                        <text
+                                                                orientation="bottom"
+                                                                width="150"
+                                                                height="30"
+                                                                stroke="none"
+                                                                x="72"
+                                                                y="82"
+                                                                class="recharts-text recharts-cartesian-axis-tick-value"
+                                                                text-anchor="middle"
+                                                                fill="#666"
+                                                        >
+                                                            <tspan x="72" dy="0.71em">
+                                                                Mar
+                                                            </tspan>
+                                                        </text>
+                                                    </g>
+                                                    <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                        <text
+                                                                orientation="bottom"
+                                                                width="150"
+                                                                height="30"
+                                                                stroke="none"
+                                                                x="102"
+                                                                y="82"
+                                                                class="recharts-text recharts-cartesian-axis-tick-value"
+                                                                text-anchor="middle"
+                                                                fill="#666"
+                                                        >
+                                                            <tspan x="102" dy="0.71em">
+                                                                Apr
+                                                            </tspan>
+                                                        </text>
+                                                    </g>
+                                                    <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                        <text
+                                                                orientation="bottom"
+                                                                width="150"
+                                                                height="30"
+                                                                stroke="none"
+                                                                x="132"
+                                                                y="82"
+                                                                class="recharts-text recharts-cartesian-axis-tick-value"
+                                                                text-anchor="middle"
+                                                                fill="#666"
+                                                        >
+                                                            <tspan x="132" dy="0.71em">
+                                                                May
+                                                            </tspan>
+                                                        </text>
+                                                    </g>
+                                                    <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                        <text
+                                                                orientation="bottom"
+                                                                width="150"
+                                                                height="30"
+                                                                stroke="none"
+                                                                x="162"
+                                                                y="82"
+                                                                class="recharts-text recharts-cartesian-axis-tick-value"
+                                                                text-anchor="middle"
+                                                                fill="#666"
+                                                        >
+                                                            <tspan x="162" dy="0.71em">
+                                                                Jun
+                                                            </tspan>
+                                                        </text>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                            <g class="recharts-layer recharts-line">
+                                                <path
+                                                        stroke="var(--color-desktop)"
+                                                        stroke-width="2"
+                                                        fill="none"
+                                                        width="150"
+                                                        height="68"
+                                                        class="recharts-curve recharts-line-curve"
+                                                        d="M12,28.475C22,17.436,32,6.397,42,3.188C52,-0.022,62,4.599,72,17.638C82,30.676,92,52.132,102,52.488C112,52.843,122,32.098,132,23.588C142,15.077,152,18.801,162,22.525"
+                                                ></path>
+                                                <g class="recharts-layer"></g>
+                                            </g>
+                                        </svg>
+                                        <div
+                                                tabindex="-1"
+                                                class="recharts-tooltip-wrapper recharts-tooltip-wrapper-left recharts-tooltip-wrapper-bottom"
+                                                style="visibility: hidden; pointer-events: none; position: absolute; top: 0px; left: 0px; transform: translate(12px, 31px);"
+                                        ></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-8">
+                <h2 class="text-xl font-bold">이 시각 뉴스</h2>
+                <div class="grid grid-cols-3 gap-4 mt-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex-shrink-0">
+                            <img
+                                    src="/placeholder.svg"
+                                    alt="News Logo"
+                                    class="h-10 w-10"
+                                    width="40"
+                                    height="40"
+                                    style="aspect-ratio: 40 / 40; object-fit: cover;"
+                            />
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium">[아시아 증시] 일제히 상승...일본 닛케이 사상 최고치</p>
+                            <p class="text-xs text-muted-foreground">이투데이 | 2024/07/09 16:48</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex-shrink-0">
+                            <img
+                                    src="/placeholder.svg"
+                                    alt="News Logo"
+                                    class="h-10 w-10"
+                                    width="40"
+                                    height="40"
+                                    style="aspect-ratio: 40 / 40; object-fit: cover;"
+                            />
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium">코스피 또 52주 신고가, 2900선 근접...</p>
+                            <p class="text-xs text-muted-foreground">머니투데이 | 2024/07/09 16:44</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex-shrink-0">
+                            <img
+                                    src="/placeholder.svg"
+                                    alt="News Logo"
+                                    class="h-10 w-10"
+                                    width="40"
+                                    height="40"
+                                    style="aspect-ratio: 40 / 40; object-fit: cover;"
+                            />
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium">S&amp;P500 사상 최고치 행진...</p>
+                            <p class="text-xs text-muted-foreground">한국경제 | 2024/07/09 16:41</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex-shrink-0">
+                            <img
+                                    src="/placeholder.svg"
+                                    alt="News Logo"
+                                    class="h-10 w-10"
+                                    width="40"
+                                    height="40"
+                                    style="aspect-ratio: 40 / 40; object-fit: cover;"
+                            />
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium">AI에 금리 인하...밸류업...</p>
+                            <p class="text-xs text-muted-foreground">한국경제 | 2024/07/09 16:42</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex-shrink-0">
+                            <img
+                                    src="/placeholder.svg"
+                                    alt="News Logo"
+                                    class="h-10 w-10"
+                                    width="40"
+                                    height="40"
+                                    style="aspect-ratio: 40 / 40; object-fit: cover;"
+                            />
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium">가계대출 관리에 금감원 진땀...</p>
+                            <p class="text-xs text-muted-foreground">뉴스핌 | 2024/07/09 16:46</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex-shrink-0">
+                            <img
+                                    src="/placeholder.svg"
+                                    alt="News Logo"
+                                    class="h-10 w-10"
+                                    width="40"
+                                    height="40"
+                                    style="aspect-ratio: 40 / 40; object-fit: cover;"
+                            />
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium">美 빅테크 7종목에 투자하는 MAGS ETF</p>
+                            <p class="text-xs text-muted-foreground">한국경제 | 2024/07/09 16:41</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h2 class="text-xl font-bold">실시간 랭킹</h2>
+                <div class="grid grid-cols-2 gap-4 mt-4">
+                    <div>
+                        <h3 class="text-lg font-semibold">거래대금</h3>
+                        <ul class="mt-2 space-y-2">
+                            <li>많이 오른</li>
+                            <li>많이 내린</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold">거래량</h3>
+                        <ul class="mt-2 space-y-2">
+                            <li>많이 오른</li>
+                                <li>하나은행</li>
+                                <li>하나은행</li>
+                                <li>하나은행</li>
+                                <li>하나은행</li>
+                                <li>하나은행</li>
+                                <li>하나은행</li>
+                                <li>하나은행</li>
+                                <li>하나은행</li>
+                            <li>많이 내린</li>
+                                <li>대구은행</li>
+                                <li>대구은행</li>
+                                <li>대구은행</li>
+                                <li>대구은행</li>
+                                <li>대구은행</li>
+                                <li>대구은행</li>
+                                <li>대구은행</li>
+                                <li>대구은행</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
