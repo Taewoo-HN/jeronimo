@@ -1,9 +1,6 @@
 package org.big18.finale.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +16,7 @@ public class Member {
     @Column(name = "username", nullable = false, length = 10)
     private String username;
 
+
     @Column(name = "nickname", length = 10)
     private String nickname;
 
@@ -27,5 +25,12 @@ public class Member {
 
     @Column(name = "secret_key", length = 200)
     private String secretKey;
+
+    @Column(name = "user_id", length = 20)
+    private String userId;
+
+    @Column(name = "user_pw", length = 20)
+    private String userPw;
+
 
 }

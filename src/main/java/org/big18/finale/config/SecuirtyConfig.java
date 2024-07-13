@@ -1,21 +1,37 @@
-//package org.big18.finale.config;
-//
-//import lombok.RequiredArgsConstructor;
-//import org.springframework.context.annotation.Configuration;
-//
-//@RequiredArgsConstructor
-//@Configuration
-//@EnableWebSecurity
-//@EnableMethodSecurity
-//public class SecuirtyConfig {
-//    private final CustomOAuth2UserService customOAuth2UserService;
-//    private final OAuth2SuccessHandler oAuth2SuccessHandler;
-//    private final TokenAuthenticationFilter tokenAuthenticationFilter;
-//
-//    @Bean
-//    public WebSecurityCustomizer webSecurityCustomizer() { // security를 적용하지 않을 리소스
-//        return web -> web.ignoring()
-//                // error endpoint를 열어줘야 함, favicon.ico 추가!
-//                .requestMatchers("/error", "/favicon.ico");
-//    }
-//}
+package org.big18.finale.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+@EnableWebSecurity
+public class SecuirtyConfig {
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception {
+       security
+               .authorizeHttpRequests((requests) -> requests
+                .requestMatchers("/", "/main").permitAll()
+                .anyRequest().authenticated()
+        )
+                .formLogin((form) -> form
+                        .loginPage("/login")
+                        .permitAll()
+                )
+                .logout((logout) -> logout.permitAll());
+
+        return security.build();
+    }
+
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
+
+}
