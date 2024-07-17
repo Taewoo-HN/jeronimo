@@ -1,11 +1,11 @@
-function showToast(message, duration = 3000) {
-    const toast = document.getElementById('toast');
-    toast.textContent = message;
-    toast.style.opacity = 1;
-
-    setTimeout(() => {
-        toast.style.opacity = 0;
-    }, duration);
+function showToast(message, duration = 1000) {
+    const toast = new bootstrap.Toast(document.getElementById('toast'), {
+        animation: true,
+        autohide: true,
+        delay: duration
+    });
+    document.querySelector('.toast-body').textContent = message;
+    toast.show();
 }
 
 document.getElementById('maesu').addEventListener('click', () => {

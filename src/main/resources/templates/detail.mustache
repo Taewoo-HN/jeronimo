@@ -1,14 +1,20 @@
 {{>layout/header}}
-<style>
-    #toast.show {
-        opacity: 1;
-    }
-</style>
-
 <body>
+<link rel="stylesheet" href="/css/toast.css">
+
 {{>layout/navbar}}
 {{>layout/sidebar}}
 <div class="container mt-20">
+        <div class=" mt-4">
+            <div class="card border-0 mb-4">
+                <div class="card-body">
+                    <div class="d-flex justify-content-end align-items-center">
+                        <button class="btn btn-danger mr-3 px-4 py-2" id="maesu">매수</button>
+                        <button class="btn btn-primary px-4 py-2" id="maedo">매도</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     <div class="row">
         <!-- Pie Chart -->
         <div class="col-xl-3 col-lg-4">
@@ -163,17 +169,9 @@
                 </div>
             </div>
         </div>
-        <div class="fixed bg-gray-800 text-white px-5 py-2.5 rounded transition-opacity duration-300 ease-in-out" id="toast">
-        </div>
-        <div class="row mt-4">
-            <div class="col-12">
-                <div class="card shadow mb-4">
-                    <div class="card-body">
-                        <div class="btn-group w-100" role="group" aria-label="Basic example">
-                            <button class="btn btn-primary w-50" id="maesu">매수</button>
-                            <button class="btn btn-danger w-50" id="maedo">매도</button>
-                        </div>
-                    </div>
+        <div class="position-fixed top-50 start-50 " style="z-index: 1050;">
+            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="toast">
+                <div class="toast-body bg-dark text-white">
                 </div>
             </div>
         </div>
@@ -252,7 +250,7 @@
         });
     });
 </script>
-<script src="/js/toastpop.js" type="text/javascript"></script>
+<script src="js/toastpop.js" type="text/javascript"></script>
 {{>layout/chatbot}}
 </body>
 {{>layout/footer}}
