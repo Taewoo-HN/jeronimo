@@ -1,11 +1,11 @@
 package org.big18.finale.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "boardtomember")
 public class Boardtomember {

@@ -1,8 +1,10 @@
 package org.big18.finale.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+
 
 @Getter
 @Setter
@@ -15,7 +17,6 @@ public class Member {
 
     @Column(name = "username", nullable = false, length = 10)
     private String username;
-
 
     @Column(name = "nickname", length = 10)
     private String nickname;
