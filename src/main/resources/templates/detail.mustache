@@ -1,4 +1,10 @@
 {{>layout/header}}
+<style>
+    #toast.show {
+        opacity: 1;
+    }
+</style>
+
 <body>
 {{>layout/navbar}}
 {{>layout/sidebar}}
@@ -97,37 +103,37 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><img src="path_to_samsung_logo.png" alt="삼성전자 로고" class="company-logo"></td>
+                            <td><img src="img/samsung.jpg" alt="삼성전자 로고" class="company-logo"></td>
                             <td>삼성전자</td>
                             <td class="text-success">+2.5%</td>
                         </tr>
                         <tr>
-                            <td><img src="path_to_sk_hynix_logo.png" alt="SK하이닉스 로고" class="company-logo"></td>
+                            <td><img src="img/skhynix.jpg" alt="SK하이닉스 로고" class="company-logo"></td>
                             <td>SK하이닉스</td>
                             <td class="text-danger">-1.8%</td>
                         </tr>
                         <tr>
-                            <td><img src="path_to_lg_chem_logo.png" alt="LG화학 로고" class="company-logo"></td>
+                            <td><img src="img/lgchem.jpg" alt="LG화학 로고" class="company-logo"></td>
                             <td>LG화학</td>
                             <td class="text-success">+3.2%</td>
                         </tr>
                         <tr>
-                            <td><img src="path_to_hyundai_motor_logo.png" alt="현대자동차 로고" class="company-logo"></td>
+                            <td><img src="img/hyundai.png" alt="현대자동차 로고" class="company-logo"></td>
                             <td>현대자동차</td>
                             <td class="text-success">+1.7%</td>
                         </tr>
                         <tr>
-                            <td><img src="path_to_naver_logo.png" alt="NAVER 로고" class="company-logo"></td>
+                            <td><img src="img/naver.png" alt="NAVER 로고" class="company-logo"></td>
                             <td>NAVER</td>
                             <td class="text-danger">-0.5%</td>
                         </tr>
                         <tr>
-                            <td><img src="path_to_kakao_logo.png" alt="카카오 로고" class="company-logo"></td>
+                            <td><img src="img/kakao.png" alt="카카오 로고" class="company-logo"></td>
                             <td>카카오</td>
                             <td class="text-success">+2.1%</td>
                         </tr>
                         <tr>
-                            <td><img src="path_to_celltrion_logo.png" alt="셀트리온 로고" class="company-logo"></td>
+                            <td><img src="img/celtrion.png" alt="셀트리온 로고" class="company-logo"></td>
                             <td>셀트리온</td>
                             <td class="text-danger">-1.2%</td>
                         </tr>
@@ -157,13 +163,15 @@
                 </div>
             </div>
         </div>
+        <div class="fixed bg-gray-800 text-white px-5 py-2.5 rounded transition-opacity duration-300 ease-in-out" id="toast">
+        </div>
         <div class="row mt-4">
             <div class="col-12">
                 <div class="card shadow mb-4">
                     <div class="card-body">
                         <div class="btn-group w-100" role="group" aria-label="Basic example">
-                            <button class="btn btn-primary w-50">매수</button>
-                            <button class="btn btn-danger w-50">매도</button>
+                            <button class="btn btn-primary w-50" id="maesu">매수</button>
+                            <button class="btn btn-danger w-50" id="maedo">매도</button>
                         </div>
                     </div>
                 </div>
@@ -244,7 +252,7 @@
         });
     });
 </script>
-
+<script src="/js/toastpop.js" type="text/javascript"></script>
 {{>layout/chatbot}}
 </body>
 {{>layout/footer}}

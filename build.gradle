@@ -25,7 +25,7 @@ dependencies {
 	implementation 'org.projectlombok:lombok'
 	implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.4'
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
+//	implementation 'org.springframework.boot:spring-boot-starter-security'
 	testImplementation 'org.springframework.security:spring-security-test'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
