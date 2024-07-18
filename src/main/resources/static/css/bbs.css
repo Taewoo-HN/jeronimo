@@ -1,0 +1,170 @@
+/*기본 설정*/
+*{
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+.board_wrap{
+    width: 1000px;
+    margin: 100px auto;
+}
+
+/*제목, 부제목 설정*/
+.board_title{
+    margin-bottom: 30px;
+}
+.board_title h1{
+    font-size: 2rem;
+}
+.board_title p{
+    margin-top: 5px;
+    font-size: 1.8rem;
+}
+
+/*버튼 설정*/
+.bt_wrap{
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0;
+}
+.bt_wrap a{
+    display: inline-block;
+    min-width: 80px;
+    margin-left: 10px;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 2px;
+    font-size: 0.8rem;
+}
+.bt_wrap a.on{
+    background-color: #000;
+    color: #fff;
+}
+.bt_wrap a:nth-child(1){
+    margin-left: 0;
+}
+
+/*리스트 블록 설정*/
+.board_list {
+    width: 100%;
+    border-top: 2px solid #000;
+}
+
+.board_list > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 0.8rem;
+}
+
+.board_list > div.top {
+    border-bottom: 1px solid #999;
+    font-weight: 600;
+}
+
+.board_list > div:last-child {
+    border-bottom: 2px solid #000;
+}
+
+.board_list > div {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     border-bottom: 1px solid #ddd;
+     text-align: center;
+     padding: 15px 0;
+     font-size: 0.8rem;
+ }
+ 
+ .board_list > div > div:nth-child(1) { /* 글 번호 */
+     flex: 1;
+ }
+
+ .board_list > div > div:nth-child(2) { /* 주식종목 */
+     flex: 2;
+ }
+
+ .board_list > div > div:nth-child(3) { /* 제목 */
+     flex: 3;
+     text-align: left;
+     padding-left: 10px;
+ }
+
+ .board_list > div > div:nth-child(4) { /* 작성자 */
+     flex: 1;
+ }
+
+ .board_list > div > div:nth-child(5) { /* 작성일 */
+     flex: 1;
+ }
+
+ .board_list > div > div:nth-child(6) { /* 조회 */
+     flex: 1;
+ }
+
+ .board_list > div.top > div {
+     font-weight: 600;
+ }
+
+
+/*공백 영역 설정*/
+.board_list .num{
+    width: 10%;
+}
+.board_list .title{
+    width: 60%;
+    text-align: left;
+}
+.board_list .top .title{
+    text-align: center;
+}
+.board_list .writer{
+    width: 10%;
+}
+.board_list .date{
+    width: 10%;
+}
+.board_list .count{
+    width: 8%;
+}
+
+/*페이지 설정*/
+.board_page{
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0;
+}
+.board_page a{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    border-left: 0;
+    line-height: 100%;
+}
+.board_page a.btn{
+    padding-top: 7px;
+    font-size: 0.8rem;
+    letter-spacing: -3px;
+}
+.board_page a.num{
+    padding-top: 6px;
+    font-size: 0.8rem;
+}
+.board_page a.num.selected{
+    background-color: #000;
+    border-color: #000;
+    color: #fff;
+}
+.board_page a.frist{
+    border-left: 1px solid #ddd;
+}

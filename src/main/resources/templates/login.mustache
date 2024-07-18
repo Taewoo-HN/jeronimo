@@ -9,25 +9,22 @@
     <div class="form-container sign-up-container">
         <form action="/login">
             <h1>Create Account</h1>
-            <input type="text" placeholder="Name" />
-            <input type="email" placeholder="Email" />
-            <input type="text" placeholder="ID" />
-            <input type="password" placeholder="Password" />
-            <input type="text" placeholder="Mock Stock Account" />
-            <input type="text" placeholder="Secret Key" />
-            <input type="text" placeholder="Phone Number" />
+            <input type="text" name = "user_name" placeholder="Name" />
+            <input type="email" name="email" placeholder="Email" />
+            <input type="text" name="user_id" placeholder="ID" />
+            <input type="password" name= 'user_pw' placeholder="Password" />
+            <input type="text" name="stock_account" placeholder="Mock Stock Account" />
+            <input type="text" name="secret_key" placeholder="Secret Key" />
+            <input type="text" name="u_phonenum" placeholder="Phone Number" />
             <button>Sign Up</button> </form>
     </div>
     <div class="form-container sign-in-container">
-        <form action="#">
+        <form action="/login" method="post">
             <h1>Sign in</h1>
-            <div class="social-container">
-                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-            </div>
             <span>or use your account</span>
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-            <a href="#">Forgot your password?</a>
+            <input name="email" type="email" placeholder="Email" />
+            <input name="user_pw" type="password" placeholder="Password" />
+            <p id="forget_pw" class="">Forgot your password?</p>
             <button>Sign In</button>
         </form>
     </div>
@@ -57,6 +54,10 @@
 
     signInButton.addEventListener('click', () => {
       container.classList.remove("right-panel-active");
+    });
+    document.getElementById('forget_pw').addEventListener('click', () => {
+        alert('관리자에게 문의하세요 ' + '\n'
+                + '010-1234-5678');
     });
 </script>
 </body>

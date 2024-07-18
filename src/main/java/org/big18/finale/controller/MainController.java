@@ -21,8 +21,9 @@ public class MainController {
     public String login() {
         return "login";
     }
-    @GetMapping("/board")
+    @GetMapping("/bbs")
     public String board(){
-        return "board";
+        return "bbs";
     }
+
 }
