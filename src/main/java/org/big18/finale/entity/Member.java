@@ -1,17 +1,14 @@
 package org.big18.finale.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
-
-@Getter
-@Setter
+@AllArgsConstructor
+@Data
 @Entity
 @Table(name = "member", schema = "stock_test")
 public class Member {
-    @Id
     @Column(name = "u_phonenum", nullable = false, length = 11)
     private String uPhonenum;
 
@@ -27,6 +24,7 @@ public class Member {
     @Column(name = "secret_key", length = 200)
     private String secretKey;
 
+    @Id
     @Column(name = "user_id", length = 20)
     private String userId;
 
@@ -34,4 +32,7 @@ public class Member {
     private String userPw;
 
 
+    public Member() {
+
+    }
 }
