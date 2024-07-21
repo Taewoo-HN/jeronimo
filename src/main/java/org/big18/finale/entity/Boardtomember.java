@@ -18,8 +18,9 @@ public class Boardtomember {
     @JoinColumn(name = "board_id", nullable = false)
     private Board board;
 
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
-    private Member user;
+    private User user;
 
 }

@@ -21,13 +21,14 @@ public class MainController {
     }
 
     @GetMapping("/login")
-    public String login(Model model, HttpServletRequest request) {
+    public String login(HttpServletRequest request, Model model) {
         CsrfToken csrf = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
-        if(csrf != null){
+        if (csrf != null) {
             model.addAttribute("_csrf", csrf);
         }
         return "login";
     }
+
     @GetMapping("/bbs")
     public String board(){
         return "bbs";

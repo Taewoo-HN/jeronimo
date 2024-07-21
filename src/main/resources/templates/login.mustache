@@ -1,32 +1,33 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" >
 <head>
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="/css/login.css">
+    <script src="/js/jquery-3.7.1.min.js"></script>
 </head>
 <body>
 <div class="container" id="container">
     <div class="form-container sign-up-container">
-        <form action="/register">
+        <form action="/register" method="post">
             <h1>Create Account</h1>
-            <input type="text" name = "user_name" id="user_name" placeholder="Name" />
-            <input type="email" name="email" id="email" placeholder="Email" />
-            <input type="text" name="user_id" id="user_id" placeholder="ID" />
-            <input type="password" name= 'user_pw' id="user_pw" placeholder="Password" />
-            <input type="text" name="stock_account" id ="stock_account" placeholder="Mock Stock Account" />
-            <input type="text" name="secret_key" id="secret_key" placeholder="Secret Key" />
-            <input type="text" name="u_phonenum" id="u_phonenum" placeholder="Phone Number" />
-            <button>Sign Up</button> </form>
+            <input hidden name="_csrf" id="r_csrf" value="{{_csrf.token}}">
+            <input type="text" name = "user_name" id="r_user_name" placeholder="Name" />
+            <input type="email" name="email" id="r_email" placeholder="Email" />
+            <input type="text" name="user_id" id="r_user_id" placeholder="ID" />
+            <input type="password" name= 'user_pw' id="r_user_pw" placeholder="Password" />
+            <input type="text" name="phone_number" id="r_phone_number" placeholder="Phone Number" />
+            <button type="button" id="sign_up">Sign Up</button>
+        </form>
     </div>
     <div class="form-container sign-in-container">
-        <form action="/loginprog" method="post">
+        <form action="/logging" method="post">
             <h1>Sign in</h1>
-            <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}">
-            <input name="user_id" type="text" placeholder="ID" >
-            <input name="user_pw" type="password" placeholder="Password">
-            <p id="forget_pw" class="">Forgot your password?</p>
-            <button>Sign In</button>
+            <input hidden name="_csrf" id="l_csrf" value="{{_csrf.token}}">
+            <input name="user_id" id="l_user_id" type="text" placeholder="ID" >
+            <input name="user_pw" id="l_user_pw" type="password" placeholder="Password">
+            <button type="button" id="sign_in">Sign In</button>
         </form>
+            <p id="forget_pw" class="">Forgot your password?</p>
     </div>
     <div class="overlay-container">
         <div class="overlay">
@@ -43,7 +44,6 @@
         </div>
     </div>
 </div>
-<script src="/js/logformcheck.js"></script>
 <script>
     const signUpButton = document.getElementById('signUp');
     const signInButton = document.getElementById('signIn');
@@ -61,5 +61,9 @@
                 + '010-1234-5678');
     });
 </script>
+<script src="/js/login.js"></script>
+<script src="/js/register.js"></script>
+
+<script src="/js/logformcheck.js"></script>
 </body>
 </html>
