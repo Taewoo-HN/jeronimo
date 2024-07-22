@@ -8,9 +8,17 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
+import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.SecurityFilterChain;
+
+import java.util.Collections;
+import java.util.Map;
 
 @Configuration
 @EnableWebSecurity
@@ -32,6 +40,10 @@ public class SecurityConfig {
                         .usernameParameter("user_id")
                         .passwordParameter("user_pw")
                         .permitAll()
+                ).oauth2Login((oauth2Login) -> oauth2Login
+                        .loginPage("/login/oauth2/naver")
+                        .defaultSuccessUrl("/main")
+                        .failureUrl("/login?error")
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
@@ -56,6 +68,31 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(
             AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
+    }
+
+    @Bean
+    public OAuth2UserService<OAuth2UserRequest, OAuth2User> oauth2UserService() {
+        DefaultOAuth2UserService delegate = new DefaultOAuth2UserService();
+        return (userRequest) -> {
+            OAuth2User oauth2User = delegate.loadUser(userRequest);
+
+            // 네이버 로그인 처리
+            if ("naver".equals(userRequest.getClientRegistration().getRegistrationId())) {
+                Map<String, Object> attributes = oauth2User.getAttributes();
+                Map<String, Object> response = (Map<String, Object>) attributes.get("response");
+
+                String nameAttributeKey = "id";
+                attributes.putAll(response);
+
+                return new DefaultOAuth2User(
+                        Collections.singleton(new SimpleGrantedAuthority("ROLE_USER")),
+                        attributes,
+                        nameAttributeKey
+                );
+            }
+
+            return oauth2User;
+        };
     }
 }
 
