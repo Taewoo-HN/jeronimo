@@ -90,7 +90,6 @@ public class SecurityConfig {
                         nameAttributeKey
                 );
             }
-
             return oauth2User;
         };
     }
