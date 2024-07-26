@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: finale
+  datasource:
+    url: jdbc:mariadb://localhost:3306/stock_test
+    username: root
+    password: ${db-password}
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  redis:
+    lettuce:
+      port: 6379
+      host: 127.0.0.1
+  security:
+    oauth2:
+      client:
+        registration:
+          naver:
+            client-id: ${naver-client-id}
+            client-secret: ${naver-client-secret}
+            redirect-uri: http://localhost:8028/login/oauth2/code/naver
+            scope: name, email, phone_number
+            client-name: Naver
+            authorization-grant-type: authorization_code
+
+
+
+
+server:
+  port: 8028
+  servlet:
+    encoding:
+      force: true
+
