@@ -28,8 +28,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/", "/main", "/login", "logging", "/register", "/bbs",
-                                "/news", "/detail", "/recommend", "/js/**", "/img/**", "/css/**").permitAll()
+                        .requestMatchers("/", "/main", "/login", "logging", "/register"
+                                ,"/js/**","/img/**", "/css/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((formlogin) -> formlogin
@@ -40,6 +40,10 @@ public class SecurityConfig {
                         .usernameParameter("user_id")
                         .passwordParameter("user_pw")
                         .permitAll()
+                ).oauth2Login((oauth2Login) -> oauth2Login
+                        .loginPage("/login/oauth2/naver")
+                        .defaultSuccessUrl("/main")
+                        .failureUrl("/login?error")
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
@@ -55,7 +59,6 @@ public class SecurityConfig {
                 .toStaticResources()
                 .atCommonLocations());
     }
-
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -67,6 +70,29 @@ public class SecurityConfig {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
+    @Bean
+    public OAuth2UserService<OAuth2UserRequest, OAuth2User> oauth2UserService() {
+        DefaultOAuth2UserService delegate = new DefaultOAuth2UserService();
+        return (userRequest) -> {
+            OAuth2User oauth2User = delegate.loadUser(userRequest);
+
+            // 네이버 로그인 처리
+            if ("naver".equals(userRequest.getClientRegistration().getRegistrationId())) {
+                Map<String, Object> attributes = oauth2User.getAttributes();
+                Map<String, Object> response = (Map<String, Object>) attributes.get("response");
+
+                String nameAttributeKey = "id";
+                attributes.putAll(response);
+
+                return new DefaultOAuth2User(
+                        Collections.singleton(new SimpleGrantedAuthority("ROLE_USER")),
+                        attributes,
+                        nameAttributeKey
+                );
+            }
+            return oauth2User;
+        };
+    }
 }
 
 
