@@ -1,6 +1,5 @@
 package org.big18.finale.config;
 
-import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.ImmutableSecret;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
@@ -22,6 +21,5 @@ public class JwtConfig {
     public JwtEncoder jwtEncoder(){
         SecretKeySpec sckey = new SecretKeySpec(naverSecret.getBytes(), "HmacSHA");
         JWKSource<SecurityContext> jwkeys = new ImmutableSecret<>(sckey);
-        return new NimbusJwtEncoder(jwkeys);
-    }
+        return new NimbusJwtEncoder(jwkeys);    }
 }

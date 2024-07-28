@@ -28,8 +28,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/", "/main", "/login", "logging", "/register"
-                                ,"/js/**","/img/**", "/css/**").permitAll()
+                        .requestMatchers("/", "/main", "/login", "logging", "/register",
+                                "/oauth2/code/naver", "/callback","/bbs"
+                                , "/detail", "/logout", "/recommend"
+                                , "/js/**", "/img/**", "/css/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((formlogin) -> formlogin
@@ -40,9 +42,10 @@ public class SecurityConfig {
                         .usernameParameter("user_id")
                         .passwordParameter("user_pw")
                         .permitAll()
+
                 ).oauth2Login((oauth2Login) -> oauth2Login
-                        .loginPage("/login/oauth2/naver")
-                        .defaultSuccessUrl("/main")
+                        .loginPage("/oauth2/code/naver")
+                        .defaultSuccessUrl("/callback")
                         .failureUrl("/login?error")
                 )
                 .logout(logout -> logout
@@ -59,6 +62,7 @@ public class SecurityConfig {
                 .toStaticResources()
                 .atCommonLocations());
     }
+
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

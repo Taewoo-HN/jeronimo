@@ -23,8 +23,10 @@
     <div class="form-container sign-in-container">
         <form action="/logging" method="post">
             <h1>Sign in</h1>
-            <div id="naver_id_login"></div>
-            <a href="/login/oauth/naver"></a>
+            <span>or Use social log in!</span>
+            <div id="naver_id_login">
+                <a href="/oauth2/code/naver"> <img src="/img/naverloginbutton.png" width="50px" height="50px" /></a>
+            </div>
             <input hidden name="_csrf" id="l_csrf" value="{{_csrf.token}}">
             <input name="user_id" id="l_user_id" type="text" placeholder="ID" >
             <input name="user_pw" id="l_user_pw" type="password" placeholder="Password">
