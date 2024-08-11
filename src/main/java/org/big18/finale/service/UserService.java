@@ -1,6 +1,6 @@
 package org.big18.finale.service;
 
-import org.big18.finale.entity.User;
+import org.big18.finale.entity.Users;
 import org.big18.finale.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,7 +20,7 @@ public class UserService implements UserDetailsService {
 
 
     public boolean login(String user_id, String user_pw){
-        User member = memberRepository.findById(user_id).orElse(null);
+        Users member = memberRepository.findById(user_id).orElse(null);
         if(member == null){
             return false;
         }else{
@@ -29,7 +29,7 @@ public class UserService implements UserDetailsService {
     }
     @Override
     public UserDetails loadUserByUsername(String user_id) throws UsernameNotFoundException {
-        User member = memberRepository.findById(user_id).orElseThrow(() -> new UsernameNotFoundException("사용자를 찾을 수 없습니다."));
+        Users member = memberRepository.findById(user_id).orElseThrow(() -> new UsernameNotFoundException("사용자를 찾을 수 없습니다."));
         return org.springframework.security.core.userdetails.User
                 .withUsername(member.getUserId())
                 .password(member.getUserPw())
@@ -39,7 +39,7 @@ public class UserService implements UserDetailsService {
 
     public void register(String user_id, String user_pw, String email
                         , String nickname, String phone_number) throws Exception{
-        User member = new User();
+        Users member = new Users();
         if(memberRepository.findById(user_id).isPresent()){
             throw new Exception("이미 존재하는 아이디입니다.");
         }
