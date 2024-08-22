@@ -20,10 +20,10 @@ import java.util.stream.Collectors;
 @Service
 public class RssService {
 
-    @Value("${naver.api.client.id}")
+    @Value("${naver-client-id}")
     private String clientId;
 
-    @Value("${naver.api.client.secret}")
+    @Value("${naver-client-secret}")
     private String clientSecret;
 
     @Autowired

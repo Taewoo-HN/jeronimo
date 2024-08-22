@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글 상세</title>
+    <link rel="stylesheet" href="/css/rootstyle.css">
+    <link rel="stylesheet" href="/css/bbs.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <style>
+        .board_view {
+            width: 100%;
+            border-top: 2px solid #000;
+        }
+        .board_view .title {
+            padding: 15px 15px;
+            border-bottom: 1px dashed #ddd;
+            font-size: 1.5rem; /* 2rem에서 1.5rem으로 줄임 */
+        }
+        .board_view .info {
+            padding: 10px 15px; /* 패딩 줄임 */
+            border-bottom: 1px solid #999;
+            font-size: 0;
+        }
+        .board_view .info dl {
+            position: relative;
+            display: inline-block;
+            padding: 0 15px; /* 패딩 줄임 */
+        }
+        .board_view .info dl:first-child {
+            padding-left: 0;
+        }
+        .board_view .info dl::before {
+            content: "";
+            position: absolute;
+            top: 1px;
+            left: 0;
+            display: block;
+            width: 1px;
+            height: 12px; /* 높이 줄임 */
+            background: #ddd;
+        }
+        .board_view .info dl:first-child::before {
+            display: none;
+        }
+        .board_view .info dl dt,
+        .board_view .info dl dd {
+            display: inline-block;
+            font-size: 0.9rem; /* 1.4rem에서 0.9rem으로 줄임 */
+        }
+        .board_view .info dl dt {
+            margin-right: 8px; /* 간격 줄임 */
+            color: #777;
+        }
+        .board_view .info dl dd {
+            color: #222;
+        }
+        .board_view .cont {
+            padding: 15px;
+            border-bottom: 1px solid #000;
+            line-height: 1.6; /* 160%에서 1.6으로 변경 */
+            font-size: 1rem; /* 1.4rem에서 1rem으로 줄임 */
+        }
+        .board_title h1 {
+            font-size: 1.8rem; /* 제목 크기 조정 */
+        }
+        .board_title p {
+            font-size: 1rem; /* 부제목 크기 조정 */
+        }
+        /* 공통 버튼 스타일 */
+        .button {
+            font-size: 0.9rem; /* 텍스트 크기 */
+            padding: 8px 15px; /* 버튼 크기 */
+            border: 1px solid transparent; /* 보더 제거 */
+            border-radius: 4px; /* 둥근 모서리 */
+            text-align: center; /* 텍스트 중앙 정렬 */
+            display: inline-block; /* 인라인 블록 */
+            cursor: pointer; /* 커서 포인터 */
+            text-decoration: none; /* 링크 밑줄 제거 */
+            margin-right: 8px; /* 버튼 간의 간격 추가 */
+        }
+
+        /* 수정 버튼 스타일 */
+        .button.on {
+            color: white; /* 텍스트 색상 */
+            background-color: #007bff; /* 파란색 배경 */
+        }
+
+        .button.on:hover {
+            background-color: #0056b3; /* 파란색 배경(호버 시) */
+        }
+
+        /* 목록 버튼 스타일 */
+        .button.list {
+            color: white; /* 텍스트 색상 */
+            background-color: #6c757d; /* 회색 배경 */
+        }
+
+        .button.list:hover {
+            background-color: #5a6268; /* 회색 배경(호버 시) */
+        }
+
+        /* 삭제 버튼 스타일 */
+        .button.delete {
+            color: white; /* 텍스트 색상 */
+            background-color: #dc3545; /* 빨간색 배경 */
+        }
+
+        .button.delete:hover {
+            background-color: #c82333; /* 빨간색 배경(호버 시) */
+        }
+
+        /* 삭제 버튼과 목록 버튼 사이의 간격 조정 */
+        .button-container {
+            display: flex;
+            gap: 8px; /* 버튼 사이의 간격 */
+        }
+    </style>
+</head>
+<body>
+{{>layout/navbar}}
+{{>layout/sidebar}}
+<div class="board_wrap">
+    <div class="board_title">
+        <h1>종합 종목 게시판</h1>
+        <p>모든 종목의 사람들이 모여서 토론하는 중.</p>
+    </div>
+    <div class="board_view_wrap">
+        <div class="board_view">
+            <div class="title">
+                {{post.title}}
+            </div>
+            <div class="info">
+                <dl>
+                    <dt>번호</dt>
+                    <dd>{{post.id}}</dd>
+                </dl>
+                <dl>
+                    <dt>작성자</dt>
+                    <dd>{{post.writer}}</dd>
+                </dl>
+                <dl>
+                    <dt>작성일</dt>
+                    <dd>{{formattedDate}}</dd>
+                </dl>
+                <dl>
+                    <dt>조회</dt>
+                    <dd>{{post.count}}</dd>
+                </dl>
+            </div>
+            <div class="cont">
+                {{post.content}}
+            </div>
+        </div>
+        <div class="bt_wrap">
+            <a href="/posts/edit/{{post.id}}" class="button on">수정</a>
+            <a href="/posts" class="button">목록</a>
+            <form action="/posts/delete/{{post.id}}" method="post" style="display:inline;">
+                <input type="hidden" name="_method" value="DELETE"/>
+                <button type="submit" class="button delete">삭제</button>
+            </form>
+        </div>
+    </div>
+    {{>layout/chatbot}}
+</div>
+</body>
+{{>footer}}
+</html>

@@ -1,0 +1,11 @@
+#sidebar {
+    position: fixed;
+    top: 64px; /* 네비바 높이 */
+    left: 0;
+    height: calc(100% - 64px); /* 전체 높이에서 네비바 높이를 뺌 */
+    width: 64px; /* 사이드바 너비를 16px에서 64px로 변경 */
+    background: #11101d;
+    z-index: 100;
+    transition: 0.5s;
+    overflow-y: auto;
+}
