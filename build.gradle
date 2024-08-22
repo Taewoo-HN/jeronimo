@@ -22,20 +22,14 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	implementation 'org.springframework.boot:spring-boot-starter-mustache'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'com.rometools:rome:1.18.0'
 	implementation 'org.projectlombok:lombok'
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
-	annotationProcessor "org.projectlombok:lombok"
 	implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.4'
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
-	testImplementation 'org.springframework.security:spring-security-test'
-
+	implementation 'org.jsoup:jsoup:1.15.3'
+	annotationProcessor "org.projectlombok:lombok"
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
-tasks.named('test') {
-	useJUnitPlatform()
-}
