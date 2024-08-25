@@ -23,12 +23,10 @@
     <div class="form-container sign-in-container">
         <form action="/logging" method="post">
             <h1>Sign in</h1>
-            <div id="naver_id_login"></div>
-            <a href="/login/oauth/naver"></a>
             <input hidden name="_csrf" id="l_csrf" value="{{_csrf.token}}">
             <input name="user_id" id="l_user_id" type="text" placeholder="ID" >
             <input name="user_pw" id="l_user_pw" type="password" placeholder="Password">
-            <button type="button" id="sign_in">Sign In</button>
+            <button type="submit" id="sign_in">Sign In</button>
         </form>
             <p id="forget_pw">Forgot your password?</p>
     </div>

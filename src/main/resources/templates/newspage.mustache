@@ -1,13 +1,14 @@
 {{>layout/header}}
-<link rel="stylesheet" href="css/style.css">
 <body>
 {{>layout/navbar}}
 {{>layout/sidebar}}
 <div class="page-container">
     <main class="main-content">
-        <form action="/news" method="get">
-            <input type="text" name="query" value="{{searchQuery}}">
-            <button type="submit">검색</button>
+        <form action="/news" method="get" class="input">
+            <input type="text" name="query"
+                   class="border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 mb-3"
+            value="{{searchQuery}}">
+            <button type="submit" class="btn bg-purple-500 text-white hover:bg-purple-400 focus:shadow-outline">검색</button>
         </form>
         <div class="news-grid">
             {{#newsItems}}
@@ -18,7 +19,8 @@
                                 <img src="{{imageUrl}}" alt="뉴스 이미지" loading="lazy">
                             {{/imageUrl}}
                             {{^imageUrl}}
-                                <img src="/img/newsdefault.png" alt="기본 이미지" loading="lazy" style="height: 50px; width: 50px">
+                                <img src="/img/newsdefault.png" alt="기본 이미지" loading="lazy"
+                                     style="width: 30px; height: 30px">
                             {{/imageUrl}}
                         </div>
                         <div class="news-text">

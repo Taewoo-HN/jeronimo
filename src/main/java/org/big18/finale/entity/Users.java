@@ -18,4 +18,7 @@ public class Users {
     @Column(name = "user_name", nullable = false, length = 10)
     private String userName;
 
+    @Enumerated(EnumType.STRING)
+    private UserRole role; // Enum 타입으로 역할 저장
+
 }

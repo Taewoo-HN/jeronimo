@@ -4,14 +4,15 @@ $(document).ready(function () {
 
         let formData = {
             _csrf: $("#l_csrf").val(),
-            user_id: $("l_user_id").val(),
-            user_pw: $("l_user_pw").val()
+            user_id: $("#l_user_id").val(),
+            user_pw: $("#l_user_pw").val()
         };
 
         $.ajax({
             type: "POST",
             url: "/logging",
             data: formData,
+            contentType: 'application/json; charset=utf-8',
             success: function (response) {
                 console.log("로그인 성공:", response);
                 // 성공 시 추가 동작

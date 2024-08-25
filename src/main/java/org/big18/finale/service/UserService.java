@@ -1,14 +1,12 @@
 package org.big18.finale.service;
 
+import org.big18.finale.entity.UserRole;
 import org.big18.finale.entity.Users;
 import org.big18.finale.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
-import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 
@@ -18,15 +16,8 @@ public class UserService implements UserDetailsService {
     @Autowired
     private MemberRepository memberRepository;
 
+    private UserRole userRole;
 
-    public boolean login(String user_id, String user_pw){
-        Users member = memberRepository.findById(user_id).orElse(null);
-        if(member == null){
-            return false;
-        }else{
-            return member.getUserPw().equals(user_pw);
-        }
-    }
     @Override
     public UserDetails loadUserByUsername(String user_id) throws UsernameNotFoundException {
         Users member = memberRepository.findById(user_id).orElseThrow(() -> new UsernameNotFoundException("사용자를 찾을 수 없습니다."));
