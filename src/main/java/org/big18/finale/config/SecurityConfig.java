@@ -10,11 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
-import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
-import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
-import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
-import org.springframework.security.oauth2.core.user.OAuth2User;
+
 import org.springframework.security.web.SecurityFilterChain;
 
 import java.util.Collections;
@@ -40,12 +36,7 @@ public class SecurityConfig {
                         .usernameParameter("user_id")
                         .passwordParameter("user_pw")
                         .permitAll()
-                ).oauth2Login((oauth2Login) -> oauth2Login
-                        .loginPage("/login/oauth2/naver")
-                        .defaultSuccessUrl("/main")
-                        .failureUrl("/login?error")
-                )
-                .logout(logout -> logout
+                ).logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/login?logout")
                 );

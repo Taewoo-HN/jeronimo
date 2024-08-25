@@ -24,11 +24,12 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'com.rometools:rome:1.18.0'
 	implementation 'org.projectlombok:lombok'
-	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 	implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.4'
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.jsoup:jsoup:1.15.3'
+	implementation 'org.springframework.kafka:spring-kafka'
+	testImplementation 'org.springframework.kafka:spring-kafka-test'
 	annotationProcessor "org.projectlombok:lombok"
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 }
