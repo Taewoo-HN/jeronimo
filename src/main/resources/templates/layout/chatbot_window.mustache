@@ -1,0 +1,28 @@
+{{>layout/header}}
+<div class="flex justify-between items-center p-4 border-b">
+    <h2 class="text-lg font-semibold"> AI Stock Helper </h2>
+    <button id="closeModalBtn" class="text-gray-500 hover:text-gray-700">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+    </button>
+</div>
+<div class="chat-container">
+    <div id="messages" class="message-list">
+        <div class="message bot-message">
+            안녕하세요! AI 챗봇입니다.
+        </div>
+        <div class="message bot-message">
+            무엇을 도와드릴까요?
+        </div>
+    </div>
+    <div class="input-area">
+        <div class="input-group p-3">
+            <input type="text" id="messageInput" class="form-control " placeholder="메시지를 입력하세요"/>
+            <button id="sendButton" class="btn btn-warning">전송</button>
+        </div>
+    </div>
+</div>
+{{>layout/footer}}

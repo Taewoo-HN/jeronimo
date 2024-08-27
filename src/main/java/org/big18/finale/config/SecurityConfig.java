@@ -8,13 +8,8 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import org.springframework.security.web.SecurityFilterChain;
-
-import java.util.Collections;
-import java.util.Map;
 
 @Configuration
 @EnableWebSecurity
@@ -24,8 +19,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/", "/main", "/login", "logging", "/register", "/recommend", "/news"
-                                , "/detail", "/news", "/bbs").permitAll()
+                        .requestMatchers("/", "/main", "/login", "logging", "/register", "/detail"
+                                , "/recommend", "/bbs", "/css/**", "/img/**", "/js/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((formlogin) -> formlogin
