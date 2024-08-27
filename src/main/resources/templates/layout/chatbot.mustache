@@ -1,8 +1,8 @@
-<link rel="stylesheet" href="/css/chatbot_modal.css"/>
-<link rel="stylesheet" href="/css/chatting.css"/>
 <div class="position-fixed bottom-0 end-0 p-3">
-    <button id="floatingBtn" class="btn btn-info rounded-circle shadow" style="width: 60px; height: 60px;">
-        <img src="/img/bot.png" alt="AI 챗봇입니다." style = "width: 40px; height: 40px;">
+    <button id="floatingBtn" class=" bg-gradient-to-r from-blue-500 to-purple-500
+            rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg flex items-center justify-center "
+            style="height: 75px; width:75px">
+        <img src="/img/bot.png" alt="AI 챗봇입니다." class="filter brightness-150" style="height: 40px; width: 40px">
     </button>
 </div>
 <div id="modalOverlay" class="modal-overlay"></div>
@@ -10,7 +10,8 @@
     <div class="flex justify-between items-center p-4 border-b">
         <h2 class="text-lg font-semibold"> AI Stock Helper </h2>
         <button id="closeModalBtn" class="text-gray-500 hover:text-gray-700">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
                 <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
@@ -25,13 +26,14 @@
                 무엇을 도와드릴까요?
             </div>
         </div>
-        <div class="input-area p-3">
-            <div class="input-group">
-                <input type="text" id="messageInput" class="form-control" placeholder="메시지를 입력하세요"/>
+        <div class="input-area">
+            <div class="input-group p-3">
+                <input type="text" id="messageInput" class="form-control " placeholder="메시지를 입력하세요"/>
                 <button id="sendButton" class="btn btn-warning">전송</button>
             </div>
         </div>
     </div>
 </div>
+
 <script src="/js/chatbot_websocket.js"></script>
 <script src="/js/chatbot.js"></script>

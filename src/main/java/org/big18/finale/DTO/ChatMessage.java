@@ -1,6 +1,10 @@
 package org.big18.finale.DTO;
 
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class ChatMessage {
 
     private String content;
@@ -11,22 +15,6 @@ public class ChatMessage {
 
     public ChatMessage(String content, String sender) {
         this.content = content;
-        this.sender = sender;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getSender() {
-        return sender;
-    }
-
-    public void setSender(String sender) {
         this.sender = sender;
     }
 }

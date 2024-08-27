@@ -25,7 +25,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers("/", "/main", "/login", "logging", "/register", "/recommend", "/news"
-                                ,"/detail" ,"/news", "/bbs" ,"/js/**","/img/**", "/css/**").permitAll()
+                                , "/detail", "/news", "/bbs").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((formlogin) -> formlogin
@@ -50,6 +50,7 @@ public class SecurityConfig {
                 .toStaticResources()
                 .atCommonLocations());
     }
+
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -62,7 +63,7 @@ public class SecurityConfig {
     }
 
 
-    }
+}
 
 
 

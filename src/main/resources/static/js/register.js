@@ -16,13 +16,13 @@ $(document).ready(
                 url: "/register",
                 data: formData,
                 success: function (response) {
-                    console.log("회원가입 성공:", response);
+                    console.log(response);
                     alert("회원가입 성공");
                     window.location.href = "/login";
                 },
                 error: function (error) {
-                    console.log("회원가입 실패:", error);
-                    alert("회원가입 실패");
+                    console.log(error);
+                    alert("입력된 정보를 다시 확인해주세요!");
                 }
             });
         });

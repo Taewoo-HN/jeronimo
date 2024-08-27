@@ -23,7 +23,12 @@ public class News {
     @Column(name = "press_co", length = 10)
     private String pressCo;
 
+    @Column(name= "summary", length = 500)
+    private String summary;
+
     @Column(name = "stock_id", length = 12)
     private String stockId;
 
+    @Column(name = "address", length = 100)
+    private String address;
 }
