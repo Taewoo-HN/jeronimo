@@ -2,48 +2,32 @@ package org.big18.finale.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
-import java.util.Date;
-import java.util.List;
-
-@Setter
 @Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class NewsItem {
-    private String title;
-    private Date date;
-    private String excerpt;
-    private String content;
-    private String imageUrl;
-    private String source;
+    private Long news_id;
+    private String news_title;
+    private String news_content;
+    private String press_co;
+    private Long stock_id;
     private String summary;
-    private List<String> keywords;
-    private List<StockTheme> relatedThemes;
-
-    public NewsItem(String title, Date date, String excerpt, String content, String imageUrl, String source,
-                    String summary, List<String> keywords, List<StockTheme> relatedThemes) {
-        this.title = title;
-        this.date = date;
-        this.excerpt = excerpt;
-        this.content = content;
-        this.imageUrl = imageUrl;
-        this.source = source;
-        this.summary = summary;
-        this.keywords = keywords;
-        this.relatedThemes = relatedThemes;
-    }
+    private String address;
 
     @Override
     public String toString() {
         return "NewsItem{" +
-                "title='" + title + '\'' +
-                ", date=" + date +
-                ", excerpt='" + excerpt + '\'' +
-                ", content='" + content + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
-                ", source='" + source + '\'' +
+                "news_id=" + news_id +
+                ", news_title='" + news_title + '\'' +
+                ", news_content='" + news_content + '\'' +
+                ", press_co='" + press_co + '\'' +
+                ", stock_id=" + stock_id +
                 ", summary='" + summary + '\'' +
-                ", keywords=" + keywords +
-                ", relatedThemes=" + relatedThemes +
+                ", address='" + address + '\'' +
                 '}';
     }
 }

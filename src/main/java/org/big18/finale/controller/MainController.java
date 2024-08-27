@@ -1,7 +1,9 @@
 package org.big18.finale.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.big18.finale.entity.News;
 import org.big18.finale.entity.NewsItem;
+import org.big18.finale.service.NewsService;
 import org.big18.finale.service.RssService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.csrf.CsrfToken;
@@ -12,15 +14,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@Controller("/")
+@Controller
 public class MainController {
 
     @Autowired
     private RssService rssService;
+    @Autowired
+    private NewsService newsService;
 
 
     @GetMapping("/main")
-    public String home() {
+    public String home(Model model) {
+        List<News> newsList = newsService.getAllNews();
+        if (newsList.size() > 10) {
+        model.addAttribute("newsList", newsList);
+        }
+
         return "index";
     }
 
@@ -39,19 +48,15 @@ public class MainController {
     }
 
     @GetMapping("/news")
-    public String showNews(@RequestParam(name = "query", defaultValue = "삼성전자") String query, Model model) {
-        List<NewsItem> newsItems = rssService.fetchAllNewsItems(query);
-        System.out.println("Fetched " + newsItems.size() + " news items for query: " + query);
-        for (NewsItem item : newsItems) {
-            System.out.println("Title: " + item.getTitle() + ", Excerpt: " + item.getExcerpt());
-            System.out.println("Summary: " + item.getSummary());
-            System.out.println("Keywords: " + String.join(", ", item.getKeywords()));
-            System.out.println("Related Themes: " + item.getRelatedThemes().stream()
-                    .map(theme -> theme.getName())
-                    .collect(java.util.stream.Collectors.joining(", ")));
-        }
+    public String showNews(@RequestParam(name = "query", defaultValue = "삼성전자") String query,
+                           @RequestParam(name = "page", defaultValue = "1") int page,
+                           @RequestParam(name = "display", defaultValue = "20") int display,
+                           Model model) {
+        int start = (page - 1) * display + 1;
+        List<NewsItem> newsItems = rssService.fetchAllNewsItems(query, display, start);
         model.addAttribute("newsItems", newsItems);
         model.addAttribute("searchQuery", query);
+        model.addAttribute("currentPage", page);
         return "newspage";
     }
 

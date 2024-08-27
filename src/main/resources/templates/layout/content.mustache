@@ -4,6 +4,42 @@
             국내
         </button>
     </div>
+    <style>
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 가로로 3개 */
+            gap: 16px; /* 아이템 간의 간격 */
+            margin-top: 16px;
+        }
+        .transparent-button {
+            display: inline-flex;
+            align-items: center;
+            font-size: 12px; /* 텍스트 크기를 작게 설정 */
+            color: #666666; /* 텍스트 색상 설정 */
+            background-color: transparent; /* 배경색을 투명하게 설정 */
+            border: none; /* 버튼 테두리 제거 */
+            text-decoration: none; /* 밑줄 제거 */
+            transition: color 0.3s ease;
+            cursor: pointer; /* 커서 모양을 포인터로 변경 */
+        }
+
+        .transparent-button::before {
+            content: "\25B6"; /* ▶ 화살표 */
+            display: inline-block;
+            margin-right: 4px; /* 텍스트와 화살표 사이 간격 */
+            font-size: 10px; /* 화살표 크기 설정 */
+            color: #bbbbbb; /* 화살표 색상 설정 */
+            transition: color 0.3s ease;
+        }
+
+        .transparent-button:hover {
+            color: #333333; /* 호버 시 텍스트 색상 */
+        }
+
+        .transparent-button:hover::before {
+            color: #888888; /* 호버 시 화살표 색상 */
+        }
+    </style>
     <div class="grid grid-cols-5 gap-4 mb-8 ">
         <div class="rounded-lg border text-card-foreground shadow-sm bg-blue-100 " data-v0-t="card">
             <div class="p-6">
@@ -1004,7 +1040,33 @@
             </div>
         </div>
     </div>
-   {{>layout/news}}
+    <div class="mb-8">
+        <h2 class="text-xl font-bold">이 시각 뉴스 <a href="/newspage" class="transparent-button">더보기</a></h2>
+        <ul class="news-grid">
+            {{#newsList}}
+            <li>
+        <div class="grid grid-cols-3 gap-4 mt-4">
+            <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0">
+                    <img
+                            src="/placeholder.svg"
+                            alt="News Logo"
+                            class="h-10 w-10"
+                            width="40"
+                            height="40"
+                            style="aspect-ratio: 40 / 40; object-fit: cover;"
+                    />
+                </div>
+                <div>
+                    <p class="text-sm font-medium"><a href="/newspage/{{newsId}}">{{newsTitle}}</a></p>
+                    <p class="text-xs text-muted-foreground"><a href="/newspage/{{newsId}}">{{pressCo}}</a></p>
+                </div>
+            </div>
+        </div>
+            </li>
+            {{/newsList}}
+        </ul>
+    </div>
     <div>
         <h2 class="text-xl font-bold">실시간 랭킹</h2>
         <div class="grid grid-cols-2 gap-4 mt-4">

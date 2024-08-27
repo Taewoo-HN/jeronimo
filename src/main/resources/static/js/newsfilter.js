@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     const newsItems = document.querySelectorAll('.news-item');
     const summaryModal = document.getElementById("summaryModal");
     const keywordsModal = document.getElementById("keywordsModal");
@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 필터링할 키워드들
     const filterKeywords = [
-        '<b>',
         'ⓒ SBS & SBS i',
         'RSS 피드는',
         '▶ SBS 뉴스 앱 다운로드',
@@ -73,7 +72,35 @@ document.addEventListener('DOMContentLoaded', function () {
         const keywordsBtn = item.querySelector('.keywords-btn');
 
         if (title && content) {
-            title.addEventListener('click', () => {
+            title.addEventListener('click', async () => {
+                if (content.innerHTML.trim() === '') {
+                    const address = title.getAttribute('data-address');
+                    console.log('Clicking title, address:', address); // 디버깅용 로그
+
+                    if (!address) {
+                        console.error('No address found for this article');
+                        content.innerHTML = '이 기사의 주소를 찾을 수 없습니다.';
+                        return;
+                    }
+
+                    try {
+                        const response = await fetch(`/api/crawl?url=${encodeURIComponent(address)}`);
+                        console.log('Fetch response:', response); // 디버깅용 로그
+
+                        if (response.ok) {
+                            const articleContent = await response.text();
+                            console.log('Article content:', articleContent); // 디버깅용 로그
+                            content.innerHTML = cleanArticleContent(articleContent);
+                        } else {
+                            const errorText = await response.text();
+                            console.error('Error response:', response.status, errorText);
+                            content.innerHTML = `기사를 불러오는 데 실패했습니다. (상태 코드: ${response.status})`;
+                        }
+                    } catch (error) {
+                        console.error('Error fetching article:', error);
+                        content.innerHTML = '기사를 불러오는 중 오류가 발생했습니다: ' + error.message;
+                    }
+                }
                 content.style.display = content.style.display === 'none' ? 'block' : 'none';
             });
         }
