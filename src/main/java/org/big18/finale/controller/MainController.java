@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@Controller
+@Controller("/")
 public class MainController {
 
     @Autowired
