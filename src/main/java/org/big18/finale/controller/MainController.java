@@ -29,7 +29,6 @@ public class MainController {
         if (newsList.size() > 10) {
         model.addAttribute("newsList", newsList);
         }
-
         return "index";
     }
 
@@ -65,4 +64,10 @@ public class MainController {
         return "bbs";
     }
 
+    @GetMapping("/chatting")
+    public String chatWindow(){
+        return "chatbot_window";
+    }
 }
+
+

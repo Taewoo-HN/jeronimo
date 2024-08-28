@@ -4,9 +4,11 @@
 <div class="page-container">
     {{>layout/sidebar}}
     <main class="main-content">
-        <form action="/news" method="get">
-            <input type="text" name="query" value="{{searchQuery}}">
-            <button type="submit">검색</button>
+        <form action="/news" method="get" class="mb-3 input-group">
+            <input type="text" name="query" class="border-2 border-gray-300 rounded" value="{{searchQuery}}">
+            <button class="btn text-white rounded bg-purple-500 hover:bg-purple-400 focus:shadow-outline"
+                    type="submit">검색
+            </button>
         </form>
         <div class="news-grid">
             {{#newsItems}}
