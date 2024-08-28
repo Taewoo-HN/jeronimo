@@ -1,5 +1,6 @@
 package org.big18.finale.config;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,14 +20,21 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/**",  "/css/**", "/img/**", "/js/**").permitAll()
+                        .requestMatchers("/", "/main", "/login", "/chatting" ,"/logging", "/register", "/css/**", "/img/**", "/js/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((formlogin) -> formlogin
                         .loginPage("/login")
                         .loginProcessingUrl("/logging")
-                        .defaultSuccessUrl("/main")
-                        .failureForwardUrl("/login?error")
+                        .successHandler((request, response, authentication) -> {
+                            response.setContentType("application/json");
+                            response.getWriter().write("{\"success\": true, \"message\": \"로그인 성공\"}");
+                        })
+                        .failureHandler((request, response, exception) -> {
+                            response.setContentType("application/json");
+                            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                            response.getWriter().write("{\"success\": false, \"message\": \"" + exception.getMessage() + "\"}");
+                        })
                         .usernameParameter("user_id")
                         .passwordParameter("user_pw")
                         .permitAll()
