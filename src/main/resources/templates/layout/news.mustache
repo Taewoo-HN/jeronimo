@@ -1,9 +1,31 @@
-<h1>All News</h1>
-<ul>
-    {{#newsList}}
-        <li>
-            <a href="/newspage/{{newsId}}">{{newsTitle}}</a>
-        </li>
-    {{/newsList}}
-</ul>
+<div class="mb-4">
+    <h2 class="text-xl font-bold mb-3">
+        이 시각 뉴스
+        <a href="/news" class="text-sm">더보기</a>
+    </h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {{#newsList}}
+            <div class="col">
+                <div class="card h-100">
+                    <div class="d-flex align-items-center justify-content-center p-3 border rounded bg-light">
+                        <!-- Placeholder for image -->
+                        <div class="h-100 w-100 d-flex align-items-center justify-content-center">
+                            <div class="h-10 w-10 bg-secondary rounded-circle d-flex align-items-center justify-content-center">
+                                <span class="text-white text-xs">Image</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-title text-muted text-truncate" style="white-space: nowrap;">
+                            {{newsTitle}}
+                        </p>
+                        <p class="card-text text-muted text-truncate text-sm" style="white-space: nowrap;">
+                            {{pressCo}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {{/newsList}}
+    </div>
+</div>
 
