@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -25,7 +26,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers("/", "/main", "/login", "/chatting", "/logging", "/register", "/css/**", "/img/**", "/js/**").permitAll()
                         .anyRequest().authenticated()
@@ -43,8 +44,8 @@ public class SecurityConfig {
                             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                             response.getWriter().write("{\"success\": false, \"message\": \"로그인 실패: " + exception.getMessage() + "\"}");
                         })
-                        .usernameParameter("user_id")
-                        .passwordParameter("user_pw")
+                        .usernameParameter("username")
+                        .passwordParameter("password")
                         .permitAll()
                 )
                 .logout(logout -> logout

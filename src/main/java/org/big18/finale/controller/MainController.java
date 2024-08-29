@@ -1,12 +1,10 @@
 package org.big18.finale.controller;
 
-import jakarta.servlet.http.HttpServletRequest;
 import org.big18.finale.entity.News;
 import org.big18.finale.entity.NewsItem;
 import org.big18.finale.service.NewsService;
 import org.big18.finale.service.RssService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,11 +47,7 @@ public class MainController {
 
 
     @GetMapping("/login")
-    public String login(HttpServletRequest request, Model model) {
-        CsrfToken csrf = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
-        if (csrf != null) {
-            model.addAttribute("_csrf", csrf);
-        }
+    public String login() {
         return "login";
     }
 
