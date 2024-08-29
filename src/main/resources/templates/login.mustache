@@ -2,10 +2,13 @@
 <html lang="ko">
 <head>
     <title>Login</title>
+    <link rel="icon" href="/img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="/css/login.css">
-    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
-            charset="utf-8"></script>
     <script src="/js/jquery-3.7.1.min.js"></script>
+    <script>
+        var csrfToken = "{{_csrf.token}}";
+        var csrfHeader = "{{_csrf.headerName}}";
+    </script>
 </head>
 <body>
 <div class="container" id="container">
@@ -18,7 +21,7 @@
             <input type="text" name="user_id" id="r_user_id" placeholder="ID"/>
             <input type="password" name='user_pw' id="r_user_pw" placeholder="Password"/>
             <input type="text" name="phone_number" id="r_phone_number" placeholder="Phone Number"/>
-            <button type="button" id="sign_up">Sign Up</button>
+            <button type="submit" id="sign_up">Sign Up</button>
         </form>
     </div>
     <div class="form-container sign-in-container">
@@ -28,7 +31,6 @@
             <input name="user_id" id="l_user_id" type="text" placeholder="ID">
             <input name="user_pw" id="l_user_pw" type="password" placeholder="Password">
             <button type="submit" id="sign_in">Sign In</button>
-        </form>
         </form>
         <p id="forget_pw">Forgot your password?</p>
     </div>
@@ -47,6 +49,7 @@
         </div>
     </div>
 </div>
+
 <script>
     const signUpButton = document.getElementById('signUp');
     const signInButton = document.getElementById('signIn');
@@ -64,12 +67,8 @@
                 + '010-1234-5678');
     });
 </script>
-<script>
-    var csrfToken = "{{_csrf.token}}";
-    var csrfHeader = "{{_csrf.headerName}}";
-</script>
-<script src="/js/login.js"></script>
-<script src="/js/register.js"></script>
 <script src="/js/logformcheck.js"></script>
+<script src = "/js/login.js" ></script>
+<script src="/js/register.js"></script>
 </body>
 </html>

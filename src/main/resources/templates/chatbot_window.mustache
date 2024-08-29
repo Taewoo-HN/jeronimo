@@ -1,35 +1,35 @@
-{{>layout/header}}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Stock Helper</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+<link rel="stylesheet" href="/css/chatting.css">
+</head>
 <body>
-<div class="h-screen flex flex-col">
-    <div class="flex-grow overflow-y-auto p-4">
-        <div id="chat-messages" class="space-y-4">
-            <div class="flex items-start">
-                <div class="flex-shrink-0 mr-2">
-                    <img src="/img/bot.png" alt="User 1" class="rounded-full w-8 h-8">
-                </div>
-                <div class="bg-gray-200 rounded-lg p-3">
-                    <p class="font-bold mb-1">User 1</p>
-                    <p>안녕하세요! 첫 번째 메시지입니다.</p>
-                </div>
-            </div>
-            <div class="flex items-start justify-end">
-                <div class="flex-shrink-0 ml-2">
-                    <img src="/img/user.png" alt="User 2" class="rounded-full w-8 h-8">
-                </div>
-                <div class="bg-purple-500 text-white rounded-lg p-3">
-                    <p class="font-bold mb-1">User 2</p>
-                    <p>네, 반갑습니다!</p>
-                </div>
-            </div>
+<div class="wrap">
+    <header>
+        <img class="profile-img" src="./pic/default.png" alt="프로필사진">
+        <div class="profile-col">
+            <span class="profile-name">AI 챗봇</span>
+        </div>
+    </header>
+    <div id="messages">
+        <div class="chat ch1">
+            <div class="icon"><i class="fa-solid fa-robot"></i></div>
+            <div class="textbox">안녕하세요! AI 챗봇입니다.</div>
+        </div>
+        <div class="chat ch1">
+            <div class="icon"><i class="fa-solid fa-robot"></i></div>
+            <div class="textbox">무엇을 도와드릴까요?</div>
         </div>
     </div>
+    <div class="input-group">
+        <input type="text" id="messageInput" placeholder="메시지를 입력하세요"/>
+        <button id="sendButton">전송</button>
+    </div>
 </div>
-<div class="flex items-center p-4 border-t">
-    <input type="text" id="message-input" class="flex-grow px-4 py-2 rounded-md" placeholder="메시지를 입력하세요">
-    <button id="send-button" class="px-4 py-2 bg-purple-500 hover:bg-purple-700 text-white rounded-md">전송</button>
-</div>
-
-<script src="/js/chatbot_texting.js"></script>
-<script src="/js/chatbot_websocket.js"></script>
+<script src="/js/chatbot_texting"></script>
 </body>
-{{>layout/footer}}
+</html>

@@ -9,6 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -16,40 +17,34 @@ import java.util.Collections;
 
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserService {
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     private MemberRepository memberRepository;
 
-    private UserRole userRole;
 
-    @Override
-    public UserDetails loadUserByUsername(String user_id) throws UsernameNotFoundException {
-        Users member = memberRepository.findById(user_id).orElseThrow(() -> new UsernameNotFoundException("사용자를 찾을 수 없습니다."));
-        Collection<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority(member.getRole().name()));
-        return org.springframework.security.core.userdetails.User
-                .withUsername(member.getUserId())
-                .password(member.getUserPw())
-                .authorities(authorities)
-                .build();
-    }
+    public void register(String user_id, String user_pw, String email,
+                         String nickname, String phone_number) throws Exception {
+        if (memberRepository.existsByEmail(email)) {
+            throw new Exception("동일한 이메일로 회원이 존재합니다.");
+        }
+        if (memberRepository.existsByUserId(user_id)) {
+            throw new Exception("동일한 입력으로 회원이 존재합니다.");
+        }
 
-    public void register(String user_id, String user_pw, String email
-                        , String nickname, String phone_number) throws Exception{
+        String encodedPassword = bCryptPasswordEncoder.encode(user_pw);
+
         Users member = new Users();
-        if(memberRepository.findById(user_id).isPresent()){
-            throw new Exception("이미 존재하는 아이디입니다.");
-        }
-        if(memberRepository.findByEmail(email)){
-            throw new Exception("이미 존재하는 이메일입니다.");
-        }
         member.setUserId(user_id);
-        member.setUserPw(user_pw);
+        member.setUserPw(encodedPassword);
         member.setEmail(email);
         member.setUserName(nickname);
         member.setPhoneNumber(phone_number);
-        member.setRole(userRole != null ? userRole : UserRole.ROLE_USER);
+        member.setRole(UserRole.ROLE_USER); // 기본 역할 설정
+
         memberRepository.save(member);
     }
-
 }

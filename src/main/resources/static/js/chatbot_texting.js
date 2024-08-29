@@ -1,14 +1,16 @@
-const messageInput = document.getElementById('message-input');
-const sendButton = document.getElementById('send-button');
-const chatMessages = document.getElementById('chat-messages');
-
-sendButton.addEventListener('click', () => {
-    const message = messageInput.value;
+document.getElementById('sendButton').addEventListener('click', function () {
+    const input = document.getElementById('messageInput');
+    const message = input.value.trim();
     if (message) {
-        const messageElement = document.createElement('div');
-        messageElement.classList.add('bg-purple-500', 'text-white','flex','item-smart' , 'rounded-lg', 'p-3');
-        messageElement.textContent = message;
-        chatMessages.appendChild(messageElement);
-        messageInput.value = '';
+        const messagesContainer = document.getElementById('messages');
+        const newMessage = document.createElement('div');
+        newMessage.className = 'chat ch2';
+        newMessage.innerHTML = `
+                <div class="icon"><i class="fa-solid fa-user"></i></div>
+                <div class="textbox">${message}</div>
+            `;
+        messagesContainer.appendChild(newMessage);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        input.value = '';
     }
 });
