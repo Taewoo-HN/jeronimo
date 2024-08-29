@@ -30,9 +30,10 @@ public class UserService {
                          String nickname, String phone_number) throws Exception {
         if (memberRepository.existsByEmail(email)) {
             throw new Exception("동일한 이메일로 회원이 존재합니다.");
-        }
-        if (memberRepository.existsByUserId(user_id)) {
-            throw new Exception("동일한 입력으로 회원이 존재합니다.");
+        } else if (memberRepository.existsByUserId(user_id)) {
+            throw new Exception("이미 존재하는 아이디입니다.");
+        } else if(memberRepository.existsByPhoneNumber(phone_number)){
+            throw new Exception("이미 존재하는 전화번호입니다.");
         }
 
         String encodedPassword = bCryptPasswordEncoder.encode(user_pw);

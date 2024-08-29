@@ -41,10 +41,12 @@ public class MainController {
         return "index";
     }
 
-    @GetMapping("/detail")
-    public String detail() {
+    @GetMapping("/detail/{code}")
+    public String getStockDetail(@PathVariable String code, Model model) {
+        model.addAttribute("stockCode", code);
         return "detail";
     }
+
 
     @GetMapping("/login")
     public String login(HttpServletRequest request, Model model) {
@@ -78,11 +80,6 @@ public class MainController {
         return "chatbot_window";
     }
 
-    @GetMapping("/detail/{code}")
-    public String getStockDetail(@PathVariable String code, Model model) {
-        model.addAttribute("stockCode", code);
-        return "detail";
-    }
 }
 
 

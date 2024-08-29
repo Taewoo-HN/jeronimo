@@ -3,25 +3,23 @@ package org.big18.finale.controller;
 import org.big18.finale.repository.MemberRepository;
 import org.big18.finale.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
 
-@RestController
+@Controller
 public class UserController {
 
 
     private final BCryptPasswordEncoder passwordEncoder;
 
-
     private final UserService userService;
 
-    public UserController(MemberRepository memberRepository, BCryptPasswordEncoder passwordEncoder, AuthenticationManager authenticationManager, UserService userService) {
+    public UserController(MemberRepository memberRepository, BCryptPasswordEncoder passwordEncoder, UserService userService) {
         this.passwordEncoder = passwordEncoder;
         this.userService = userService;
     }
@@ -38,7 +36,6 @@ public class UserController {
             return ResponseEntity.badRequest().body(Map.of("success", false, "message", "회원가입 실패" + e.getMessage()));
         }
     }
-
 }
 
 
