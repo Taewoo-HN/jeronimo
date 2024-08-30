@@ -1,6 +1,6 @@
 package org.big18.finale.controller;
 
-import org.big18.finale.service.ChatMessage;
+import org.big18.finale.DTO.ChatMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;

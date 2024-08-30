@@ -33,11 +33,7 @@ public class MainController {
         Collections.shuffle(newsList);
         newsList = newsList.subList(0, 9);
 
-        String username = (String) session.getAttribute("username");
-        if (username == null) {
-            username = "Guest";
-        }
-
+        String username = "guest";
         model.addAttribute("newsList", newsList);
         model.addAttribute("username", username);
         return "index";
