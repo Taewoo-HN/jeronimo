@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Stock Helper</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-<link rel="stylesheet" href="/css/chatting.css">
+    <link rel="stylesheet" href="/css/chatting.css">
 </head>
 <body>
 <div class="wrap">
@@ -15,7 +15,7 @@
             <span class="profile-name">AI 챗봇</span>
         </div>
     </header>
-    <div id="messages">
+    <div id="messages" class="messages">
         <div class="chat ch1">
             <div class="icon"><i class="fa-solid fa-robot"></i></div>
             <div class="textbox">안녕하세요! AI 챗봇입니다.</div>
@@ -30,6 +30,50 @@
         <button id="sendButton">전송</button>
     </div>
 </div>
-<script src="/js/chatbot_texting"></script>
+
+<!-- Include the STOMP and SockJS libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+
+<!-- JavaScript code -->
+<script>
+    const socket = new SockJS('/ws');
+    const stompClient = Stomp.over(socket);
+
+    stompClient.connect({}, function(frame) {
+        console.log('Connected: ' + frame);
+        stompClient.subscribe('/topic/messages', function(messageOutput) {
+            showMessageOutput(JSON.parse(messageOutput.body));
+        });
+    });
+
+    function sendMessage() {
+        const messageInput = document.getElementById('messageInput');
+        const message = messageInput.value.trim();
+        if (message) {
+            stompClient.send("/app/chat", {}, JSON.stringify({'content': message, 'sender': 'User'}));
+            messageInput.value = '';
+        }
+    }
+
+    function showMessageOutput(messageOutput) {
+        const messageList = document.getElementById('messages');
+        const messageElement = document.createElement('div');
+        messageElement.className = 'chat ch2';
+        messageElement.innerHTML = `<div class="icon"><i class="fa-solid fa-user"></i></div><div class="textbox"><strong>${messageOutput.sender}:</strong> ${messageOutput.content}</div>`;
+        messageList.appendChild(messageElement);
+        messageList.scrollTop = messageList.scrollHeight;
+    }
+
+    document.getElementById('sendButton').addEventListener('click', function() {
+        sendMessage();
+    });
+
+    document.getElementById('messageInput').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            sendMessage();
+        }
+    });
+</script>
 </body>
 </html>

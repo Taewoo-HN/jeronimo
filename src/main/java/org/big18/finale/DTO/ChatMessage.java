@@ -1,20 +1,17 @@
 package org.big18.finale.DTO;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ChatMessage {
 
-    private String content;
     private String sender;
+    private String content;
 
-    public ChatMessage() {
-    }
-
-    public ChatMessage(String content, String sender) {
-        this.content = content;
-        this.sender = sender;
-    }
 }

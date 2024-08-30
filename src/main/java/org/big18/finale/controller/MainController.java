@@ -31,11 +31,15 @@ public class MainController {
     public String home(Model model) {
         List<News> newsList = newsService.getAllNews();
         Collections.shuffle(newsList);
+        newsList = newsList.subList(0, 9);
 
-        if (newsList.size() > 10) {
-            newsList = newsList.subList(0, 9);
+        String username = (String) session.getAttribute("username");
+        if (username == null) {
+            username = "Guest";
         }
+
         model.addAttribute("newsList", newsList);
+        model.addAttribute("username", username);
         return "index";
     }
 
@@ -52,7 +56,7 @@ public class MainController {
     }
 
     @GetMapping("/news")
-    public String showNews(@RequestParam(name = "query", defaultValue = "코스피" ) String query,
+    public String showNews(@RequestParam(name = "query", defaultValue = "코스피") String query,
                            @RequestParam(name = "page", defaultValue = "1") int page,
                            @RequestParam(name = "display", defaultValue = "20") int display,
                            Model model) {
@@ -70,7 +74,7 @@ public class MainController {
     }
 
     @GetMapping("/chatting")
-    public String chatWindow(){
+    public String chatWindow() {
         return "chatbot_window";
     }
 

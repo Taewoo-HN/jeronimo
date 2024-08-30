@@ -2,22 +2,21 @@ spring:
   application:
     name: finale
   datasource:
-    url: jdbc:mariadb://${host-code}:3306/finaldb
-    username: root
+    url: jdbc:mariadb://${host-code}:${service-port}/${db-name}
+    username: ${db-user}
     password: ${db-password}
     driver-class-name: org.mariadb.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
-logging:
-  level:
-    org:
-      springframework:
-        security: DEBUG
+  redis:
+    lettuce:
+
+
 
 server:
-  port: 8028
+  port: ${server-port}
   servlet:
     encoding:
       force: true
