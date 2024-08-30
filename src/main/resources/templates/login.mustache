@@ -9,7 +9,7 @@
 <body>
 <div class="container" id="container">
     <div class="form-container sign-up-container">
-        <form id="register_form" method="post">
+        <form id="register_form" action="/register" method="post">
             <h1>Create Account</h1>
             <input type="text" name="user_name" id="r_user_name" placeholder="Name"/>
             <input type="email" name="email" id="r_email" placeholder="Email"/>
@@ -20,10 +20,10 @@
         </form>
     </div>
     <div  class="form-container sign-in-container">
-        <form id="login_form" method="post">
+        <form id="login_form" action="/logging" method="post">
             <h1>Sign in</h1>
-            <input name="userId" id="l_user_id" type="text" placeholder="ID">
-            <input name="userPw" id="l_user_pw" type="password" placeholder="Password">
+            <input name="username" id="l_user_id" type="text" placeholder="ID">
+            <input name="password" id="l_user_pw" type="password" placeholder="Password">
             <button type="submit" id="sign_in">Sign In</button>
         </form>
         <p id="forget_pw">Forgot your password?</p>
@@ -62,7 +62,6 @@
     });
 </script>
 <script src="/js/logformcheck.js"></script>
-<script src = "/js/login.js" ></script>
-<script src="/js/register.js"></script>
+<script src ="/js/loginCheck.js" ></script>
 </body>
 </html>

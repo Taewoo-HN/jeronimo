@@ -1,8 +1,7 @@
 package org.big18.finale.service;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -17,10 +16,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
-    private static final Logger logger = LoggerFactory.getLogger(CustomAuthenticationProvider.class);
 
     private final CustomUserService customUserService;
     private final BCryptPasswordEncoder passwordEncoder;
+
 
 
     @Autowired
@@ -29,17 +28,13 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         this.passwordEncoder = passwordEncoder;
     }
 
-
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = authentication.getName();
         String password = authentication.getCredentials().toString();
 
-        logger.debug("Comparing passwords for user: " + username);
-        logger.debug("Input password: " + password);
 
         UserDetails userDetails = customUserService.loadUserByUsername(username);
-        logger.debug("Stored password: " + userDetails.getPassword());
 
         if (userDetails == null) {
             throw new UsernameNotFoundException("사용자를 찾을 수 없습니다.");
