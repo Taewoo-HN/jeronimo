@@ -6,6 +6,7 @@ import org.big18.finale.service.CustomUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -21,7 +22,7 @@ public class SecurityConfig {
  private CustomUserService customUserService;
 
  @Autowired
- private BCryptPasswordEncoder PasswordEncoder;
+ private BCryptPasswordEncoder passwordEncoder;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -61,6 +62,7 @@ public class SecurityConfig {
     }
 
     public CustomAuthenticationProvider customAuthenticationProvider() {
-        return new CustomAuthenticationProvider(customUserService, PasswordEncoder); // 빈 주입
+        return new CustomAuthenticationProvider(customUserService, passwordEncoder); // 빈 주입
     }
+
 }

@@ -19,11 +19,14 @@ import java.util.Collections;
 @Service
 public class UserService {
 
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final BCryptPasswordEncoder passwordEncoder;
+    private final MemberRepository memberRepository;
 
     @Autowired
-    private MemberRepository memberRepository;
+    public UserService(BCryptPasswordEncoder passwordEncoder, MemberRepository memberRepository) {
+        this.passwordEncoder = passwordEncoder;
+        this.memberRepository = memberRepository;
+    }
 
 
     public void register(String user_id, String user_pw, String email,
@@ -36,7 +39,7 @@ public class UserService {
             throw new Exception("이미 존재하는 전화번호입니다.");
         }
 
-        String encodedPassword = bCryptPasswordEncoder.encode(user_pw);
+        String encodedPassword = passwordEncoder.encode(user_pw);
 
         Users member = new Users();
         member.setUserId(user_id);

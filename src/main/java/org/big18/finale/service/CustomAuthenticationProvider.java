@@ -3,6 +3,7 @@ package org.big18.finale.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -11,17 +12,23 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
-    private final CustomUserService userDetailsService;
-    private final BCryptPasswordEncoder passwordEncoder;
     private static final Logger logger = LoggerFactory.getLogger(CustomAuthenticationProvider.class);
 
-    public CustomAuthenticationProvider(CustomUserService userDetailsService, BCryptPasswordEncoder passwordEncoder) {
-        this.userDetailsService = userDetailsService;
+    private final CustomUserService customUserService;
+    private final BCryptPasswordEncoder passwordEncoder;
+
+
+    @Autowired
+    public CustomAuthenticationProvider(CustomUserService customUserService, BCryptPasswordEncoder passwordEncoder) {
+        this.customUserService = customUserService;
         this.passwordEncoder = passwordEncoder;
     }
+
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -31,7 +38,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         logger.debug("Comparing passwords for user: " + username);
         logger.debug("Input password: " + password);
 
-        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        UserDetails userDetails = customUserService.loadUserByUsername(username);
         logger.debug("Stored password: " + userDetails.getPassword());
 
         if (userDetails == null) {
