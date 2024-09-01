@@ -1,76 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stock Data</title>
-    <style>
-        .stock-container {
-            padding: 20px;
-            background-color: #ffffff;
-            border-radius: 8px;
-            max-width: 600px;
-            margin: auto;
-        }
-
-        .stock-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .stock-logo img {
-            width: 40px;
-            height: 40px;
-        }
-
-        .stock-name {
-            flex-grow: 1;
-            padding-left: 15px;
-            font-weight: bold;
-            font-size: 18px;
-            color: #333;
-        }
-
-        .stock-price {
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-            text-align: right;
-            min-width: 100px;
-        }
-
-        .stock-change {
-            font-size: 16px;
-            text-align: right;
-            min-width: 150px;
-        }
-
-        .price-up {
-            color: #d60000;  /* 빨간색 */
-        }
-
-        .price-down {
-            color: #0056d6;  /* 파란색 */
-        }
-    </style>
-</head>
-<body>
-<div class="stock-container">
-    {{#stockDataList}}
-        <div class="stock-item">
-            <div class="stock-logo">
-                <img src="/img/{{code}}.png" alt="{{name}}">
+<div class="container mx-auto my-4">
+    <h3 class="font-bold mt-4">오늘의 주식정보 <a href="/recommend" class="text-sm mt-2">상세보기</a></h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
+        {{#stockDataList}}
+            <div class="bg-white rounded-lg p-4 shadow-md">
+                <div class="flex flex-col items-center">
+                    <img src="/img/{{code}}.png" alt="{{name}}" class="w-10 h-10 mb-2">
+                    <h5 class="text-lg font-bold">{{name}}</h5>
+                    <p class="text-lg font-bold">{{getFormattedCurrentPrice}}원</p>
+                    <p class="text-sm text-{{#isPercentageChangePositive}}red-500{{/isPercentageChangePositive}}{{^isPercentageChangePositive}}blue-500{{/isPercentageChangePositive}}">
+                        {{getFormattedDifference}}원 ({{getFormattedPercentageChange}}%)
+                    </p>
+                </div>
             </div>
-            <div class="stock-name">{{name}}</div>
-            <div class="stock-price">{{getFormattedCurrentPrice}}원</div>
-            <div class="stock-change {{#isPercentageChangePositive}}price-up{{/isPercentageChangePositive}}{{^isPercentageChangePositive}}price-down{{/isPercentageChangePositive}}">
-                {{getFormattedDifference}}원 ({{getFormattedPercentageChange}}%)
-            </div>
-        </div>
-    {{/stockDataList}}
+        {{/stockDataList}}
+    </div>
 </div>
-</body>
-</html>

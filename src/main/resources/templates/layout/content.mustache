@@ -1,24 +1,5 @@
 <main class="ml-16 mt-16 p-4">
     {{>layout/major_data}}
     {{>layout/news}}
-    <div>
-        <div style="max-width: 600px; margin: auto; background-color: #ffffff; border-radius: 8px; padding: 10px;">
-            {{#stockDataList}}
-                <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #e0e0e0;">
-                    <div style="flex-shrink: 0;">
-                        <img src="/img/{{code}}.png" alt="{{name}}" style="width: 40px; height: 40px;">
-                    </div>
-                    <div style="flex-grow: 1; padding-left: 15px; font-weight: bold; font-size: 18px; color: #333;">
-                        {{name}}
-                    </div>
-                    <div style="font-size: 18px; font-weight: bold; color: #333; text-align: right;">
-                        {{getFormattedCurrentPrice}}원
-                    </div>
-                    <div style="font-size: 16px; text-align: right; min-width: 150px; color: {{#isPercentageChangePositive}}#d60000{{/isPercentageChangePositive}}{{^isPercentageChangePositive}}#0056d6{{/isPercentageChangePositive}};">
-                        {{getFormattedDifference}}원 ({{getFormattedPercentageChange}}%)
-                    </div>
-                </div>
-            {{/stockDataList}}
-        </div>
-    </div>
+    {{>layout/stocks}}
 </main>
