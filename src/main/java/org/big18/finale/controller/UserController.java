@@ -29,10 +29,10 @@ public class UserController {
         try {
             userService.register(user_id, user_pw, email, userName, phoneNumber);
             model.addAttribute("success","회원가입 완료");
-            return "redirect:/login";
+            return "login";
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
-            return "redirect:/login";
+            return "login";
         }
     }
 }

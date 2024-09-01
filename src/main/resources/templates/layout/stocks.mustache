@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Data</title>
+    <style>
+        .stock-container {
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .stock-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .stock-logo img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .stock-name {
+            flex-grow: 1;
+            padding-left: 15px;
+            font-weight: bold;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .stock-price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            text-align: right;
+            min-width: 100px;
+        }
+
+        .stock-change {
+            font-size: 16px;
+            text-align: right;
+            min-width: 150px;
+        }
+
+        .price-up {
+            color: #d60000;  /* 빨간색 */
+        }
+
+        .price-down {
+            color: #0056d6;  /* 파란색 */
+        }
+    </style>
+</head>
+<body>
+<div class="stock-container">
+    {{#stockDataList}}
+        <div class="stock-item">
+            <div class="stock-logo">
+                <img src="/img/{{code}}.png" alt="{{name}}">
+            </div>
+            <div class="stock-name">{{name}}</div>
+            <div class="stock-price">{{getFormattedCurrentPrice}}원</div>
+            <div class="stock-change {{#isPercentageChangePositive}}price-up{{/isPercentageChangePositive}}{{^isPercentageChangePositive}}price-down{{/isPercentageChangePositive}}">
+                {{getFormattedDifference}}원 ({{getFormattedPercentageChange}}%)
+            </div>
+        </div>
+    {{/stockDataList}}
+</div>
+</body>
+</html>

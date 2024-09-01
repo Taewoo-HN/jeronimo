@@ -1,9 +1,11 @@
 package org.big18.finale.controller;
 
+import org.big18.finale.DTO.StockDisplayData;
 import org.big18.finale.entity.News;
 import org.big18.finale.entity.NewsItem;
 import org.big18.finale.service.NewsService;
 import org.big18.finale.service.RssService;
+import org.big18.finale.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,8 @@ public class MainController {
     private RssService rssService;
     @Autowired
     private NewsService newsService;
+    @Autowired
+    private StockService stockService;
 
     @GetMapping("/")
     public String redirectToMain() {
@@ -33,7 +37,14 @@ public class MainController {
         Collections.shuffle(newsList);
         newsList = newsList.subList(0, 9);
 
+
+        List<StockDisplayData> stockDataList = stockService.getAllStockData();
+        model.addAttribute("stockDataList", stockDataList);
+
+
         String username = "guest";
+
+
         model.addAttribute("newsList", newsList);
         model.addAttribute("username", username);
         return "index";
@@ -66,7 +77,7 @@ public class MainController {
 
     @GetMapping("/bbs")
     public String board() {
-        return "bbs";
+        return "post/bbs";
     }
 
     @GetMapping("/chatting")

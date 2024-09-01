@@ -9,32 +9,29 @@ stompClient.connect({}, function(frame) {
 });
 
 function sendMessage() {
+    const messageInput = document.getElementById('messageInput');
     const message = messageInput.value.trim();
     if (message) {
-        stompClient.send("/app/chat", {},
-            JSON.stringify({'content': message, 'sender': 'User'}));
+        stompClient.send("/app/chat", {}, JSON.stringify({'content': message, 'sender': 'User'}));
         messageInput.value = '';
     }
 }
 
 function showMessageOutput(messageOutput) {
-    const li = document.createElement('li');
-    li.innerHTML = `<strong>${messageOutput.sender}:</strong> ${messageOutput.content}`;
-    li.className = 'bg-gray-100 p-2 rounded';
-    messages.appendChild(li);
-    messages.scrollTop = messages.scrollHeight;
+    const messageList = document.getElementById('messages');
+    const messageElement = document.createElement('div');
+    messageElement.className = 'chat ch2';
+    messageElement.innerHTML = `<div class="icon"><i class="fa-solid fa-user"></i></div><div class="textbox"><strong>${messageOutput.sender}:</strong> ${messageOutput.content}</div>`;
+    messageList.appendChild(messageElement);
+    messageList.scrollTop = messageList.scrollHeight;
 }
 
 document.getElementById('sendButton').addEventListener('click', function() {
-    const input = document.getElementById('messageInput');
-    const message = input.value.trim();
-    if (message) {
-        const messageList = document.getElementById('messages');
-        const messageElement = document.createElement('div');
-        messageElement.classList.add('message', 'user-message', 'ml-auto');
-        messageElement.textContent = message;
-        messageList.appendChild(messageElement);
-        input.value = '';
-        messageList.scrollTop = messageList.scrollHeight;
+    sendMessage();
+});
+
+document.getElementById('messageInput').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        sendMessage();
     }
 });

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title> Welcome! </title>
     <meta charset="utf-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -15,12 +14,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <link
             rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+            href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
     />
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <link href="/css/rootstyle.css" type="text/css">
     <link rel="stylesheet" href="/css/news.css" type="text/css">
-    <link rel="stylesheet" type="text/css" href="/css/chatbot_modal.css"/>
+    <script src = /js/moving_form/js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
     <style>
         .progress-bar {
@@ -47,6 +47,93 @@
 
         .progress-bar-item.negative {
             background-color: #F44336;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .swiper-container {
+            width: 100%;
+            padding: 20px 0;
+        }
+        .swiper-wrapper {
+            display: flex;
+        }
+        .swiper-slide {
+            flex: 0 0 auto;
+            width: calc((100% / 5) - 16px);
+            margin-right: 16px;
+            height: auto; /* 높이를 자동으로 조정 */
+        }
+        .card {
+            width: 100%;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 16px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-content {
+            flex-grow: 1;
+        }
+        .card-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        .card-value {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+        .card-change {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        .card-graph {
+            width: 100%;
+            height: 100px; /* 이미지 높이 조정 */
+            object-fit: contain;
+        }
+        .bg-blue-100 { background-color: #DBEAFE; }
+        .bg-red-100 { background-color: #FEE2E2; }
+        .text-blue-500 { color: #3B82F6; }
+        .text-red-500 { color: #EF4444; }
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #000;
+        }
+        .swiper-slide:last-child {
+            margin-right: 0;
+        }
+        .swiper-container {
+            position: relative;  /* 추가 */
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #000;
+            position: absolute;  /* 추가 */
+            top: 50%;  /* 추가 */
+            transform: translateY(-50%);  /* 추가 */
+            width: 30px;  /* 추가 */
+            height: 30px;  /* 추가 */
+        }
+
+        .swiper-button-next {
+            right: -40px;  /* 추가 */
+        }
+
+        .swiper-button-prev {
+            left: -40px;  /* 추가 */
+        }
+
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
+            font-size: 20px;  /* 추가 */
         }
     </style>
 </head>
