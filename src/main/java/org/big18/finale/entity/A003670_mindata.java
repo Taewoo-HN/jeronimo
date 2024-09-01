@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 @Entity
-@Table(name = "a003670_mindata")
+@Table(name = "A003670_mindata")
 public class A003670_mindata {
 
     @Id
