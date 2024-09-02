@@ -5,5 +5,6 @@ import org.springframework.data.keyvalue.repository.KeyValueRepository;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 
 @EnableRedisRepositories
+
 public interface OutputMessageRepository extends KeyValueRepository<OutputMessage, String> {
 }

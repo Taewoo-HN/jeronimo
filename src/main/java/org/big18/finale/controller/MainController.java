@@ -75,10 +75,6 @@ public class MainController {
         return "newspage";
     }
 
-    @GetMapping("/bbs")
-    public String board() {
-        return "post/bbs";
-    }
 
     @GetMapping("/chatting")
     public String chatWindow() {
