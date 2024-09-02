@@ -2,6 +2,7 @@ package org.big18.finale.controller;
 
 
 import jakarta.servlet.http.HttpSession;
+import org.big18.finale.service.UserNameProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,39 +14,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/post")
 public class PostController {
 
-
-    private final HttpSession session;
+    private final UserNameProvider userNameProvider;
 
     @Autowired
-    public PostController(HttpSession session) {
-        this.session = session;
+    public PostController(HttpSession session, UserNameProvider userNameProvider) {
+        this.userNameProvider = userNameProvider;
     }
 
-
     @GetMapping("/bbs")
-    public String board(Model model) {
+    public String board(Model model, HttpSession session) {
 
-        String username = (String) session.getAttribute("username");
-
-        if (username == null) {
-            username = "guest";
-        }
-        boolean isGuest = username.equals("guest");
-
-        model.addAttribute("username", username);
-        model.addAttribute("isGuest", isGuest);
-
-
+        userNameProvider.setUserAttributes(session, model);
         return "post/bbs";
     }
 
     @GetMapping("/new")
-    public String newPost() {
+    public String newPost(Model model, HttpSession session) {
+        userNameProvider.setUserAttributes(session, model);
         return "post/write";
     }
 
     @PostMapping("/new")
-    public String editPost() {
+    public String editPost(Model model, HttpSession session) {
         return "post/write";
     }
 

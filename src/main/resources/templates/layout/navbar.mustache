@@ -20,7 +20,7 @@
                 placeholder="주식, 메뉴, 종목코드 검색"
                 type="search"
         />
-        <a href="/login" id="customer_id"
+        <a href="{{#isGuest}}/login{{/isGuest}}{{^isGuest}}/logout{{/isGuest}}"  id="customer_id"
            class="inline-flex btn items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
             {{#isGuest}}
                 {{username}}/로그인
@@ -35,5 +35,6 @@
         </a>
     </div>
     <script src="/js/rolling_stock.js"></script>
+    <script src="js/logout_check.js"></script>
 </header>
 
