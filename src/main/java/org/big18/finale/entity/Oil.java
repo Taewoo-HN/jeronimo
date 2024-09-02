@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Setter
 @Entity
 @Table(name = "OIL")
-public class Oil {
+public class Oil extends MarketData {
     @Column(name = "name", length = 10)
     private String name;
 

@@ -26,7 +26,6 @@ public class StockService {
         this.jdbcTemplate = jdbcTemplate1;
     }
 
-
     public List<StockDisplayData> getAllStockData() {
         List<String> codes = allcodeRepository.findAll()
                 .stream()

@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Setter
 @Entity
 @Table(name = "SP500")
-public class Sp500 {
+public class Sp500 extends MarketData {
     @Column(name = "name", length = 10)
     private String name;
 
