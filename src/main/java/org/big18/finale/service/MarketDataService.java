@@ -7,6 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -44,7 +45,7 @@ public class MarketDataService {
             return BigDecimal.ZERO;
         }
         return (currentPrice.subtract(previousPrice))
-                .divide(previousPrice, 4, BigDecimal.ROUND_HALF_UP)
+                .divide(previousPrice, 4, RoundingMode.HALF_UP)
                 .multiply(BigDecimal.valueOf(100));
     }
 }

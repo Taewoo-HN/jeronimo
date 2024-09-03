@@ -1,7 +1,7 @@
 <div class="swiper-container">
     <div class="swiper-wrapper grid-container">
         <div class="swiper-slide">
-            <div class="rounded-lg border text-card-foreground shadow-sm bg-blue-100 card">
+            <div id="gold" class="rounded-lg border text-card-foreground shadow-sm bg-blue-100 card">
                 <div class="p-6">
                     <div class="text-lg font-bold">금</div>
                     <div class="text-2xl font-bold">{{goldData.currentPrice}}</div>
@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="swiper-slide">
-            <div class="rounded-lg border text-card-foreground shadow-sm bg-red-100 card">
+            <div id="kospi" class="rounded-lg border text-card-foreground shadow-sm bg-red-100 card">
                 <div class="p-6">
                     <div class="text-lg font-bold">KOSPI 종합</div>
                     <div class="text-2xl font-bold">{{kospiData.currentPrice}}</div>
@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="swiper-slide">
-            <div class="rounded-lg border text-card-foreground shadow-sm bg-red-100 card">
+            <div id="kosdaq" class="rounded-lg border text-card-foreground shadow-sm bg-red-100 card">
                 <div class="p-6">
                     <div class="text-lg font-bold">KOSDAQ 종합</div>
                     <div class="text-2xl font-bold">{{kosdaqData.currentPrice}}</div>
@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="swiper-slide">
-            <div class="rounded-lg border text-card-foreground shadow-sm bg-blue-100 card">
+            <div id="snp" class="rounded-lg border text-card-foreground shadow-sm bg-blue-100 card">
                 <div class="p-6">
                     <div class="text-lg font-bold">S&P500</div>
                     <div class="text-2xl font-bold">{{snp500Data.currentPrice}}</div>
@@ -49,7 +49,7 @@
             </div>
         </div>
         <div class="swiper-slide">
-            <div class="rounded-lg border text-card-foreground shadow-sm bg-red-100 card">
+            <div id="nasdaq" class="rounded-lg border text-card-foreground shadow-sm bg-red-100 card">
                 <div class="p-6">
                     <div class="text-lg font-bold">NASDAQ</div>
                     <div class="text-2xl font-bold">{{nasdaqData.currentPrice}}</div>
@@ -61,7 +61,7 @@
             </div>
         </div>
         <div class="swiper-slide">
-            <div class="rounded-lg border text-card-foreground shadow-sm bg-red-100 card">
+            <div id="oil" class="rounded-lg border text-card-foreground shadow-sm bg-red-100 card">
                 <div class="p-6">
                     <div class="text-lg font-bold">원유</div>
                     <div class="text-2xl font-bold">{{oilData.currentPrice}}</div>
@@ -73,7 +73,7 @@
             </div>
         </div>
         <div class="swiper-slide">
-            <div class="rounded-lg border text-card-foreground shadow-sm bg-red-100 card">
+            <div id="dollar" class="rounded-lg border text-card-foreground shadow-sm bg-red-100 card">
                 <div class="p-6">
                     <div class="text-lg font-bold">원/달러 환율</div>
                     <div class="text-2xl font-bold">{{dollarData.currentPrice}}</div>
@@ -91,3 +91,4 @@
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
 </div>
+<script src="/js/colour_change.js"></script>
