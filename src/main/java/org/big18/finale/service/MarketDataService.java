@@ -44,7 +44,7 @@ public class MarketDataService {
             return BigDecimal.ZERO;
         }
         return (currentPrice.subtract(previousPrice))
-                .divide(previousPrice, BigDecimal.ROUND_HALF_UP)
+                .divide(previousPrice, 4, BigDecimal.ROUND_HALF_UP)
                 .multiply(BigDecimal.valueOf(100));
     }
 }

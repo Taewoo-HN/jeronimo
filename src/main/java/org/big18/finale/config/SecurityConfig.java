@@ -64,12 +64,9 @@ public class SecurityConfig {
                 )
                 .rememberMe(rememberMe -> rememberMe
                         .tokenRepository(new InMemoryTokenRepositoryImpl())
-                        .tokenValiditySeconds(86400) // remember-me 쿠키 유효 기간 (하루)
+                        .tokenValiditySeconds(1800) // remember-me 쿠키 유효 기간 (하루)
                         .key("uniqueAndSecret")
                 );
-        ;
-
-
         // CustomAuthenticationProvider를 SecurityFilterChain에 설정합니다.
         http.authenticationProvider(customAuthenticationProvider());
 

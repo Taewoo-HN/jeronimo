@@ -5,8 +5,8 @@ import lombok.Data;
 
 @Data
 @Entity
+@Table(name = "users")
 public class Users {
-
     @Id
     private String userId;
 

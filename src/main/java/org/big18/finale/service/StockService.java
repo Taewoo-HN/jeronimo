@@ -1,11 +1,11 @@
 package org.big18.finale.service;
 
 import org.big18.finale.DTO.StockDisplayData;
-import org.big18.finale.repository.AllcodeRepository;
+import org.big18.finale.repository.stocks.AllcodeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
-import org.big18.finale.entity.Allcode;
+import org.big18.finale.entity.stocks.Allcode;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
