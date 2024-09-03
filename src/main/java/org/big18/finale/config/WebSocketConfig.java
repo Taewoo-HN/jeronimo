@@ -13,16 +13,12 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
-        // 메시지 브로커 설정
         config.enableSimpleBroker("/topic");
         config.setApplicationDestinationPrefixes("/app");
     }
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        // WebSocket 엔드포인트 등록
-        registry.addEndpoint("/ws")
-                .setAllowedOrigins("http://localhost:8028/chatting")
-                .withSockJS();
+        registry.addEndpoint("/ws").withSockJS();
     }
 }

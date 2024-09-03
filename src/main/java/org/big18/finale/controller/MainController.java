@@ -1,6 +1,7 @@
 package org.big18.finale.controller;
 
 import jakarta.servlet.http.HttpSession;
+import org.big18.finale.DTO.ChatMessage;
 import org.big18.finale.DTO.MarketDisplayData;
 import org.big18.finale.DTO.StockDisplayData;
 import org.big18.finale.entity.News;
@@ -96,11 +97,7 @@ public class MainController {
     }
 
 
-    @GetMapping("/chatting")
-    public String chatWindow() {
 
-        return "chatbot_window";
-    }
 
 }
 

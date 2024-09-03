@@ -22,5 +22,9 @@ public class MarketDisplayData {
     public String calPriceDifference() {
         return String.format("%.2f%%", priceDifference);
     }
+
+    public boolean isPercentageChangePositive() {
+        return this.percentageChange.compareTo(BigDecimal.ZERO) > 0;
+    }
 }
 

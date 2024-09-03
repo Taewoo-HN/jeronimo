@@ -19,4 +19,12 @@ public class ChatMessage {
 
     private String content;
 
+    private boolean senderIsServer;
+
+    // Getters and Setters
+
+    public boolean isSenderIsServer() {
+        return "Server".equals(this.sender);
+    }
+
 }

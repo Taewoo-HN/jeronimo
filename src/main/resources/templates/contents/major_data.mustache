@@ -1,7 +1,7 @@
 <div class="swiper-container">
     <div class="swiper-wrapper grid-container">
         <div class="swiper-slide">
-            <div id="gold" class="rounded-lg border text-card-foreground shadow-sm bg-blue-100 card">
+            <div id="gold" class="rounded-lg border text-card-foreground shadow-sm {{#goldData.isPercentageChangePositive}}bg-red-100{{/goldData.isPercentageChangePositive}}{{^goldData.isPercentageChangePositive}}bg-blue-100{{/goldData.isPercentageChangePositive}} card">
                 <div class="p-6">
                     <div class="text-lg font-bold">금</div>
                     <div class="text-2xl font-bold">{{goldData.currentPrice}}</div>
@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="swiper-slide">
-            <div id="kospi" class="rounded-lg border text-card-foreground shadow-sm bg-red-100 card">
+            <div id="kospi" class="rounded-lg border text-card-foreground shadow-sm {{#kospiData.isPercentageChangePositive}}bg-red-100{{/kospiData.isPercentageChangePositive}}{{^kospiData.isPercentageChangePositive}}bg-blue-100{{/kospiData.isPercentageChangePositive}} card">
                 <div class="p-6">
                     <div class="text-lg font-bold">KOSPI 종합</div>
                     <div class="text-2xl font-bold">{{kospiData.currentPrice}}</div>
@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="swiper-slide">
-            <div id="kosdaq" class="rounded-lg border text-card-foreground shadow-sm bg-red-100 card">
+            <div id="kosdaq" class="rounded-lg border text-card-foreground shadow-sm {{#kosdaqData.isPercentageChangePositive}}bg-red-100{{/kosdaqData.isPercentageChangePositive}}{{^kosdaqData.isPercentageChangePositive}}bg-blue-100{{/kosdaqData.isPercentageChangePositive}} card">
                 <div class="p-6">
                     <div class="text-lg font-bold">KOSDAQ 종합</div>
                     <div class="text-2xl font-bold">{{kosdaqData.currentPrice}}</div>
@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="swiper-slide">
-            <div id="snp" class="rounded-lg border text-card-foreground shadow-sm bg-blue-100 card">
+            <div id="snp" class="rounded-lg border text-card-foreground shadow-sm {{#snp500Data.isPercentageChangePositive}}bg-red-100{{/snp500Data.isPercentageChangePositive}}{{^snp500Data.isPercentageChangePositive}}bg-blue-100{{/snp500Data.isPercentageChangePositive}} card">
                 <div class="p-6">
                     <div class="text-lg font-bold">S&P500</div>
                     <div class="text-2xl font-bold">{{snp500Data.currentPrice}}</div>
@@ -49,7 +49,7 @@
             </div>
         </div>
         <div class="swiper-slide">
-            <div id="nasdaq" class="rounded-lg border text-card-foreground shadow-sm bg-red-100 card">
+            <div id="nasdaq" class="rounded-lg border text-card-foreground shadow-sm {{#nasdaqData.isPercentageChangePositive}}bg-red-100{{/nasdaqData.isPercentageChangePositive}}{{^nasdaqData.isPercentageChangePositive}}bg-blue-100{{/nasdaqData.isPercentageChangePositive}} card">
                 <div class="p-6">
                     <div class="text-lg font-bold">NASDAQ</div>
                     <div class="text-2xl font-bold">{{nasdaqData.currentPrice}}</div>
@@ -61,7 +61,7 @@
             </div>
         </div>
         <div class="swiper-slide">
-            <div id="oil" class="rounded-lg border text-card-foreground shadow-sm bg-red-100 card">
+            <div id="oil" class="rounded-lg border text-card-foreground shadow-sm {{#oilData.isPercentageChangePositive}}bg-red-100{{/oilData.isPercentageChangePositive}}{{^oilData.isPercentageChangePositive}}bg-blue-100{{/oilData.isPercentageChangePositive}} card">
                 <div class="p-6">
                     <div class="text-lg font-bold">원유</div>
                     <div class="text-2xl font-bold">{{oilData.currentPrice}}</div>
@@ -73,7 +73,7 @@
             </div>
         </div>
         <div class="swiper-slide">
-            <div id="dollar" class="rounded-lg border text-card-foreground shadow-sm bg-red-100 card">
+            <div id="dollar" class="rounded-lg border text-card-foreground shadow-sm {{#dollarData.isPercentageChangePositive}}bg-red-100{{/dollarData.isPercentageChangePositive}}{{^dollarData.isPercentageChangePositive}}bg-blue-100{{/dollarData.isPercentageChangePositive}} card">
                 <div class="p-6">
                     <div class="text-lg font-bold">원/달러 환율</div>
                     <div class="text-2xl font-bold">{{dollarData.currentPrice}}</div>

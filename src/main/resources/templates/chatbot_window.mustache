@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/img/favicon.png" type="image/x-icon">
     <title>AI Stock Helper</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link rel="stylesheet" href="/css/loadingChat.css">
     <link rel="stylesheet" href="/css/chatting.css">
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 </head>
 <body>
 <div class="wrap">
@@ -16,16 +19,23 @@
             <span class="profile-name">AI 챗봇</span>
         </div>
     </header>
-    <div id="messages" class="messages">
-        <div class="chat ch1">
-            <div class="icon"><i class="fa-solid fa-robot"></i></div>
-            <div class="textbox">안녕하세요! AI 챗봇입니다.</div>
-        </div>
-        <div class="chat ch1">
-            <div class="icon"><i class="fa-solid fa-robot"></i></div>
-            <div class="textbox">무엇을 도와드릴까요?</div>
-        </div>
+    <div id="loading">
+        <div class="spinner"></div>
     </div>
+    <!-- 메시지 영역 -->
+    <div id="messages">
+        {{#welcomeMessages}}
+            <div class="chat {{#senderIsServer}}ch1{{/senderIsServer}}{{^senderIsServer}}ch2{{/senderIsServer}}">
+                <div class="icon">
+                    <i class="fa-solid {{#senderIsServer}}fa-robot{{/senderIsServer}}{{^senderIsServer}}fa-user{{/senderIsServer}}"></i>
+                </div>
+                <div class="textbox">
+                    <strong>{{sender}}:</strong> {{content}}
+                </div>
+            </div>
+        {{/welcomeMessages}}
+    </div>
+
     <div class="input-group">
         <input type="text" id="messageInput" placeholder="메시지를 입력하세요"/>
         <button id="sendButton">전송</button>
@@ -33,8 +43,7 @@
 </div>
 
 <!-- Include the STOMP and SockJS libraries -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+
 
 <!-- JavaScript code -->
 <script src="/js/chatbot_websocket.js"></script>
