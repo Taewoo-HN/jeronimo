@@ -1,14 +1,12 @@
 package org.big18.finale.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @Setter
@@ -26,9 +24,19 @@ public class Post {
     private LocalDateTime date;
     private Integer postOrder;
     private int count;
+
+    @Transient
     private String formattedDate;
 
     public Post() {
+        this.date = LocalDateTime.now();
+    }
 
+    public String getFormattedDate() {
+        if (formattedDate == null && date != null) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            formattedDate = date.format(formatter);
+        }
+        return formattedDate;
     }
 }

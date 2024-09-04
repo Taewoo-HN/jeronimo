@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공지 사항</title>
     <link rel="stylesheet" href="/css/bbs.css">
-    <link rel="icon" href = "/img/favicon.png" type = "image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -13,7 +12,6 @@
             crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/rootstyle.css" type="text/css">
 </head>
 <body>
@@ -25,50 +23,43 @@
         <p>모든 종목의 사람들이 모여서 토론하는 중.</p>
     </div>
     <div class="board_list_wrap">
-        <div class="board_list_wrap">
-            <div class="board_list">
-                <div class="top">
-                    <div class="num">글 번호</div>
-                    <div class="stock">주식종목</div>
-                    <div class="title">제목</div>
-                    <div class="writer">작성자</div>
-                    <div class="date">작성일</div>
-                    <div class="count">조회</div>
-                </div>
-                {{#posts}}
-                    <div>
-                        <div class="num">{{postOrder}}</div>
-                        <div class="stock">{{stock}}</div>
-                        <div class="title">
-                            <a href="/posts/{{id}}">{{title}}</a>
-                        </div>
-                        <div class="writer">{{writer}}</div>
-                        <div class="date">{{formattedDate}}</div>
-                        <div class="count">{{count}}</div>
+        <div class="board_list">
+            <div class="top">
+                <div class="num">글 번호</div>
+                <div class="stock">주식종목</div>
+                <div class="title">제목</div>
+                <div class="writer">작성자</div>
+                <div class="date">작성일</div>
+                <div class="count">조회</div>
+            </div>
+            {{#posts}}
+                <div>
+                    <div class="num">{{id}}</div>
+                    <div class="stock">{{stock}}</div>
+                    <div class="title">
+                        <a href="/posts/{{id}}">{{title}}</a>
                     </div>
-                {{/posts}}
-            </div>
-            <div class="pagination">
-                {{#hasPreviousPage}}
-                    <a href="?page={{previousPage}}" class="btn">&laquo; 이전</a>
-                {{/hasPreviousPage}}
+                    <div class="writer">{{writer}}</div>
+                    <div class="date">{{formattedDate}}</div>
+                    <div class="count">{{count}}</div>
+                </div>
+            {{/posts}}
+        </div>
+        <div class="pagination">
+            {{#showPrevious}}
+                <a href="?page={{previousPageNumber}}" class="btn">&laquo; 이전</a>
+            {{/showPrevious}}
 
-                {{#pageNumbers}}
-                    {{#isCurrent}}
-                        <span class="current-page">{{number}}</span>
-                    {{/isCurrent}}
-                    {{^isCurrent}}
-                        <a href="?page={{number}}" class="btn num">{{number}}</a>
-                    {{/isCurrent}}
-                {{/pageNumbers}}
+            {{#pageNumbers}}
+                <a href="?page={{.}}" class="btn num {{#current}}current-page{{/current}}">{{.}}</a>
+            {{/pageNumbers}}
 
-                {{#hasNextPage}}
-                    <a href="?page={{nextPage}}" class="btn">다음 &raquo;</a>
-                {{/hasNextPage}}
-            </div>
-            <div class="bt_wrap">
-                <a href="/posts/new" class="on">글쓰기</a>
-            </div>
+            {{#showNext}}
+                <a href="?page={{nextPageNumber}}" class="btn">다음 &raquo;</a>
+            {{/showNext}}
+        </div>
+        <div class="bt_wrap">
+            <a href="/posts/new" class="on">글쓰기</a>
         </div>
     </div>
     {{>layout/chatbot_button}}

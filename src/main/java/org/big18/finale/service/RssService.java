@@ -1,6 +1,6 @@
 package org.big18.finale.service;
 
-import org.big18.finale.entity.NewsItem;
+import org.big18.finale.DTO.NewsItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;

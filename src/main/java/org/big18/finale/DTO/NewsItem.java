@@ -1,4 +1,4 @@
-package org.big18.finale.entity;
+package org.big18.finale.DTO;
 
 import lombok.Getter;
 import lombok.Setter;

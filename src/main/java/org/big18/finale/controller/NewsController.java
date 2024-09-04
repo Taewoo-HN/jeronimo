@@ -2,7 +2,7 @@ package org.big18.finale.controller;
 
 
 import jakarta.servlet.http.HttpSession;
-import org.big18.finale.entity.NewsItem;
+import org.big18.finale.DTO.NewsItem;
 import org.big18.finale.service.RssService;
 import org.big18.finale.service.UserNameProvider;
 import org.springframework.beans.factory.annotation.Autowired;
