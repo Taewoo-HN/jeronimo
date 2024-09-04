@@ -33,7 +33,10 @@ public class MainController {
 
 
     @Autowired
-    public MainController(NewsService newsService, StockService stockService, HttpSession session, UserNameProvider userNameProvider, MarketDataService marketDataService, KosdaqRepository kosdaqRepository, KospiRepository kospiRepository, OilRepository oilRepository, GoldRepository goldRepository, NasdaqRepository nasdaqRepository, SnpRepository snpRepository, DollarRepository dollarRepository, SnpRepository snp500Repository) {
+    public MainController(NewsService newsService, StockService stockService, HttpSession session, UserNameProvider userNameProvider,
+                          MarketDataService marketDataService, KosdaqRepository kosdaqRepository, KospiRepository kospiRepository,
+                          OilRepository oilRepository, GoldRepository goldRepository, NasdaqRepository nasdaqRepository, SnpRepository snpRepository,
+                          DollarRepository dollarRepository, SnpRepository snp500Repository) {
         this.newsService = newsService;
         this.stockService = stockService;
         this.userNameProvider = userNameProvider;
@@ -90,13 +93,15 @@ public class MainController {
         return "detail";
     }
 
+    @GetMapping("/chatting")
+    public String chatWindow() {
+        return "chatbot_window";
+    }
 
     @GetMapping("/login")
     public String login() {
         return "login";
     }
-
-
 
 
 }

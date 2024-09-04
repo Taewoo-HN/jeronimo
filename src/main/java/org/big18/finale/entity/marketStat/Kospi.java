@@ -3,6 +3,7 @@ package org.big18.finale.entity.marketStat;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import org.big18.finale.entity.MarketData;
@@ -12,8 +13,10 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-@Entity(name = "KOSPI")
+@Entity
+@Table(name = "KOSPI")
 public class Kospi extends MarketData {
+
     @Column(name = "name", length = 10)
     private String name;
 

@@ -8,12 +8,10 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.socket.messaging.SessionConnectedEvent;
 
-@Controller
+@RestController
 public class ChatController {
 
     private final SimpMessagingTemplate messagingTemplate;
@@ -26,23 +24,12 @@ public class ChatController {
     @MessageMapping("/chat")
     @SendTo("/topic/messages")
     public ChatMessage handleMessage(@Payload ChatMessage message) {
-
         return message;
-    }
-    @GetMapping("/chatting")
-    public String chatWindow() {
-        return "chatbot_window";
     }
 
     @EventListener
     public void handleWebSocketConnectListener(SessionConnectedEvent event) {
-        StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
-        String sessionId = headerAccessor.getSessionId();
-
-        // 클라이언트에 환영 메시지 전송
-        messagingTemplate.convertAndSendToUser(
-                sessionId, "/topic/messages",
-                new OutputMessage("Server", "환영합니다!")
-        );
+        // 모든 클라이언트에 환영 메시지 전송
+        messagingTemplate.convertAndSend("/topic/messages", new OutputMessage("Server", "환영합니다!"));
     }
 }
