@@ -23,29 +23,16 @@
         <div class="spinner"></div>
     </div>
     <!-- 메시지 영역 -->
-    <div id="messages">
-        {{#welcomeMessages}}
-            <div class="chat {{#senderIsServer}}ch1{{/senderIsServer}}{{^senderIsServer}}ch2{{/senderIsServer}}">
-                <div class="icon">
-                    <i class="fa-solid {{#senderIsServer}}fa-robot{{/senderIsServer}}{{^senderIsServer}}fa-user{{/senderIsServer}}"></i>
-                </div>
-                <div class="textbox">
-                    <strong>{{sender}}:</strong> {{content}}
-                </div>
-            </div>
-        {{/welcomeMessages}}
-    </div>
+    <div id="messages"></div>
 
     <div class="input-group">
-        <input type="text" id="messageInput" placeholder="메시지를 입력하세요"/>
-        <button id="sendButton">전송</button>
+        <input type="text" id="messageInput" placeholder="챗봇에게 물어보세요!">
+        <button onclick="sendMessage()">Send</button>
     </div>
 </div>
 
-<!-- Include the STOMP and SockJS libraries -->
-
-
 <!-- JavaScript code -->
-<script src="/js/chatbot_websocket.js"></script>
+<script src="/js/chatbot_request.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </body>
 </html>

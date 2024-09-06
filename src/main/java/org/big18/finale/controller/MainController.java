@@ -95,7 +95,7 @@ public class MainController {
 
     @GetMapping("/chatting")
     public String chatWindow() {
-        return "chatbot_window";
+        return "vchat";
     }
 
     @GetMapping("/login")

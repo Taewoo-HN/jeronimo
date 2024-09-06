@@ -17,12 +17,11 @@ import java.util.stream.IntStream;
 
 
 @Controller
-@RequestMapping("/post")
+@RequestMapping("/posts")
 public class PostController {
 
     private final PostService postService;
     private final UserNameProvider userNameProvider;
-
 
     public PostController(PostService postService, UserNameProvider userNameProvider) {
         this.postService = postService;
@@ -57,7 +56,7 @@ public class PostController {
         model.addAttribute("nextPageNumber", page < totalPages ? page + 1 : totalPages);
 
         userNameProvider.setUserAttributes(session, model);
-        return "bbs";
+        return "post/bbs";
     }
 
     @GetMapping("/new")
@@ -65,7 +64,7 @@ public class PostController {
         model.addAttribute("post", new Post());
         model.addAttribute("formTitle", "글쓰기");
         userNameProvider.setUserAttributes(session, model);
-        return "write";
+        return "post/write";
     }
 
     // 글 작성 핸들러
@@ -74,7 +73,7 @@ public class PostController {
         // 글 저장 로직
         postService.savePost(post);
         userNameProvider.setUserAttributes(session, model);
-        return "redirect:/posts/bbs"; // 목록 페이지로 리다이렉트
+        return "redirect:/post/bbs"; // 목록 페이지로 리다이렉트
     }
 
     @GetMapping("/{id}")
@@ -83,7 +82,7 @@ public class PostController {
         if (postOptional.isPresent()) {
             model.addAttribute("post", postOptional.get());
             userNameProvider.setUserAttributes(session, model);
-            return "bbsdetail";
+            return "post/bbsdetail";
         } else {
             // 게시물이 없을 경우의 처리
             return "redirect:/posts/bbs";  // 또는 에러 페이지로 리다이렉트
@@ -96,7 +95,7 @@ public class PostController {
         model.addAttribute("post", post.orElse(new Post()));
         model.addAttribute("formTitle", "수정하기");
         userNameProvider.setUserAttributes(session, model);
-        return "write";
+        return "post/write";
     }
 
     // 글 수정 핸들러

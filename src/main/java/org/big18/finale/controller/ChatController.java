@@ -1,35 +1,29 @@
 package org.big18.finale.controller;
 
 import org.big18.finale.DTO.ChatMessage;
-import org.big18.finale.DTO.OutputMessage;
+import org.big18.finale.service.ChatbotService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.event.EventListener;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.socket.messaging.SessionConnectedEvent;
 
 @RestController
 public class ChatController {
 
-    private final SimpMessagingTemplate messagingTemplate;
+    private final ChatbotService chatbotService;
 
     @Autowired
-    public ChatController(SimpMessagingTemplate template) {
-        this.messagingTemplate = template;
+    public ChatController(ChatbotService chatbotService) {
+        this.chatbotService = chatbotService;
     }
 
-    @MessageMapping("/chat")
-    @SendTo("/topic/messages")
-    public ChatMessage handleMessage(@Payload ChatMessage message) {
-        return message;
-    }
-
-    @EventListener
-    public void handleWebSocketConnectListener(SessionConnectedEvent event) {
-        // 모든 클라이언트에 환영 메시지 전송
-        messagingTemplate.convertAndSend("/topic/messages", new OutputMessage("Server", "환영합니다!"));
+    @PostMapping("/chatBot")
+    public ResponseEntity<String> sendMessage(@RequestBody ChatMessage chatMessage) {
+        // ChatMessage 객체를 FastAPI 서버로 전송하고 응답을 반환
+        System.out.println(chatMessage);
+        String chatbotResponse = chatbotService.sendMessageToChatbot(chatMessage);
+        System.out.println(chatbotResponse);
+        return ResponseEntity.ok("{\"response\": \"" + chatbotResponse + "\"}");
     }
 }

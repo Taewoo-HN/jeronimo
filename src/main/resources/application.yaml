@@ -9,11 +9,8 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
-    show-sql: true
   redis:
     lettuce:
-
-
 
 server:
   port: ${server-port}

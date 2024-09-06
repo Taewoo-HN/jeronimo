@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot</title>
+</head>
+<body>
+<h2>AI Chatbot</h2>
+<div id="messages"></div>
+<input type="text" id="messageInput" placeholder="챗봇에게 물어보세요!">
+<button onclick="sendMessage()">Send</button>
+
+<script>
+    function sendMessage() {
+        var messageContent = document.getElementById('messageInput').value;
+        if (messageContent) {
+            // 사용자 메시지 화면에 출력
+            showUserMessage('User: ' + messageContent);
+
+            // ChatMessage 객체 생성
+            var chatMessage = {
+                sender: 'User',
+                content: messageContent
+            };
+
+            fetch('/chatBot', {  // 경로 수정
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(chatMessage)
+            })
+                    .then(response => response.json())  // JSON 응답으로 처리
+                    .then(data => {
+                        // 1. 특수 문자 제거
+                        const cleanedData = data.response.replace(/[^a-zA-Z0-9.,?! ]/g, '');
+
+                        // 2. HTML 이스케이프 처리
+                        const escapedData = cleanedData
+                                .replace(/&/g, "&amp;")
+                                .replace(/</g, "&lt;")
+                                .replace(/>/g, "&gt;")
+                                .replace(/"/g, "&quot;")
+                                .replace(/'/g, "&#039;");
+
+                        // 3. 앞뒤 공백 제거
+                        const finalData = escapedData.trim();
+
+                        // 챗봇 응답 화면에 출력
+                        showChatbotMessage('Chatbot: ' + finalData);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+
+            // 입력 필드 초기화
+            document.getElementById('messageInput').value = '';
+        }
+    }
+
+    // 사용자 메시지를 화면에 표시하는 함수
+    function showUserMessage(message) {
+        var messagesDiv = document.getElementById('messages');
+        var messageElement = document.createElement('div');
+        messageElement.textContent = message;
+        messageElement.style.color = 'blue';  // 사용자 메시지 색상
+        messagesDiv.appendChild(messageElement);
+    }
+
+    // 챗봇 메시지를 화면에 표시하는 함수
+    function showChatbotMessage(message) {
+        var messagesDiv = document.getElementById('messages');
+        var messageElement = document.createElement('div');
+        messageElement.textContent = message;
+        messageElement.style.color = 'green';  // 챗봇 메시지 색상
+        messagesDiv.appendChild(messageElement);
+    }
+</script>
+</body>
+</html>
