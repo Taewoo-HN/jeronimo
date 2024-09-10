@@ -1,7 +1,7 @@
 package org.big18.finale.controller;
 
 import org.big18.finale.DTO.ChatMessage;
-import org.big18.finale.service.ChatbotService;
+import org.big18.finale.service.market.ChatbotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

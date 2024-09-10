@@ -1,4 +1,4 @@
-package org.big18.finale.service;
+package org.big18.finale.service.market;
 
 import org.big18.finale.entity.stocks.Allcode;
 import org.big18.finale.repository.stocks.AllcodeRepository;

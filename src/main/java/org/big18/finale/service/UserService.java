@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class UserService {
 
@@ -27,7 +26,7 @@ public class UserService {
             throw new Exception("동일한 이메일로 회원이 존재합니다.");
         } else if (memberRepository.existsByUserId(user_id)) {
             throw new Exception("이미 존재하는 아이디입니다.");
-        } else if(memberRepository.existsByPhoneNumber(phone_number)){
+        } else if (memberRepository.existsByPhoneNumber(phone_number)) {
             throw new Exception("이미 존재하는 전화번호입니다.");
         }
 
@@ -43,4 +42,5 @@ public class UserService {
 
         memberRepository.save(member);
     }
+
 }

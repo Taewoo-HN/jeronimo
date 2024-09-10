@@ -1,25 +1,30 @@
 package org.big18.finale.controller;
 
+import jakarta.servlet.http.HttpSession;
+import org.big18.finale.entity.Users;
 import org.big18.finale.repository.MemberRepository;
 import org.big18.finale.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Optional;
 
 
 @Controller
 public class UserController {
 
-
     private final UserService userService;
+    private final MemberRepository memberRepository;
 
     @Autowired
-    public UserController(MemberRepository memberRepository, BCryptPasswordEncoder passwordEncoder, UserService userService) {
+    public UserController(BCryptPasswordEncoder passwordEncoder, UserService userService, MemberRepository memberRepository) {
         this.userService = userService;
+        this.memberRepository = memberRepository;
     }
 
     @PostMapping("/register")
@@ -34,6 +39,13 @@ public class UserController {
             model.addAttribute("error", e.getMessage());
             return "login";
         }
+    }
+
+    @GetMapping("/profile")
+    public String profile(Model model, HttpSession session) {
+        Optional<Users> user = memberRepository.findById(session.getAttribute("username").toString());
+        model.addAttribute("user", user);
+        return "profile";
     }
 }
 

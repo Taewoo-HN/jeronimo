@@ -1,7 +1,7 @@
 package org.big18.finale.controller;
 
 import org.big18.finale.entity.stocks.Allcode;
-import org.big18.finale.service.AllcodeService;
+import org.big18.finale.service.market.AllcodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

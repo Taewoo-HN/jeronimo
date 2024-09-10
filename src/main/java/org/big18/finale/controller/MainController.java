@@ -1,12 +1,13 @@
 package org.big18.finale.controller;
 
 import jakarta.servlet.http.HttpSession;
-import org.big18.finale.DTO.ChatMessage;
 import org.big18.finale.DTO.MarketDisplayData;
 import org.big18.finale.DTO.StockDisplayData;
 import org.big18.finale.entity.News;
 import org.big18.finale.repository.marketStat.*;
 import org.big18.finale.service.*;
+import org.big18.finale.service.market.MarketDataService;
+import org.big18.finale.service.market.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

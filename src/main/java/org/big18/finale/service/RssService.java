@@ -10,11 +10,16 @@ import java.util.List;
 @Service
 public class RssService {
 
+
+    private final JdbcTemplate jdbcTemplate;
+
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    public RssService(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     public List<NewsItem> fetchAllNewsItems(String query, int display, int start) {
-        String sql = "SELECT * FROM news WHERE news_title LIKE ? LIMIT ? OFFSET ?";
+        String sql = "SELECT * FROM news WHERE news_title LIKE ? ORDER BY news_id DESC LIMIT ? OFFSET ?";
         return jdbcTemplate.query(sql, new Object[]{"%" + query + "%", display, start - 1},
                 (rs, rowNum) -> new NewsItem(
                         rs.getLong("news_id"),

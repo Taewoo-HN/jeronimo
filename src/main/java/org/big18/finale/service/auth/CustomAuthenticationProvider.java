@@ -1,7 +1,6 @@
-package org.big18.finale.service;
+package org.big18.finale.service.auth;
 
 
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;

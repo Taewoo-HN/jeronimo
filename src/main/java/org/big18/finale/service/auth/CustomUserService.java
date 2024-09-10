@@ -1,4 +1,4 @@
-package org.big18.finale.service;
+package org.big18.finale.service.auth;
 
 import org.big18.finale.entity.Users;
 import org.big18.finale.repository.MemberRepository;
