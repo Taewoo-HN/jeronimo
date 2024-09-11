@@ -43,7 +43,7 @@ public class CloudService {
     }
 
     public void sendNewsTitles(List<String> newsTitles, String keyword) {
-        String url = "http://localhost:8000/news";
+        String url = "http://172.20.160.1:18000/news";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);

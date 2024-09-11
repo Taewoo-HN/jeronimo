@@ -1,85 +1,114 @@
 <div class="swiper-container">
     <div class="swiper-wrapper grid-container">
         <div class="swiper-slide">
-            <div id="gold" class="rounded-lg border text-card-foreground shadow-sm {{#goldData.isPercentageChangePositive}}bg-red-100{{/goldData.isPercentageChangePositive}}{{^goldData.isPercentageChangePositive}}bg-blue-100{{/goldData.isPercentageChangePositive}} card">
-                <div class="p-6">
-                    <div class="text-lg font-bold">금</div>
-                    <div class="text-2xl font-bold">{{goldData.currentPrice}}</div>
-                    <div class="text-sm text-red-500">{{goldData.priceDifference}} ({{goldData.percentageChange}})</div>
-                    <div class="w-full h-48 p-2">
-                        <img src="/img/gold_price_graph.png" alt="GOLD Price Graph" class="w-full h-full object-contain" />
+            <div id="gold"
+                 class="rounded-lg border text-card-foreground shadow-sm {{#goldData.isPercentageChangePositive}}bg-red-100{{/goldData.isPercentageChangePositive}}{{^goldData.isPercentageChangePositive}}bg-blue-100{{/goldData.isPercentageChangePositive}} card">
+                <div id="container" class="p-6 flex justify-between items-center">
+                    <div>
+                        <div class="text-lg font-bold mt-1">금</div>
+                        <div class="text-2xl font-bold mt-3">{{goldData.currentPrice}}</div>
+                        <div class="text-sm text-red-500 mt-1">{{goldData.priceDifference}} ({{goldData.percentageChange}})
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <img src="/img/gold_price_graph.png" alt="GOLD Price Graph"/>
                     </div>
                 </div>
             </div>
         </div>
         <div class="swiper-slide">
-            <div id="kospi" class="rounded-lg border text-card-foreground shadow-sm {{#kospiData.isPercentageChangePositive}}bg-red-100{{/kospiData.isPercentageChangePositive}}{{^kospiData.isPercentageChangePositive}}bg-blue-100{{/kospiData.isPercentageChangePositive}} card">
-                <div class="p-6">
-                    <div class="text-lg font-bold">KOSPI 종합</div>
-                    <div class="text-2xl font-bold">{{kospiData.currentPrice}}</div>
-                    <div class="text-sm text-red-500">{{kospiData.priceDifference}} ({{kospiData.percentageChange}})</div>
-                    <div class="w-full h-48 p-2">
-                        <img src="/img/kospi_price_graph.png" alt="KOSPI Price Graph" class="w-full h-full object-contain" />
+            <div id="kospi"
+                 class="rounded-lg border text-card-foreground shadow-sm {{#kospiData.isPercentageChangePositive}}bg-red-100{{/kospiData.isPercentageChangePositive}}{{^kospiData.isPercentageChangePositive}}bg-blue-100{{/kospiData.isPercentageChangePositive}} card">
+                <div id="container" class="p-6 flex justify-between items-center">
+                    <div>
+                        <div class="text-lg font-bold mt-1">KOSPI</div>
+                        <div class="text-2xl font-bold mt-3">{{kospiData.currentPrice}}</div>
+                        <div class="text-sm text-red-500 mt-1">{{kospiData.priceDifference}} ({{kospiData.percentageChange}})
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <img src="/img/kospi_price_graph.png" alt="KOSPI Price Graph"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="swiper-slide">
+            <div id="kosdaq"
+                 class="rounded-lg border text-card-foreground shadow-sm {{#kosdaqData.isPercentageChangePositive}}bg-red-100{{/kosdaqData.isPercentageChangePositive}}{{^kosdaqData.isPercentageChangePositive}}bg-blue-100{{/kosdaqData.isPercentageChangePositive}} card">
+                <div id="container" class="p-6 flex justify-between items-center">
+                    <div>
+                        <div class="text-lg font-bold mt-1">KOSDAQ</div>
+                        <div class="text-2xl font-bold mt-3 ">{{kosdaqData.currentPrice}}</div>
+                        <div class="text-sm text-red-500 mt-1 ">{{kosdaqData.priceDifference}} ({{kosdaqData.percentageChange}})
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <img src="/img/kosdaq_price_graph.png" alt="KOSDAQ Price Graph"/>
                     </div>
                 </div>
             </div>
         </div>
         <div class="swiper-slide">
-            <div id="kosdaq" class="rounded-lg border text-card-foreground shadow-sm {{#kosdaqData.isPercentageChangePositive}}bg-red-100{{/kosdaqData.isPercentageChangePositive}}{{^kosdaqData.isPercentageChangePositive}}bg-blue-100{{/kosdaqData.isPercentageChangePositive}} card">
-                <div class="p-6">
-                    <div class="text-lg font-bold">KOSDAQ 종합</div>
-                    <div class="text-2xl font-bold">{{kosdaqData.currentPrice}}</div>
-                    <div class="text-sm text-red-500">{{kosdaqData.priceDifference}} ({{kosdaqData.percentageChange}})</div>
-                    <div class="w-full h-48 p-2">
-                        <img src="/img/kosdaq_price_graph.png" alt="KOSDAQ Price Graph" class="w-full h-full object-contain" />
+            <div id="snp"
+                 class="rounded-lg border text-card-foreground shadow-sm {{#snp500Data.isPercentageChangePositive}}bg-red-100{{/snp500Data.isPercentageChangePositive}}{{^snp500Data.isPercentageChangePositive}}bg-blue-100{{/snp500Data.isPercentageChangePositive}} card">
+                <div id="container" class="p-6 flex justify-between items-center">
+                    <div>
+                        <div class="text-lg font-bold mt-1 ">S&P500</div>
+                        <div class="text-2xl font-bold mt-3">{{snp500Data.currentPrice}}</div>
+                        <div class="text-sm text-blue-500 mt-1">{{snp500Data.priceDifference}} ({{snp500Data.percentageChange}})
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <img src="/img/sp500_price_graph.png" alt="SP500 Price Graph"/>
                     </div>
                 </div>
             </div>
         </div>
         <div class="swiper-slide">
-            <div id="snp" class="rounded-lg border text-card-foreground shadow-sm {{#snp500Data.isPercentageChangePositive}}bg-red-100{{/snp500Data.isPercentageChangePositive}}{{^snp500Data.isPercentageChangePositive}}bg-blue-100{{/snp500Data.isPercentageChangePositive}} card">
-                <div class="p-6">
-                    <div class="text-lg font-bold">S&P500</div>
-                    <div class="text-2xl font-bold">{{snp500Data.currentPrice}}</div>
-                    <div class="text-sm text-blue-500">{{snp500Data.priceDifference}} ({{snp500Data.percentageChange}})</div>
-                    <div class="w-full h-48 p-2">
-                        <img src="/img/sp500_price_graph.png" alt="SP500 Price Graph" class="w-full h-full object-contain" />
+            <div id="nasdaq"
+                 class="rounded-lg border text-card-foreground shadow-sm {{#nasdaqData.isPercentageChangePositive}}bg-red-100{{/nasdaqData.isPercentageChangePositive}}{{^nasdaqData.isPercentageChangePositive}}bg-blue-100{{/nasdaqData.isPercentageChangePositive}} card">
+                <div id="container" class="p-6 flex justify-between items-center">
+                    <div>
+                        <div class="text-lg font-bold mt-1">NASDAQ</div>
+                        <div class="text-2xl font-bold mt-3">{{nasdaqData.currentPrice}}</div>
+                        <div class="text-sm text-red-500 mt-2">{{nasdaqData.priceDifference}} ({{nasdaqData.percentageChange}})
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <img src="/img/nasdaq_price_graph.png" alt="NASDAQ Price Graph"/>
                     </div>
                 </div>
             </div>
         </div>
         <div class="swiper-slide">
-            <div id="nasdaq" class="rounded-lg border text-card-foreground shadow-sm {{#nasdaqData.isPercentageChangePositive}}bg-red-100{{/nasdaqData.isPercentageChangePositive}}{{^nasdaqData.isPercentageChangePositive}}bg-blue-100{{/nasdaqData.isPercentageChangePositive}} card">
-                <div class="p-6">
-                    <div class="text-lg font-bold">NASDAQ</div>
-                    <div class="text-2xl font-bold">{{nasdaqData.currentPrice}}</div>
-                    <div class="text-sm text-red-500">{{nasdaqData.priceDifference}} ({{nasdaqData.percentageChange}})</div>
-                    <div class="w-full h-48 p-2">
-                        <img src="/img/nasdaq_price_graph.png" alt="NASDAQ Price Graph" class="w-full h-full object-contain" />
+            <div id="oil"
+                 class="rounded-lg border text-card-foreground shadow-sm {{#oilData.isPercentageChangePositive}}bg-red-100{{/oilData.isPercentageChangePositive}}{{^oilData.isPercentageChangePositive}}bg-blue-100{{/oilData.isPercentageChangePositive}} card">
+                <div id="container" class="p-6 flex justify-between items-center">
+                    <div>
+                        <div class="text-lg font-bold mt-1">원유</div>
+                        <div class="text-2xl font-bold mt-3 ">{{oilData.currentPrice}}</div>
+                        <div class="text-sm text-red-500 mt-1">{{oilData.priceDifference}} ({{oilData.percentageChange}})
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <img src="/img/oil_price_graph.png" alt="OIL Price Graph"/>
                     </div>
                 </div>
             </div>
         </div>
         <div class="swiper-slide">
-            <div id="oil" class="rounded-lg border text-card-foreground shadow-sm {{#oilData.isPercentageChangePositive}}bg-red-100{{/oilData.isPercentageChangePositive}}{{^oilData.isPercentageChangePositive}}bg-blue-100{{/oilData.isPercentageChangePositive}} card">
-                <div class="p-6">
-                    <div class="text-lg font-bold">원유</div>
-                    <div class="text-2xl font-bold">{{oilData.currentPrice}}</div>
-                    <div class="text-sm text-red-500">{{oilData.priceDifference}} ({{oilData.percentageChange}})</div>
-                    <div class="w-full h-48 p-2">
-                        <img src="/img/oil_price_graph.png" alt="OIL Price Graph" class="w-full h-full object-contain" />
+            <div id="dollar"
+                 class="rounded-lg border text-card-foreground shadow-sm {{#dollarData.isPercentageChangePositive}}bg-red-100{{/dollarData.isPercentageChangePositive}}{{^dollarData.isPercentageChangePositive}}bg-blue-100{{/dollarData.isPercentageChangePositive}} card">
+                <div id="container" class="p-6 flex justify-between items-center">
+                    <div>
+                        <div class="text-lg font-bold mb-1">원/달러</div>
+                        <div class="text-2xl font-bold mt-3">{{dollarData.currentPrice}}</div>
+                        <div class="text-sm text-red-500 mt-1">{{dollarData.priceDifference}} ({{dollarData.percentageChange}})
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="swiper-slide">
-            <div id="dollar" class="rounded-lg border text-card-foreground shadow-sm {{#dollarData.isPercentageChangePositive}}bg-red-100{{/dollarData.isPercentageChangePositive}}{{^dollarData.isPercentageChangePositive}}bg-blue-100{{/dollarData.isPercentageChangePositive}} card">
-                <div class="p-6">
-                    <div class="text-lg font-bold">원/달러 환율</div>
-                    <div class="text-2xl font-bold">{{dollarData.currentPrice}}</div>
-                    <div class="text-sm text-red-500">{{dollarData.priceDifference}} ({{dollarData.percentageChange}})</div>
-                    <div class="w-full h-48 p-2">
-                        <img src="/img/dollar_price_graph.png" alt="DOLLAR Price Graph" class="w-full h-full object-contain" />
+                    <div class="mt-4">
+                        <img src="/img/dollar_price_graph.png" alt="DOLLAR Price Graph"/>
                     </div>
                 </div>
             </div>

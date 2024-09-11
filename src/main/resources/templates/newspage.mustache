@@ -11,7 +11,7 @@
             </button>
         </form>
         <div class="justify-content-end mb-2 ">
-        <button class="btn btn-primary " id="open-wordcloud-btn">검색어 관련 기사 워드 클라우드 보기</button>
+            <button class="btn btn-primary " id="open-wordcloud-btn">검색어 관련 기사 워드 클라우드 보기</button>
         </div>
         <div class="news-grid">
             {{#newsItems}}
@@ -26,10 +26,13 @@
                             </div>
                             <button class="summary-btn">요약</button>
                             <button class="keywords-btn summary-btn">키워드 추출</button>
-                            <button class="summary-btn">
-                                <a href="{{address}}" target="_blank" style="text-decoration: none; color: inherit;">원문
-                                    보기</a>
-                            </button>
+                            <div class=" justify-content-end">
+                                <button class="btn btn-warning">
+                                    <a href="{{address}}" target="_blank"
+                                       style="text-decoration: none; color: inherit;">원문
+                                        보기</a>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -47,7 +50,14 @@
 </div>
 
 <!-- 키워드 모달 -->
-<script src="/js/newsfilter.js"></script>
+<div id="keywordModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>키워드, 테마 추출</h3>
+        <p id="keywordContent"></p>
+    </div>
+</div>
+<script src="/js/news_summarize.js"></script>
 <script src="/js/show_wordCloud.js"></script>
 
 {{>layout/chatbot_button}}
