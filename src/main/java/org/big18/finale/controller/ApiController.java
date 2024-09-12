@@ -70,8 +70,6 @@ public class ApiController {
                 .retrieve()
                 .bodyToMono(String.class);  // FastAPI로부터 응답을 받음
 
-        fastApiResponse.doOnNext(response -> System.out.println("FastAPI 응답: " + response));
-
         // FastAPI로부터 받은 응답을 클라이언트에 반환
         return fastApiResponse.map(response -> new ResponseEntity<>(response, HttpStatus.OK))
                 .defaultIfEmpty(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));

@@ -88,8 +88,9 @@ public class MainController {
         return "index";
     }
 
-    @GetMapping("/detail/{code}")
+    @GetMapping("/stock-detail/{code}")
     public String getStockDetail(@PathVariable String code, Model model, HttpSession session) {
+
         userNameProvider.setUserAttributes(session, model);
         return "detail";
     }
