@@ -30,7 +30,7 @@ public class StockService {
         List<String> codes = allcodeRepository.findAll()
                 .stream()
                 .map(Allcode::getCode)
-                .collect(Collectors.toList());
+                .toList();
 
         return codes.stream()
                 .map(code -> {
@@ -60,7 +60,7 @@ public class StockService {
 
     // 최신 데이터를 가져오는 메서드
     public Map<String, Object> getLatestStockData(String code) {
-        String tableName = "`A" + code + "_mindata`";
+        String tableName = "`a" + code + "_mindata`";
         String sql = "SELECT * FROM " + tableName + " ORDER BY Jdate DESC LIMIT 1";
 
         List<Map<String, Object>> results = jdbcTemplate.queryForList(sql);
@@ -73,7 +73,7 @@ public class StockService {
 
     // 당일 첫 데이터를 가져오는 메서드
     public Map<String, Object> getFirstDataOfTheDay(String code) {
-        String tableName = "`A" + code + "_mindata`";
+        String tableName = "`a" + code + "_mindata`";
         String todayDatePattern = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + " 09:01%";
         String sql = "SELECT * FROM " + tableName + " WHERE Jdate LIKE ? LIMIT 1";
 

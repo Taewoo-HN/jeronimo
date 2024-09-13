@@ -10,13 +10,11 @@ $(document).ready(function() {
             data: JSON.stringify({ news_id: newsId }),  // JSON 형식으로 데이터 전송
             success: function(response) {
                 // 서버에서 반환된 요약 결과 처리
-                let newsSummary = response.news_summary;
                 let keywords = response.keywords;
                 let recommand = response.recommand_keywords;
                 // 클릭한 버튼에 따라 모달 띄우기
                 if ($(this).hasClass('summary-btn')) {
                     // 요약 모달 띄우기
-                    document.getElementById('summaryContent').textContent = newsSummary;
                     document.getElementById('summaryModal').style.display = 'block';
                     document.getElementById('keywordModal').style.display = 'none'; // 키워드 모달 닫기
                 }
@@ -27,7 +25,7 @@ $(document).ready(function() {
 
                     // 추천 데이터가 있으면 함께 표시
                     if (recommand) {
-                        document.getElementById('keywordContent').textContent += "\n추천 뉴스: " + recommand;
+                        document.getElementById('keywordContent').textContent += "\n추천 테마 :" + recommand;
                     }
 
                     document.getElementById('keywordModal').style.display = 'block';

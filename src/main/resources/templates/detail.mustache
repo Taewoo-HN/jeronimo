@@ -3,6 +3,7 @@
 {{>layout/navbar}}
 {{>layout/sidebar}}
 <div class="container mt-20">
+    <h2>{{trendata.stock_name}}</h2>
     <div class="row">
         <!-- Pie Chart -->
         <div class="col-xl-3 col-lg-4">
@@ -199,7 +200,15 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+
     document.addEventListener('DOMContentLoaded', function () {
+        // Mustache 변수를 자바스크립트에서 사용할 수 있도록 변환
+        var trendata = {
+            personal: {{trendata.individual}},
+            foreigner: {{trendata.foreign}},
+            institution: {{trendata.institution}}
+        };
+
         var ctx = document.getElementById('myBarChart').getContext('2d');
         var myBarChart = new Chart(ctx, {
             type: 'bar',
@@ -207,7 +216,7 @@
                 labels: ['개인', '외국인', '기관'],
                 datasets: [{
                     label: '순매매량',
-                    data: [-6380, 7719, -2589],
+                    data: [trendata.personal, trendata.foreigner, trendata.institution],
                     backgroundColor: [
                         'rgba(54, 162, 235, 0.8)',
                         'rgba(255, 99, 132, 0.8)',
@@ -238,7 +247,6 @@
         });
     });
 </script>
-<script src="js/toastpop.js" type="text/javascript"></script>
 {{>layout/chatbot_button}}
 </body>
 {{>layout/footer}}

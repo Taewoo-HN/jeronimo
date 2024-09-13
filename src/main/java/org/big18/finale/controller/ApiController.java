@@ -9,14 +9,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.Disposable;
 import reactor.core.publisher.Mono;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -27,7 +24,7 @@ public class ApiController {
     private final WebClient webClient;
 
     @Autowired
-    public ApiController(RestTemplate restTemplate, RssService rssService, WebClient.Builder webClientBuilder ) {
+    public ApiController(RestTemplate restTemplate, RssService rssService, WebClient.Builder webClientBuilder) {
         this.restTemplate = restTemplate;
         this.rssService = rssService;
         this.webClient = webClientBuilder.baseUrl("http://172.20.160.1:18000").build();
@@ -63,16 +60,24 @@ public class ApiController {
     public Mono<ResponseEntity<String>> summerizer(@RequestBody Map<String, Object> params) {
         NewsItem newsis = rssService.fetchNewsItemById(Long.valueOf((String) params.get("news_id")));
         String news_content = newsis.getNews_content();
-        List<String> news_content_list = Arrays.asList(newsis.getNews_content());
-        Map<String, Object> requestBody = Collections.singletonMap("content", news_content_list);
-        Mono<String> fastApiResponse = webClient.post().uri("/summarizer")
+
+        // 정규식으로 특수문자 제거
+        String regexContents = news_content.replaceAll("[^a-zA-Z0-9가-힣 ]", "");
+        System.out.println(regexContents);
+
+        Map<String, String> requestBody = Collections.singletonMap("news", regexContents);
+        Mono<String> fastApiResponse = webClient.post().uri("/keyword")
                 .body(BodyInserters.fromValue(requestBody))  // news_content 전송
                 .retrieve()
                 .bodyToMono(String.class);  // FastAPI로부터 응답을 받음
 
+
         // FastAPI로부터 받은 응답을 클라이언트에 반환
         return fastApiResponse.map(response -> new ResponseEntity<>(response, HttpStatus.OK))
-                .defaultIfEmpty(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
+                .onErrorResume(e -> {
+                    // 에러 발생 시 응답 처리
+                    return Mono.just(new ResponseEntity<>("FastAPI 요청 중 오류 발생: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR));
+                }).defaultIfEmpty(new ResponseEntity<>("FastAPI에서 유효한 응답이 없습니다.", HttpStatus.NO_CONTENT));
     }
 
 }

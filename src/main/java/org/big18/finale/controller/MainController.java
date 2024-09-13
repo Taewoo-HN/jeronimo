@@ -3,11 +3,13 @@ package org.big18.finale.controller;
 import jakarta.servlet.http.HttpSession;
 import org.big18.finale.DTO.MarketDisplayData;
 import org.big18.finale.DTO.StockDisplayData;
+import org.big18.finale.DTO.StockTrendsData;
 import org.big18.finale.entity.News;
 import org.big18.finale.repository.marketStat.*;
 import org.big18.finale.service.*;
 import org.big18.finale.service.market.MarketDataService;
 import org.big18.finale.service.market.StockService;
+import org.big18.finale.service.market.StockTrendsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,14 +32,14 @@ public class MainController {
     private final GoldRepository goldRepository;
     private final NasdaqRepository nasdaqRepository;
     private final DollarRepository dollarRepository;
-    private final SnpRepository snp500Repository;
-
+    private final SnpRepository snpRepository;
+    private final StockTrendsService stockTrendsService;
 
     @Autowired
-    public MainController(NewsService newsService, StockService stockService, HttpSession session, UserNameProvider userNameProvider,
+    public MainController(NewsService newsService, StockService stockService, UserNameProvider userNameProvider,
                           MarketDataService marketDataService, KosdaqRepository kosdaqRepository, KospiRepository kospiRepository,
-                          OilRepository oilRepository, GoldRepository goldRepository, NasdaqRepository nasdaqRepository, SnpRepository snpRepository,
-                          DollarRepository dollarRepository, SnpRepository snp500Repository) {
+                          OilRepository oilRepository, GoldRepository goldRepository, NasdaqRepository nasdaqRepository,
+                          DollarRepository dollarRepository, SnpRepository snpRepository, StockTrendsService stockTrendsService) {
         this.newsService = newsService;
         this.stockService = stockService;
         this.userNameProvider = userNameProvider;
@@ -48,7 +50,8 @@ public class MainController {
         this.goldRepository = goldRepository;
         this.nasdaqRepository = nasdaqRepository;
         this.dollarRepository = dollarRepository;
-        this.snp500Repository = snp500Repository;
+        this.snpRepository = snpRepository;
+        this.stockTrendsService = stockTrendsService;
     }
 
     @GetMapping("/")
@@ -70,7 +73,7 @@ public class MainController {
         MarketDisplayData kospiData = marketDataService.getMarketData("Kospi", kospiRepository);
         MarketDisplayData goldData = marketDataService.getMarketData("Gold", goldRepository);
         MarketDisplayData dollarData = marketDataService.getMarketData("Dollar", dollarRepository);
-        MarketDisplayData snp500Data = marketDataService.getMarketData("S&P 500", snp500Repository);
+        MarketDisplayData snp500Data = marketDataService.getMarketData("S&P 500", snpRepository);
         MarketDisplayData oilData = marketDataService.getMarketData("Oil", oilRepository);
         MarketDisplayData nasdaqData = marketDataService.getMarketData("Nasdaq", nasdaqRepository);
 
@@ -90,7 +93,8 @@ public class MainController {
 
     @GetMapping("/stock-detail/{code}")
     public String getStockDetail(@PathVariable String code, Model model, HttpSession session) {
-
+        StockTrendsData tdata = stockTrendsService.getTrendByCode(code);
+        model.addAttribute("trendata", tdata);
         userNameProvider.setUserAttributes(session, model);
         return "detail";
     }

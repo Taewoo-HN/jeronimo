@@ -1,4 +1,4 @@
-package org.big18.finale.entity;
+package org.big18.finale.entity.stocks;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -6,15 +6,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import org.big18.finale.entity.TrendsData;
 import org.hibernate.annotations.ColumnDefault;
 
-import java.time.Instant;
+import java.time.LocalDate;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "A003670_trends")
-public class A003670Trend {
+@Table(name = "A042700_trends")
+public class A042700Trends extends TrendsData {
     @Column(name = "code", length = 10)
     private String code;
 
@@ -30,6 +31,6 @@ public class A003670Trend {
     @Id
     @ColumnDefault("date_format(sysdate(), '%Y-%m-%d')")
     @Column(name = "Jdate")
-    private Instant jdate;
+    private LocalDate jdate;
 
 }

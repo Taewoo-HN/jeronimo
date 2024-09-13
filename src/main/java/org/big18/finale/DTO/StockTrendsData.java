@@ -7,9 +7,9 @@ import lombok.Data;
 @AllArgsConstructor
 public class StockTrendsData {
     private String code;
-    private String Stock_name;
-    private Long individual;
-    private Long foreigners;
-    private Long institutions;
+    private String stock_name;
+    private Integer individual;
+    private Integer foreign;
+    private Integer institution;
 
 }
