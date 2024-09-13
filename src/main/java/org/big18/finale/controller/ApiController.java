@@ -13,8 +13,7 @@ import reactor.core.publisher.Mono;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.Collections;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 public class ApiController {
@@ -80,4 +79,27 @@ public class ApiController {
                 }).defaultIfEmpty(new ResponseEntity<>("FastAPI에서 유효한 응답이 없습니다.", HttpStatus.NO_CONTENT));
     }
 
+    @PostMapping("/extract")
+    public Mono<ResponseEntity<String>> extract(@RequestBody Map<String, Object> params) {
+        NewsItem newsis = rssService.fetchNewsItemById(Long.valueOf((String) params.get("news_id")));
+        String news_content = newsis.getNews_content();
+        String regexContents = news_content.replaceAll("[^a-zA-Z0-9가-힣]", "");
+        if (regexContents.length() > 800) {
+            news_content = regexContents.substring(0, 800);
+        }
+        List<String> regex_news = Arrays.asList(news_content);
+
+        Map<String, List<String>> requestBody = Collections.singletonMap("news", regex_news);
+        Mono<String> fastApiResponse = webClient.post().uri("/summarizer")
+                .body(BodyInserters.fromValue(requestBody))  // news_content 전송
+                .retrieve()
+                .bodyToMono(String.class);
+
+        return fastApiResponse.map(response -> new ResponseEntity<>(response, HttpStatus.OK))
+                .onErrorResume(e -> {
+                    // 에러 발생 시 응답 처리
+                    return Mono.just(new ResponseEntity<>("FastAPI 요청 중 오류 발생: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR));
+                }).defaultIfEmpty(new ResponseEntity<>("FastAPI에서 유효한 응답이 없습니다.", HttpStatus.NO_CONTENT));
+
+    }
 }
