@@ -4,8 +4,11 @@ import org.big18.finale.entity.UserRole;
 import org.big18.finale.entity.Users;
 import org.big18.finale.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -18,6 +21,16 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
         this.memberRepository = memberRepository;
     }
+
+    public Users getUserById(String userId) {
+        Optional<Users> user = memberRepository.findByUserId(userId);
+        if (user.isPresent()) {
+            return user.get();
+        } else {
+            throw new UsernameNotFoundException("User not found with id: " + userId);
+        }
+    }
+
 
 
     public void register(String user_id, String user_pw, String email,

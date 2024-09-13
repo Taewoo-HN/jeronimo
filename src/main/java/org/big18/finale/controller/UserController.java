@@ -40,13 +40,6 @@ public class UserController {
             return "login";
         }
     }
-
-    @GetMapping("/profile")
-    public String profile(Model model, HttpSession session) {
-        Optional<Users> user = memberRepository.findById(session.getAttribute("username").toString());
-        model.addAttribute("user", user);
-        return "profile";
-    }
 }
 
 
