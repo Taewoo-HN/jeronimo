@@ -1,7 +1,8 @@
-package org.big18.finale.service.market;
+package org.big18.finale.service.api;
 
 import org.big18.finale.DTO.ChatMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
@@ -13,6 +14,8 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class ChatbotService {
 
+
+
     private final RestTemplate restTemplate;
 
     @Autowired
@@ -21,7 +24,7 @@ public class ChatbotService {
     }
 
     public String sendMessageToChatbot(ChatMessage chatMessage) {
-        String url = "http://localhost:8000/chatbot";  // FastAPI 서버 주소
+        String URL = "http://172.29.240.1:8000"+"/chatbot";  // FastAPI 서버 주소
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -29,7 +32,7 @@ public class ChatbotService {
 
         try {
             // FastAPI 서버로 POST 요청
-            ResponseEntity<String> response = restTemplate.postForEntity(url, entity, String.class);
+            ResponseEntity<String> response = restTemplate.postForEntity(URL, entity, String.class);
 
             return response.getBody();
 

@@ -18,3 +18,6 @@ server:
     encoding:
       force: true
 
+api-server:
+  url: http://${api-server}
+  ip: ${api-server}

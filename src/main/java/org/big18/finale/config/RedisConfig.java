@@ -1,5 +1,6 @@
 package org.big18.finale.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
@@ -14,8 +15,8 @@ public class RedisConfig {
     @Bean
     public LettuceConnectionFactory redisConnectionFactory() {
         // Redis URL의 각 부분을 사용하여 RedisStandaloneConfiguration을 설정
-        String redisHost = "172.20.160.1";  // Redis 서버의 IP 주소
-        int redisPort = 6379;  // Redis 서버의 포트
+        String redisHost = "172.29.240.1";  // Redis 서버의 IP 주소
+        int redisPort = 5678;  // Redis 서버의 포트
         int redisDatabase = 0;  // 사용할 Redis 데이터베이스 인덱스
 
         RedisStandaloneConfiguration redisConfig = new RedisStandaloneConfiguration();

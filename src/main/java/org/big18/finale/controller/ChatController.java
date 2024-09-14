@@ -1,7 +1,7 @@
 package org.big18.finale.controller;
 
 import org.big18.finale.DTO.ChatMessage;
-import org.big18.finale.service.market.ChatbotService;
+import org.big18.finale.service.api.ChatbotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +20,8 @@ public class ChatController {
 
     @PostMapping("/chatBot")
     public ResponseEntity<String> sendMessage(@RequestBody ChatMessage chatMessage) {
+
+
         // ChatMessage 객체를 FastAPI 서버로 전송하고 응답을 반환
         System.out.println(chatMessage);
         String chatbotResponse = chatbotService.sendMessageToChatbot(chatMessage);

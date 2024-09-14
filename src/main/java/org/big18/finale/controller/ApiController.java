@@ -22,16 +22,17 @@ public class ApiController {
     private final RssService rssService;
     private final WebClient webClient;
 
+
     @Autowired
     public ApiController(RestTemplate restTemplate, RssService rssService, WebClient.Builder webClientBuilder) {
         this.restTemplate = restTemplate;
         this.rssService = rssService;
-        this.webClient = webClientBuilder.baseUrl("http://172.20.160.1:18000").build();
+        this.webClient = webClientBuilder.baseUrl("http://172.29.240.1:8000").build();
     }
 
     @GetMapping("/download-wordcloud")
     public ResponseEntity<InputStreamResource> downloadWordCloudImage() {
-        String URL = "http://172.20.160.1:18000/download";  // FastAPI 엔드포인트 URL
+        String URL = "http://172.29.240.1:8000/download";  // FastAPI 엔드포인트 URL
 
         // FastAPI로 GET 요청 보내기 (이미지 다운로드)
         ResponseEntity<byte[]> response = restTemplate.exchange(URL, HttpMethod.GET, null, byte[].class);

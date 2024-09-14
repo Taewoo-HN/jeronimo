@@ -3,6 +3,7 @@ package org.big18.finale.service.api;
 import org.big18.finale.DTO.NewsRequest;
 import org.big18.finale.entity.News;
 import org.big18.finale.repository.NewsRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -43,7 +44,7 @@ public class CloudService {
     }
 
     public void sendNewsTitles(List<String> newsTitles, String keyword) {
-        String url = "http://172.20.160.1:18000/news";
+        String apiURL = "http://172.29.240.1:8000" + "/news";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -55,7 +56,7 @@ public class CloudService {
         HttpEntity<NewsRequest> request = new HttpEntity<>(newsRequest, headers);
 
         // POST 요청 보내기
-        ResponseEntity<String> response = restTemplate.postForEntity(url, request, String.class);
+        ResponseEntity<String> response = restTemplate.postForEntity(apiURL, request, String.class);
     }
 
 

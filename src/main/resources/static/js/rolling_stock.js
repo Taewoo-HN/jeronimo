@@ -15,7 +15,7 @@ $(document).ready(function() {
 
     function showNextRanking() {
         const stock = rankings[currentIndex];
-        $('#ranking-display').html(`<a href="/detail/${stock.code}">${currentIndex + 1}. ${stock.name}</a>`);
+        $('#ranking-display').html(`<a href="/stock-detail/${stock.code}">${currentIndex + 1}. ${stock.name}</a>`);
         currentIndex = (currentIndex + 1) % rankings.length;
     }
 
