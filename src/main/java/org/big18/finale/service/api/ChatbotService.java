@@ -1,5 +1,7 @@
 package org.big18.finale.service.api;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.big18.finale.DTO.ChatMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,8 +16,6 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class ChatbotService {
 
-
-
     private final RestTemplate restTemplate;
 
     @Autowired
@@ -23,18 +23,21 @@ public class ChatbotService {
         this.restTemplate = restTemplate;
     }
 
-    public String sendMessageToChatbot(ChatMessage chatMessage) {
+    public String sendMessageToChatbot(ChatMessage message) {
         String URL = "http://172.29.240.1:8000"+"/chatbot";  // FastAPI 서버 주소
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        HttpEntity<ChatMessage> entity = new HttpEntity<>(chatMessage, headers);
+        HttpEntity<ChatMessage> entity = new HttpEntity<>(message, headers);
 
         try {
             // FastAPI 서버로 POST 요청
             ResponseEntity<String> response = restTemplate.postForEntity(URL, entity, String.class);
 
-            return response.getBody();
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode jsonNode = mapper.readTree(response.getBody());
+
+            return jsonNode.toString();
 
         } catch (HttpClientErrorException e) {
             // 클라이언트 에러 (4xx 응답) 처리

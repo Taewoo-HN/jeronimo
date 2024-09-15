@@ -21,9 +21,8 @@ public class ChatController {
     @PostMapping("/chatBot")
     public ResponseEntity<String> sendMessage(@RequestBody ChatMessage chatMessage) {
 
-
         // ChatMessage 객체를 FastAPI 서버로 전송하고 응답을 반환
-        System.out.println(chatMessage);
+        System.out.println(chatMessage.getContent());
         String chatbotResponse = chatbotService.sendMessageToChatbot(chatMessage);
         System.out.println(chatbotResponse);
         return ResponseEntity.ok("{\"response\": \"" + chatbotResponse + "\"}");

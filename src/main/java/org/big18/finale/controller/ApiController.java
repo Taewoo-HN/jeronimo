@@ -84,13 +84,11 @@ public class ApiController {
     public Mono<ResponseEntity<String>> extract(@RequestBody Map<String, Object> params) {
         NewsItem newsis = rssService.fetchNewsItemById(Long.valueOf((String) params.get("news_id")));
         String news_content = newsis.getNews_content();
-        String regexContents = news_content.replaceAll("[^a-zA-Z0-9가-힣]", "");
+        String regexContents = news_content.replaceAll("[^a-zA-Z0-9가-힣 ]", "");
         if (regexContents.length() > 800) {
             news_content = regexContents.substring(0, 800);
         }
-        List<String> regex_news = Arrays.asList(news_content);
-
-        Map<String, List<String>> requestBody = Collections.singletonMap("news", regex_news);
+        Map<String, String> requestBody = Collections.singletonMap("content", news_content);
         Mono<String> fastApiResponse = webClient.post().uri("/summarizer")
                 .body(BodyInserters.fromValue(requestBody))  // news_content 전송
                 .retrieve()

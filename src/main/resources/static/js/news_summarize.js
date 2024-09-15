@@ -7,7 +7,7 @@ $(document).ready(function() {
         window.showLoading();
 
         $.ajax({
-            url: '/summarize',  // Spring Boot에서 매핑된 경로
+            url: '/extract',  // Spring Boot에서 매핑된 경로
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({ news_id: newsId }),  // JSON 형식으로 데이터 전송
@@ -23,12 +23,13 @@ $(document).ready(function() {
                     parsedResponse = response;  // 이미 JSON 객체인 경우
                 }
 
-                let keywords = parsedResponse.keywords;
-                let recommand = parsedResponse.recommand_keywords;
+                let keywords = parsedResponse.news_content;
 
                 // 클릭한 버튼에 따라 모달 띄우기
-                if ($(this).hasClass('summary-btn') && !$(this).hasClass('keywords-btn')) {
+                if ($(this).hasClass('summary-btn')) {
                     // 요약 모달 띄우기 (요약 내용 처리 로직 필요)
+                    let summaryContent = document.getElementById('summaryContent');
+                    summaryContent.innerHTML = '<h4>요약:</h4><p>' + (keywords || '요약 없음') + '</p>';
                     document.getElementById('summaryModal').style.display = 'block';
                     document.getElementById('keywordModal').style.display = 'none'; // 키워드 모달 닫기
                 }
