@@ -2,4 +2,4 @@
 
 <hr>
 
-사용 기술 스택 : SpringBoot, JPA, WebSocket, mustache, JQuery, Bootstrap
+사용 기술 스택 : SpringBoot, JPA, WebSocket, mustache, JQuery, Bootstrap, Java17
