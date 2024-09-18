@@ -4,78 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Chatbot</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 <h2>AI Chatbot</h2>
 <div id="messages"></div>
 <input type="text" id="messageInput" placeholder="챗봇에게 물어보세요!">
-<button onclick="sendMessage()">Send</button>
+<button id="sendButton">Send</button>
 
 <script>
-    function sendMessage() {
-        var messageContent = document.getElementById('messageInput').value;
-        if (messageContent) {
-            // 사용자 메시지 화면에 출력
-            showUserMessage('User: ' + messageContent);
+    $(document).ready(function() {
+        // sendButton 클릭 이벤트와 Enter 키 입력 이벤트 설정
+        $('#sendButton').on('click', sendMessage);
+        $('#messageInput').on('keypress', function(e) {
+            if (e.which == 13) sendMessage();
+        });
 
-            // ChatMessage 객체 생성
-            var chatMessage = {
-                sender: 'User',
-                content: messageContent
-            };
+        // 메시지 전송 함수
+        function sendMessage() {
+            var messageContent = $('#messageInput').val().trim();
+            if (messageContent) {
+                // 사용자가 입력한 메시지 출력
+                showMessage('User: ' + messageContent, 'blue');
 
-            fetch('/chatBot', {  // 경로 수정
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(chatMessage)
-            })
-                    .then(response => response.json())  // JSON 응답으로 처리
-                    .then(data => {
-                        // 1. 특수 문자 제거
-                        const cleanedData = data.response.replace(/[^a-zA-Z0-9.,?! ]/g, '');
+                // 서버에 보낼 메시지 형식
+                var chatMessage = {
+                    sender: 'User',
+                    content: messageContent
+                };
 
-                        // 2. HTML 이스케이프 처리
-                        const escapedData = cleanedData
-                                .replace(/&/g, "&amp;")
-                                .replace(/</g, "&lt;")
-                                .replace(/>/g, "&gt;")
-                                .replace(/"/g, "&quot;")
-                                .replace(/'/g, "&#039;");
-
-                        // 3. 앞뒤 공백 제거
-                        const finalData = escapedData.trim();
-
-                        // 챗봇 응답 화면에 출력
-                        showChatbotMessage('Chatbot: ' + finalData);
-                    })
-                    .catch(error => {
+                // Ajax를 사용하여 서버에 메시지 전송
+                $.ajax({
+                    url: '/chatBot',  // 서버의 엔드포인트 URL
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(chatMessage),  // JSON 형식으로 메시지 전송
+                    success: function(data) {
+                        // 서버에서 받은 응답에서 response 필드를 파싱하여 출력
+                        let message = data.response;
+                        showMessage('Chatbot: ' + message, 'green');
+                    },
+                    error: function(xhr, status, error) {
                         console.error('Error:', error);
-                    });
+                    }
+                });
 
-            // 입력 필드 초기화
-            document.getElementById('messageInput').value = '';
+                // 메시지 입력창 비우기
+                $('#messageInput').val('');
+            }
         }
-    }
 
-    // 사용자 메시지를 화면에 표시하는 함수
-    function showUserMessage(message) {
-        var messagesDiv = document.getElementById('messages');
-        var messageElement = document.createElement('div');
-        messageElement.textContent = message;
-        messageElement.style.color = 'blue';  // 사용자 메시지 색상
-        messagesDiv.appendChild(messageElement);
-    }
-
-    // 챗봇 메시지를 화면에 표시하는 함수
-    function showChatbotMessage(message) {
-        var messagesDiv = document.getElementById('messages');
-        var messageElement = document.createElement('div');
-        messageElement.textContent = message;
-        messageElement.style.color = 'green';  // 챗봇 메시지 색상
-        messagesDiv.appendChild(messageElement);
-    }
+        // 메시지를 화면에 출력하는 함수
+        function showMessage(message, color) {
+            $('#messages').append($('<div>').text(message).css('color', color));
+        }
+    });
 </script>
 </body>
 </html>

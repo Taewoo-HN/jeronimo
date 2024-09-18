@@ -88,6 +88,7 @@ public class ApiController {
         if (regexContents.length() > 800) {
             news_content = regexContents.substring(0, 800);
         }
+        System.out.println(news_content);
         Map<String, String> requestBody = Collections.singletonMap("content", news_content);
         Mono<String> fastApiResponse = webClient.post().uri("/summarizer")
                 .body(BodyInserters.fromValue(requestBody))  // news_content 전송
