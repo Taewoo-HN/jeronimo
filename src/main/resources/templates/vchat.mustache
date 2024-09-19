@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Chatbot</title>
-
+    <link rel="icon" href = "/img/favicon.png" type = "image/x-icon">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
@@ -23,13 +23,13 @@
 
         // 메시지 전송 함수
         function sendMessage() {
-            var messageContent = $('#messageInput').val().trim();
+            let messageContent = $('#messageInput').val().trim();
             if (messageContent) {
                 // 사용자가 입력한 메시지 출력
                 showMessage('User: ' + messageContent, 'blue');
 
                 // 서버에 보낼 메시지 형식
-                var chatMessage = {
+                const chatMessage = {
                     sender: 'User',
                     content: messageContent
                 };
@@ -54,10 +54,9 @@
                 $('#messageInput').val('');
             }
         }
-
         // 메시지를 화면에 출력하는 함수
         function showMessage(message, color) {
-            $('#messages').append($('<div>').text(message).css('color', color));
+            $('#messages').append($('<div>').text(message.response).css('color', color));
         }
     });
 </script>

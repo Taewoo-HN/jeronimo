@@ -15,6 +15,8 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.*;
 
+import static org.big18.finale.config.ServerConfiguration.APIURL;
+
 @RestController
 public class ApiController {
 
@@ -27,12 +29,12 @@ public class ApiController {
     public ApiController(RestTemplate restTemplate, RssService rssService, WebClient.Builder webClientBuilder) {
         this.restTemplate = restTemplate;
         this.rssService = rssService;
-        this.webClient = webClientBuilder.baseUrl("http://172.29.240.1:8000").build();
+        this.webClient = webClientBuilder.baseUrl(APIURL).build();
     }
 
     @GetMapping("/download-wordcloud")
     public ResponseEntity<InputStreamResource> downloadWordCloudImage() {
-        String URL = "http://172.29.240.1:8000/download";  // FastAPI 엔드포인트 URL
+        String URL = APIURL+"/download";  // FastAPI 엔드포인트 URL
 
         // FastAPI로 GET 요청 보내기 (이미지 다운로드)
         ResponseEntity<byte[]> response = restTemplate.exchange(URL, HttpMethod.GET, null, byte[].class);
@@ -86,9 +88,9 @@ public class ApiController {
         String news_content = newsis.getNews_content();
         String regexContents = news_content.replaceAll("[^a-zA-Z0-9가-힣 ]", "");
         if (regexContents.length() > 800) {
-            news_content = regexContents.substring(0, 800);
+            news_content = regexContents.substring(0, 799);
         }
-        System.out.println(news_content);
+
         Map<String, String> requestBody = Collections.singletonMap("content", news_content);
         Mono<String> fastApiResponse = webClient.post().uri("/summarizer")
                 .body(BodyInserters.fromValue(requestBody))  // news_content 전송

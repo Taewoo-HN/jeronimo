@@ -18,7 +18,7 @@ class LoadingManager {
         spinner.className = 'loading-spinner';
 
         const text = document.createElement('p');
-        text.textContent = '로딩 중...';
+        text.textContent = 'AI가 뉴스를 요약하는 중…';
 
         this.loadingScreen.appendChild(spinner);
         this.loadingScreen.appendChild(text);

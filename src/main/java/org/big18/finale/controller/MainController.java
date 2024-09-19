@@ -93,15 +93,22 @@ public class MainController {
 
     @GetMapping("/stock-detail/{code}")
     public String getStockDetail(@PathVariable String code, Model model, HttpSession session) {
+       try{
         StockTrendsData tdata = stockTrendsService.getTrendByCode(code);
         model.addAttribute("trendata", tdata);
         userNameProvider.setUserAttributes(session, model);
         return "detail";
+       }catch (Exception e){
+           StockTrendsData nodata = new StockTrendsData(code, "Default", -12000, 20000, -15000);
+           model.addAttribute("trendata", nodata );
+           userNameProvider.setUserAttributes(session, model);
+           return "detail";
+       }
     }
 
     @GetMapping("/chatting")
     public String chatWindow() {
-        return "chatbot_window";
+        return "vchat";
     }
 
     @GetMapping("/login")

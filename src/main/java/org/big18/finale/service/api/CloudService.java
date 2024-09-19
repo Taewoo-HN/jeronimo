@@ -3,13 +3,14 @@ package org.big18.finale.service.api;
 import org.big18.finale.DTO.NewsRequest;
 import org.big18.finale.entity.News;
 import org.big18.finale.repository.NewsRepository;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static org.big18.finale.config.ServerConfiguration.APIURL;
 
 
 @Service
@@ -25,6 +26,9 @@ public class CloudService {
 
     // 키워드를 포함한 뉴스 제목을 FastAPI로 전송하는 메서드
     public void sendKeywordNewsTitles(String keyword) {
+        if(keyword.contains("+")){
+            keyword = keyword.replace("+","");
+        }
 
         // 1. 키워드에 맞는 뉴스 목록 가져오기
         List<News> newsList = getKeywordNews(keyword);
@@ -43,8 +47,9 @@ public class CloudService {
        return newsRepository.findByNewsTitleContaining(keyword);
     }
 
+
     public void sendNewsTitles(List<String> newsTitles, String keyword) {
-        String apiURL = "http://172.29.240.1:8000" + "/news";
+        String apiURL = APIURL + "/news";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);

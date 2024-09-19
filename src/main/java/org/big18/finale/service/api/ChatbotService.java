@@ -4,13 +4,13 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.big18.finale.DTO.ChatMessage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
+import static org.big18.finale.config.ServerConfiguration.APIURL;
 
 
 @Service
@@ -24,7 +24,7 @@ public class ChatbotService {
     }
 
     public String sendMessageToChatbot(ChatMessage message) {
-        String URL = "http://172.29.240.1:8000"+"/chatbot";  // FastAPI 서버 주소
+        String URL = APIURL+"/chatbot";  // FastAPI 서버 주소
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 

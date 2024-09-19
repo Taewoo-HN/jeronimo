@@ -73,7 +73,7 @@ public class PostController {
         // 글 저장 로직
         postService.savePost(post);
         userNameProvider.setUserAttributes(session, model);
-        return "redirect:/post/bbs"; // 목록 페이지로 리다이렉트
+        return "redirect:/posts/bbs"; // 목록 페이지로 리다이렉트
     }
 
     @GetMapping("/{id}")
