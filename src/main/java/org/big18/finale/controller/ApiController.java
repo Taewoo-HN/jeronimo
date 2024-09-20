@@ -67,7 +67,11 @@ public class ApiController {
         String regexContents = news_content.replaceAll("[^a-zA-Z0-9가-힣 ]", "");
         System.out.println(regexContents);
 
-        Map<String, String> requestBody = Collections.singletonMap("news", regexContents);
+        if (regexContents.length() > 1000) {
+            news_content = regexContents.substring(0, 999);
+        }
+
+        Map<String, String> requestBody = Collections.singletonMap("news", news_content);
         Mono<String> fastApiResponse = webClient.post().uri("/keyword")
                 .body(BodyInserters.fromValue(requestBody))  // news_content 전송
                 .retrieve()
