@@ -12,7 +12,6 @@
 <div id="messages"></div>
 <input type="text" id="messageInput" placeholder="챗봇에게 물어보세요!">
 <button id="sendButton">Send</button>
-
 <script>
     $(document).ready(function() {
         // sendButton 클릭 이벤트와 Enter 키 입력 이벤트 설정
@@ -23,17 +22,16 @@
 
         // 메시지 전송 함수
         function sendMessage() {
-            let messageContent = $('#messageInput').val().trim();
+            var messageContent = $('#messageInput').val().trim();
             if (messageContent) {
                 // 사용자가 입력한 메시지 출력
                 showMessage('User: ' + messageContent, 'blue');
 
                 // 서버에 보낼 메시지 형식
-                const chatMessage = {
+                var chatMessage = {
                     sender: 'User',
                     content: messageContent
                 };
-
                 // Ajax를 사용하여 서버에 메시지 전송
                 $.ajax({
                     url: '/chatBot',  // 서버의 엔드포인트 URL
@@ -41,9 +39,7 @@
                     contentType: 'application/json',
                     data: JSON.stringify(chatMessage),  // JSON 형식으로 메시지 전송
                     success: function(data) {
-                        // 서버에서 받은 응답에서 response 필드를 파싱하여 출력
-                        let message = data.response;
-                        showMessage('Chatbot: ' + message, 'green');
+                        showMessage('Chatbot: ' + data, 'green');
                     },
                     error: function(xhr, status, error) {
                         console.error('Error:', error);
@@ -56,7 +52,7 @@
         }
         // 메시지를 화면에 출력하는 함수
         function showMessage(message, color) {
-            $('#messages').append($('<div>').text(message.response).css('color', color));
+            $('#messages').append($('<div>').text(message).css('color', color));
         }
     });
 </script>

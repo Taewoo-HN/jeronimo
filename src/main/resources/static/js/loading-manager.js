@@ -17,11 +17,11 @@ class LoadingManager {
         const spinner = document.createElement('div');
         spinner.className = 'loading-spinner';
 
-        const text = document.createElement('p');
-        text.textContent = 'AI가 뉴스를 요약하는 중…';
+        this.loadingText = document.createElement('p');
+        this.loadingText.textContent = 'AI가 뉴스를 요약하는 중…';  // 기본 메시지
 
         this.loadingScreen.appendChild(spinner);
-        this.loadingScreen.appendChild(text);
+        this.loadingScreen.appendChild(this.loadingText);
 
         document.body.appendChild(this.loadingScreen);
 
@@ -62,12 +62,35 @@ class LoadingManager {
         document.head.appendChild(style);
     }
 
-    show() {
+    show(messages = ['AI가 뉴스를 요약하는 중…', 'AI가 GPU를 식히는 중…', 'AI가 데이터를 포장하는 중…']) {
+        // 메시지 배열이 아니면 단일 메시지로 처리
+        if (!Array.isArray(messages)) {
+            messages = [messages];
+        }
+
+        this.loadingText.textContent = messages[0]; // 첫 번째 메시지로 설정
         this.loadingScreen.style.display = 'flex';
+
+        // 메시지 타이머 설정
+        this.messageIndex = 0; // 메시지 인덱스 초기화
+        this.clearTimer(); // 기존 타이머 제거
+
+        this.messageTimer = setInterval(() => {
+            this.messageIndex = (this.messageIndex + 1) % messages.length;
+            this.loadingText.textContent = messages[this.messageIndex];
+        }, 3000); // 3초마다 메시지 변경
     }
 
     hide() {
         this.loadingScreen.style.display = 'none';
+        this.clearTimer(); // 타이머 제거
+    }
+
+    clearTimer() {
+        if (this.messageTimer) {
+            clearInterval(this.messageTimer);
+            this.messageTimer = null;
+        }
     }
 }
 
