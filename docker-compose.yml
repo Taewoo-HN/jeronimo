@@ -1,25 +1,40 @@
-version : '3.8'
+version: "3.9"
 services:
   springboot:
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - '18028:8028'
-    depends_on:
-      - database
-      - redis
+      - "18028:8028"
     networks:
       - myapp-net
-    env_file:
-      - envfile.env
+    environment:
+      - host-code=database
+      - service-port=3306
+      - db-name=finaldb
+      - db-user=root
+      - db-password=big185678
+      - server-port=8028
     volumes:
       - /shared/news:/usr/news
+
+  AIapi:
+    image: hena07/model_api:2
+    ports:
+      - "8000:8000"
+    networks:
+      - myapp-net
+    depends_on:
+      - springboot
+    volumes:
+      - run_conda.sh:/usr/local/bin/run_conda.sh
+    command: >
+      sh -c "chmod +x run_conda.sh && /usr/local/bin/run_conda.sh"
 
   nginx:
     image: nginx:stable-alpine
     ports:
-      - '80:80'
+      - "80:80"
     depends_on:
       - springboot
     networks:
@@ -30,50 +45,32 @@ services:
   database:
     image: hena07/centos_hn_v3:live
     ports:
-      - '3306:3306'
+      - "3306:3306"
     networks:
       - myapp-net
 
   airflow_kafka:
     image: hena07/dataprocess:0
     ports:
-      - '18080:8080'
-      - '18081:8081'
+      - "18080:8080"
+      - "18081:8081"
     depends_on:
       - database
     volumes:
+      - run_conda.sh:/usr/local/bin/run_conda.sh
       - /shared/news:/usr/local/news
     networks:
       - myapp-net
     command: >
-      /bin/bash -c "conda activate ml-dev 
-      && airflow celery worker && airflow scheduler && airflow webserver 
-      && systemctl start kafka && systemctl start kafka-ui"
-   
+      sh -c "chmod +x run_conda.sh && /usr/local/bin/run_conda.sh"
 
   redis:
-    image: hena07/redis_rocky
+    image: hena07/redis_rocky:2
     ports:
-      - '6379:6379'
+      - "6379:6379"
     networks:
       - myapp-net
-
-  AIapi:
-    image: hena07/model_api:2
-    ports:
-      - '8000:8000'
-    networks:
-      - myapp-net
-    depends_on:
-      - springboot
-    command: >
-      /bin/bash -c "cd /usr/local/etc/ModelAPI &&
-      conda activate tensorflow_cuda &&
-      uvicorn main:app --host=0.0.0.0"
 
 networks:
   myapp-net:
     driver: bridge
-
-
-
