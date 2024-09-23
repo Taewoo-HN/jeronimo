@@ -27,9 +27,9 @@ services:
     depends_on:
       - springboot
     volumes:
-      - run_conda.sh:/usr/local/bin/run_conda.sh
+      - ./run_conda.sh:/usr/local/bin/run_api.sh
     command: >
-      sh -c "chmod +x run_conda.sh && /usr/local/bin/run_conda.sh"
+      sh -c "chmod +x /usr/local/bin/run_api.sh && /usr/local/bin/run_api.sh"
 
   nginx:
     image: nginx:stable-alpine
@@ -57,12 +57,12 @@ services:
     depends_on:
       - database
     volumes:
-      - run_conda.sh:/usr/local/bin/run_conda.sh
+      - ./run_conda.sh:/usr/local/bin/run_conda.sh
       - /shared/news:/usr/local/news
     networks:
       - myapp-net
     command: >
-      sh -c "chmod +x run_conda.sh && /usr/local/bin/run_conda.sh"
+      sh -c "chmod +x /usr/local/bin/run_conda.sh && /usr/local/bin/run_conda.sh"
 
   redis:
     image: hena07/redis_rocky:2
