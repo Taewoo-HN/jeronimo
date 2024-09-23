@@ -19,7 +19,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Build Gradle
-        uses: ./gradlew clean build -x test
+        run:  ./gradlew clean build -x test
 
       - name: Extract JAR file
         run: mv $(find . -name "*.jar" -not -name "*-sources.jar") ./app.jar
