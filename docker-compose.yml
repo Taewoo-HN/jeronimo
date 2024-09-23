@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - '18082:8082'
+      - '18028:8028'
     depends_on:
       - database
       - redis
@@ -13,6 +13,8 @@ services:
       - myapp-net
     env_file:
       - envfile.env
+    volumes:
+      - /shared/news:/usr/news
 
   nginx:
     image: nginx:stable-alpine
@@ -22,6 +24,8 @@ services:
       - springboot
     networks:
       - myapp-net
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
 
   database:
     image: hena07/centos_hn_v3:live
@@ -38,12 +42,14 @@ services:
     depends_on:
       - database
     volumes:
-      - /usr/local/news:/shared/news
+      - /shared/news:/usr/local/news
     networks:
       - myapp-net
     command: >
       /bin/bash -c "conda activate ml-dev 
-      && airflow celery worker && airflow scheduler && airflow webserver"
+      && airflow celery worker && airflow scheduler && airflow webserver 
+      && systemctl start kafka && systemctl start kafka-ui"
+   
 
   redis:
     image: hena07/redis_rocky
@@ -64,6 +70,7 @@ services:
       /bin/bash -c "cd /usr/local/etc/ModelAPI &&
       conda activate tensorflow_cuda &&
       uvicorn main:app --host=0.0.0.0"
+
 networks:
   myapp-net:
     driver: bridge
