@@ -24,12 +24,11 @@ services:
       - "8000:8000"
     networks:
       - myapp-net
-    depends_on:
-      - springboot
     volumes:
       - ./run_api.sh:/usr/local/bin/run_api.sh
     command: >
-      sh -c "chmod +x /usr/local/bin/run_api.sh && /usr/local/bin/run_api.sh"
+      sh -c "ls -l /usr/local/bin/run_api.sh && chmod +x /usr/local/bin/run_api.sh && /usr/local/bin/run_api.sh"
+    privileged: true
 
   nginx:
     image: nginx:stable-alpine
@@ -55,15 +54,10 @@ services:
     ports:
       - "18080:8080"
       - "18081:8081"
-    depends_on:
-      - database
     volumes:
-      - ./run_conda.sh:/usr/local/bin/run_conda.sh
       - /shared/news:/usr/local/news
     networks:
       - myapp-net
-    command: >
-      sh -c "chmod +x /usr/local/bin/run_conda.sh && /usr/local/bin/run_conda.sh"
     privileged: true
 
   redis:
