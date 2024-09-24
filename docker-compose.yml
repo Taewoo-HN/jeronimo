@@ -27,7 +27,7 @@ services:
     depends_on:
       - springboot
     volumes:
-      - ./run_conda.sh:/usr/local/bin/run_api.sh
+      - ./run_api.sh:/usr/local/bin/run_api.sh
     command: >
       sh -c "chmod +x /usr/local/bin/run_api.sh && /usr/local/bin/run_api.sh"
 
@@ -48,6 +48,7 @@ services:
       - "3306:3306"
     networks:
       - myapp-net
+    privileged: true
 
   airflow_kafka:
     image: hena07/dataprocess:0
@@ -63,6 +64,7 @@ services:
       - myapp-net
     command: >
       sh -c "chmod +x /usr/local/bin/run_conda.sh && /usr/local/bin/run_conda.sh"
+    privileged: true
 
   redis:
     image: hena07/redis_rocky:2
