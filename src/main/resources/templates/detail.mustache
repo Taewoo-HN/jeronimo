@@ -1,251 +1,284 @@
 {{>layout/header}}
-<body>
+<style>
+    .chart-container {
+        position: relative;
+        height: 300px;
+        width: 100%;
+    }
+    .card {
+        height: 100%;
+    }
+    .card-body {
+        display: flex;
+        flex-direction: column;
+    }
+    .chart-wrapper {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .main-content {
+        margin-left: 4rem; /* 사이드바 너비에 맞춰 조정 */
+        padding-top: 5rem; /* 상단 여백 증가 */
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    @media (min-width: 768px) {
+        .main-content {
+            margin-left: 5rem; /* 더 큰 화면에서 여백 증가 */
+            padding-top: 6rem; /* 더 큰 화면에서 상단 여백 추가 증가 */
+        }
+    }
+    .company-logo {
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+    }
+    /* 제목 스타일 수정 */
+    .stock-title {
+        background-color: #f0f4f8;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        position: sticky;
+        top: 4rem; /* 헤더 높이에 맞춰 조정 */
+        z-index: 10;
+    }
+    .news-container {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+    .news-item {
+        border-bottom: 1px solid #e2e8f0;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+    }
+    .news-item:last-child {
+        border-bottom: none;
+    }
+    .news-title {
+        font-weight: bold;
+        color: #2d3748;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+    .news-title:hover {
+        color: #4a5568;
+    }
+    .news-content {
+        color: #4a5568;
+    }
+    .news-section-title {
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+</style>
+<body class="bg-gray-100">
 {{>layout/navbar}}
 {{>layout/sidebar}}
-<div class="container mt-20">
-    <h2>{{trendata.stock_name}}</h2>
-    <div class="row">
+<div class="main-content">
+    <div class="stock-title">
+        <h2 class="text-3xl font-bold text-gray-800">{{trendata.stock_name}}</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <!-- Pie Chart -->
-        <div class="col-xl-3 col-lg-4">
-            <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">파이 그래프</h6>
-                    <div class="dropdown no-arrow">
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                             aria-labelledby="dropdownMenuLink">
-                            <div class="dropdown-header">Dropdown Header:</div>
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                    <div class="chart-pie pt-2 pb-1">
-                        <canvas id="myPieChart"></canvas>
-                    </div>
-                    <div class="mt-2 text-center small">
-                        <span class="mr-2"> <i class="fas fa-circle text-primary"></i></span>
-                        <span class="mr-2"> <i class="fas fa-circle text-success"></i></span>
-                        <span class="mr-2"> <i class="fas fa-circle text-info"></i></span>
-                    </div>
+        <div class="bg-white rounded-lg shadow-md p-4">
+            <h6 class="text-lg font-semibold mb-2">파이 그래프</h6>
+            <div class="chart-wrapper">
+                <div class="chart-container">
+                    <canvas id="myPieChart"></canvas>
                 </div>
             </div>
         </div>
 
         <!-- Area Chart -->
-        <div class="col-xl-5 col-lg-7">
-            <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">차트 그래프</h6>
-                    <div class="dropdown no-arrow">
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                             aria-labelledby="dropdownMenuLink">
-                            <div class="dropdown-header">Dropdown Header:</div>
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                    <div class="chart-area">
-                        <canvas id="myAreaChart"></canvas>
-                    </div>
+        <div class="bg-white rounded-lg shadow-md p-4">
+            <h6 class="text-lg font-semibold mb-2">차트 그래프</h6>
+            <div class="chart-wrapper">
+                <div class="chart-container">
+                    <canvas id="myAreaChart"></canvas>
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-lg-5">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">거래 동향</h6>
-                </div>
-                <div class="card-body">
-                    <div class="chart-bar">
-                        <canvas id="myBarChart"></canvas>
-                    </div>
+
+        <!-- Bar Chart -->
+        <div class="bg-white rounded-lg shadow-md p-4">
+            <h6 class="text-lg font-semibold mb-2">거래 동향</h6>
+            <div class="chart-wrapper">
+                <div class="chart-container">
+                    <canvas id="myBarChart"></canvas>
                 </div>
             </div>
         </div>
+
         <!-- 테마주 -->
-        <div class="col-xl-4 col-lg-5">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">테마주</h6>
-                </div>
-                <div class="card-body">
-                    <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <th>로고</th>
-                            <th>회사명</th>
-                            <th>변화율</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td><img src="img/samsung.jpg" alt="삼성전자 로고" class="company-logo"></td>
-                            <td>삼성전자</td>
-                            <td class="text-success">+2.5%</td>
-                        </tr>
-                        <tr>
-                            <td><img src="img/skhynix.jpg" alt="SK하이닉스 로고" class="company-logo"></td>
-                            <td>SK하이닉스</td>
-                            <td class="text-danger">-1.8%</td>
-                        </tr>
-                        <tr>
-                            <td><img src="img/lgchem.jpg" alt="LG화학 로고" class="company-logo"></td>
-                            <td>LG화학</td>
-                            <td class="text-success">+3.2%</td>
-                        </tr>
-                        <tr>
-                            <td><img src="img/hyundai.png" alt="현대자동차 로고" class="company-logo"></td>
-                            <td>현대자동차</td>
-                            <td class="text-success">+1.7%</td>
-                        </tr>
-                        <tr>
-                            <td><img src="img/naver.png" alt="NAVER 로고" class="company-logo"></td>
-                            <td>NAVER</td>
-                            <td class="text-danger">-0.5%</td>
-                        </tr>
-                        <tr>
-                            <td><img src="img/kakao.png" alt="카카오 로고" class="company-logo"></td>
-                            <td>카카오</td>
-                            <td class="text-success">+2.1%</td>
-                        </tr>
-                        <tr>
-                            <td><img src="img/celtrion.png" alt="셀트리온 로고" class="company-logo"></td>
-                            <td>셀트리온</td>
-                            <td class="text-danger">-1.2%</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+        <div class="bg-white rounded-lg shadow-md p-4 col-span-1 md:col-span-2 lg:col-span-1">
+            <h6 class="text-lg font-semibold mb-2">테마주</h6>
+            <table class="w-full">
+                <thead>
+                <tr>
+                    <th class="py-2">로고</th>
+                    <th class="py-2">회사명</th>
+                    <th class="py-2">변화율</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><img src="img/samsung.jpg" alt="삼성전자 로고" class="company-logo"></td>
+                    <td>삼성전자</td>
+                    <td class="text-green-500">+2.5%</td>
+                </tr>
+                <tr>
+                    <td><img src="img/skhynix.jpg" alt="SK하이닉스 로고" class="company-logo"></td>
+                    <td>SK하이닉스</td>
+                    <td class="text-red-500">-1.8%</td>
+                </tr>
+                <tr>
+                    <td><img src="img/lgchem.jpg" alt="LG화학 로고" class="company-logo"></td>
+                    <td>LG화학</td>
+                    <td class="text-green-500">+3.2%</td>
+                </tr>
+                <tr>
+                    <td><img src="img/hyundai.png" alt="현대자동차 로고" class="company-logo"></td>
+                    <td>현대자동차</td>
+                    <td class="text-green-500">+1.7%</td>
+                </tr>
+                <tr>
+                    <td><img src="img/naver.png" alt="NAVER 로고" class="company-logo"></td>
+                    <td>NAVER</td>
+                    <td class="text-red-500">-0.5%</td>
+                </tr>
+                <tr>
+                    <td><img src="img/kakao.png" alt="카카오 로고" class="company-logo"></td>
+                    <td>카카오</td>
+                    <td class="text-green-500">+2.1%</td>
+                </tr>
+                <tr>
+                    <td><img src="img/celtrion.png" alt="셀트리온 로고" class="company-logo"></td>
+                    <td>셀트리온</td>
+                    <td class="text-red-500">-1.2%</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
+
         <!-- News -->
-        <div class="col-xl-4 col-lg-5">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">뉴스</h6>
-                </div>
-                <div class="card-body">
-                    <h5>Breaking News: New Technology Unveiled</h5>
-                    <p>A major tech company has just announced the launch of a groundbreaking new product that is set to
-                        revolutionize the industry.</p>
-                    <hr>
-                    <h5>Local Community Rallies to Support Families in Need</h5>
-                    <p>In a heartwarming display of community spirit, residents have come together to organize a
-                        donation drive and volunteer efforts to assist families facing difficult circumstances.</p>
-                    <hr>
-                    <h5>Sports Team Clinches Playoff Spot with Thrilling Victory</h5>
-                    <p>In a nail-biting game that went down to the wire, the local sports team secured their spot in the
-                        playoffs with an impressive win.</p>
-                </div>
-            </div>
-        </div>
-        <div class="position-fixed top-50 start-50 " style="z-index: 1050;">
-            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="toast">
-                <div class="toast-body bg-dark text-white">
-                </div>
+        <div class="bg-white rounded-lg shadow-md p-4 col-span-1 md:col-span-2 lg:col-span-2">
+            <h6 class="text-lg font-semibold mb-2 news-section-title"
+                onclick="window.location.href='http://localhost:8028/news?query={{trendata.stock_name}}'">
+            {{trendata.stock_name}} 관련 뉴스
+            </h6>
+            <div class="news-container">
+                {{#news}}
+                    <div class="news-item">
+                        <h5 class="news-title" onclick="window.open('{{address}}', '_blank')">{{newsTitle}}</h5>
+                        <p class="news-content">{{newsContent}}</p>
+                    </div>
+                {{/news}}
+                {{^news}}
+                    <p>관련 뉴스가 없습니다.</p>
+                {{/news}}
             </div>
         </div>
     </div>
 </div>
-<!-- 필요 시 추가적인 JS 라이브러리 및 코드 추가 -->
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    // Chart.js를 사용하여 차트 렌더링을 위한 샘플 코드
-    var ctxArea = document.getElementById('myAreaChart').getContext('2d');
-    var myAreaChart = new Chart(ctxArea, {
-        type: 'line',
-        data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            datasets: [{
-                label: 'Earnings',
-                data: [0, 10000, 5000, 15000, 10000, 20000, 15000],
-                backgroundColor: 'rgba(78, 115, 223, 0.05)',
-                borderColor: 'rgba(78, 115, 223, 1)',
-            }],
-        },
-    });
-
-    var ctxPie = document.getElementById('myPieChart').getContext('2d');
-    var myPieChart = new Chart(ctxPie, {
-        type: 'doughnut',
-        data: {
-            labels: ['Direct', 'Social', 'Referral'],
-            datasets: [{
-                data: [55, 30, 15],
-                backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
-                hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
-                hoverBorderColor: 'rgba(234, 236, 244, 1)',
-            }],
-        },
-    });
-</script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-
     document.addEventListener('DOMContentLoaded', function () {
-        // Mustache 변수를 자바스크립트에서 사용할 수 있도록 변환
+        // Pie Chart
+        var ctxPie = document.getElementById('myPieChart').getContext('2d');
+        var myPieChart = new Chart(ctxPie, {
+            type: 'doughnut',
+            data: {
+                labels: ['Direct', 'Social', 'Referral'],
+                datasets: [{
+                    data: [55, 30, 15],
+                    backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+                    hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+                    hoverBorderColor: 'rgba(234, 236, 244, 1)',
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+            }
+        });
+
+        // Area Chart
+        var ctxArea = document.getElementById('myAreaChart').getContext('2d');
+        var myAreaChart = new Chart(ctxArea, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                datasets: [{
+                    label: 'Earnings',
+                    data: [0, 10000, 5000, 15000, 10000, 20000, 15000],
+                    backgroundColor: 'rgba(78, 115, 223, 0.05)',
+                    borderColor: 'rgba(78, 115, 223, 1)',
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+            }
+        });
+
+        // Bar Chart
         var trendata = {
             personal: {{trendata.individual}},
             foreigner: {{trendata.foreign}},
             institution: {{trendata.institution}}
-        };
+    };
 
-        var ctx = document.getElementById('myBarChart').getContext('2d');
-        var myBarChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['개인', '외국인', '기관'],
-                datasets: [{
-                    label: '순매매량',
-                    data: [trendata.personal, trendata.foreigner, trendata.institution],
-                    backgroundColor: [
-                        'rgba(54, 162, 235, 0.8)',
-                        'rgba(255, 99, 132, 0.8)',
-                        'rgba(75, 192, 192, 0.8)'
-                    ],
-                    borderColor: [
-                        'rgb(54, 162, 235)',
-                        'rgb(255, 99, 132)',
-                        'rgb(75, 192, 192)'
-                    ],
-                    borderWidth: 1
-                }]
+    var ctxBar = document.getElementById('myBarChart').getContext('2d');
+    var myBarChart = new Chart(ctxBar, {
+        type: 'bar',
+        data: {
+            labels: ['개인', '외국인', '기관'],
+            datasets: [{
+                label: '순매매량',
+                data: [trendata.personal, trendata.foreigner, trendata.institution],
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.8)',
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(75, 192, 192, 0.8)'
+                ],
+                borderColor: [
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 99, 132)',
+                    'rgb(75, 192, 192)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            responsive: true,
+            indexAxis: 'y',
+            scales: {
+                x: {
+                    beginAtZero: true
+                }
             },
-            options: {
-                responsive: true,
-                indexAxis: 'y',
-                scales: {
-                    x: {
-                        beginAtZero: true
-                    }
-                },
-                plugins: {
-                    legend: {
-                        display: false
-                    }
+            plugins: {
+                legend: {
+                    display: false
                 }
             }
-        });
+        }
     });
+<!--    const newsTitles = document.querySelectorAll('.news-title');-->
+<!--        newsTitles.forEach(title => {-->
+<!--            title.addEventListener('click', function() {-->
+<!--                const newsId = this.getAttribute('data-news-id');-->
+<!--                여기서 newsId를 사용하여 해당 뉴스 기사로 이동 -->
+<!--                window.location.href = `/news/${newsId}`;-->
+<!--            });-->
+<!--        });-->
+});
 </script>
 {{>layout/chatbot_button}}
 </body>

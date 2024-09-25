@@ -93,18 +93,35 @@ public class MainController {
 
     @GetMapping("/stock-detail/{code}")
     public String getStockDetail(@PathVariable String code, Model model, HttpSession session) {
-       try{
-        StockTrendsData tdata = stockTrendsService.getTrendByCode(code);
-        model.addAttribute("trendata", tdata);
-        userNameProvider.setUserAttributes(session, model);
-        return "detail";
-       }catch (Exception e){
-           StockTrendsData nodata = new StockTrendsData(code, "Default", -12000, 20000, -15000);
-           model.addAttribute("trendata", nodata );
-           userNameProvider.setUserAttributes(session, model);
-           return "detail";
-       }
+        try {
+            StockTrendsData tdata = stockTrendsService.getTrendByCode(code);
+            model.addAttribute("trendata", tdata);
+
+            String stockName = tdata.getStock_name();
+            System.out.println("Stock name: " + stockName); // 로그 추가
+
+            List<News> relatedNews = newsService.getNewsByStockName(stockName);
+            System.out.println("Related news count: " + relatedNews.size()); // 로그 추가
+            for (News news : relatedNews) {
+                System.out.println("News title: " + news.getNewsTitle()); // 로그 추가
+            }
+
+            model.addAttribute("news", relatedNews);
+
+            userNameProvider.setUserAttributes(session, model);
+            return "detail";
+        } catch (Exception e) {
+            StockTrendsData nodata = new StockTrendsData(code, "Default", -12000, 20000, -15000);
+            model.addAttribute("trendata", nodata);
+
+            // 예외 발생 시에도 빈 뉴스 리스트 추가
+            model.addAttribute("news", Collections.emptyList());
+
+            userNameProvider.setUserAttributes(session, model);
+            return "detail";
+        }
     }
+
 
     @GetMapping("/chatting")
     public String chatWindow() {

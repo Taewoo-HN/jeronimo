@@ -21,4 +21,9 @@ public class NewsService {
     public List<News> getAllNews() {
         return newsRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
     }
+
+    public List<News> getNewsByStockName(String stockName) {
+        return newsRepository.findByNewsTitleContainingOrNewsContentContaining(stockName, stockName, Sort.by(Sort.Direction.DESC, "id"));
+    }
+
 }
