@@ -55,6 +55,7 @@ services:
       - "18080:8080"
       - "18081:8081"
     volumes:
+      - ./run_conda.sh:/usr/local/bin/run_conda.sh
       - /shared/news:/usr/local/news
     networks:
       - myapp-net
