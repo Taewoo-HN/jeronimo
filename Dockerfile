@@ -13,8 +13,8 @@ RUN ./gradlew clean build -x test
 FROM gcr.io/distroless/java17-debian11:nonroot
 COPY --from=builder /app/build/libs/*.jar /app/app.jar
 
-# Spring Boot 기본 포트
-EXPOSE 8080
+# 포트 외부 포워딩
+EXPOSE 8028
 
 # 애플리케이션 실행
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]
