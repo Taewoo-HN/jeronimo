@@ -3,6 +3,9 @@ LABEL   authors="Taewoo-HN"
 WORKDIR /app
 COPY . .
 
+# gradlew 파일에 실행 권한 부여
+RUN chmod +x ./gradlew
+
 # Gradle로 빌드하여 JAR 파일 생성
 RUN ./gradlew clean build -x test
 
