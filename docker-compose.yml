@@ -1,9 +1,7 @@
 version: "3.9"
 services:
   springboot:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: hena07/myspringprojects:latest
     ports:
       - "18028:8028"
     networks:
