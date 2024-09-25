@@ -17,9 +17,11 @@ services:
       - server-port=8028
     volumes:
       - /shared/news:/usr/news
+    depends_on:
+      - AI_api
 
-  AIapi:
-    image: hena07/model_api:2
+  AI_api:
+    image: hena07/model_api
     ports:
       - "8000:8000"
     networks:
@@ -42,7 +44,7 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
 
   database:
-    image: hena07/centos_hn_v3:live
+    image: hena07/centos_hn_v3
     ports:
       - "3306:3306"
     networks:
