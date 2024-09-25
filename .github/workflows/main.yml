@@ -1,10 +1,11 @@
 name: continuous_deployment_test
 on:
   push:
-    branches: 
+    branches:
       - naverlogin
     paths-ignore:
       - '.github/**'
+
 jobs:
   build:
     runs-on: ubuntu-20.04
@@ -12,31 +13,19 @@ jobs:
       - name: Check Code
         uses: actions/checkout@v4
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x ./gradlew
-
-      - name: Build Gradle
-        run:  ./gradlew clean build -x test
-
-      - name: Extract JAR file
-        run: mv $(find . -name "*.jar" -not -name "*-sources.jar") ./app.jar
-
-      - name: Set up Docker Buildx 
+      - name: Docker Login
         uses: docker/login-action@v3
-        with: 
-          username: ${{secrets.DOCKER_USERNAME}}
-          password: ${{secrets.DOCKER_PASSWORD}}
-      
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
           context: .
           file: Dockerfile
-          tags: hena07/myspringprojects:latest 
+          tags: hena07/myspringprojects:latest
           push: true
