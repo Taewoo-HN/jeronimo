@@ -58,7 +58,7 @@ public class SecurityConfig {
                         .deleteCookies("JSESSIONID")
                 ).sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) // 세션이 필요할 때만 생성
-                        .maximumSessions(2) // 동시 로그인 세션 수 제한
+                        .maximumSessions(10) // 동시 로그인 세션 수 제한
                         .maxSessionsPreventsLogin(true) // 새로운 로그인을 막음
                 )
                 .rememberMe(rememberMe -> rememberMe
