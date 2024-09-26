@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   springboot:
-    image: hena07/myspringprojects:latest
+    image: hena07/myspringprojects
     ports:
       - "18028:8028"
     networks:
@@ -19,7 +19,7 @@ services:
       - AI_api
 
   AI_api:
-    image: hena07/model_api
+    image: hena07/cpumodelapi
     ports:
       - "8000:8000"
     networks:
