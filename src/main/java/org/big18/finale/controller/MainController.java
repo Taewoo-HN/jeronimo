@@ -98,13 +98,8 @@ public class MainController {
             model.addAttribute("trendata", tdata);
 
             String stockName = tdata.getStock_name();
-            System.out.println("Stock name: " + stockName); // 로그 추가
 
             List<News> relatedNews = newsService.getNewsByStockName(stockName);
-            System.out.println("Related news count: " + relatedNews.size()); // 로그 추가
-            for (News news : relatedNews) {
-                System.out.println("News title: " + news.getNewsTitle()); // 로그 추가
-            }
 
             model.addAttribute("news", relatedNews);
 
@@ -122,10 +117,9 @@ public class MainController {
         }
     }
 
-
     @GetMapping("/chatting")
     public String chatWindow() {
-        return "vchat";
+        return "chatbot_window";
     }
 
     @GetMapping("/login")
