@@ -114,10 +114,11 @@ public class MainController {
 
             userNameProvider.setUserAttributes(session, model);
             return "detail";
-        } catch (Exception e) {
+        } catch (NullPointerException e) {
             StockTrendsData nandata = new StockTrendsData(code, "Example", 12300, -19000, 15000);
             model.addAttribute("trendata", nandata);
             model.addAttribute("news", Collections.emptyList());
+            userNameProvider.setUserAttributes(session, model);
             return "detail";
         }
     }
