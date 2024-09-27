@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
-import java.time.Instant;
+import java.sql.Timestamp;
 
 @Getter
 @Setter
@@ -42,6 +42,6 @@ public class A035420_mindata {
     @Id
     @ColumnDefault("date_format(sysdate(), '%Y-%m-%d')")
     @Column(name = "Jdate")
-    private Instant jdate;
+    private Timestamp jdate;
 
 }

@@ -5,9 +5,9 @@ import org.big18.finale.entity.stocks.A051910_mindata;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.time.Instant;
+import java.sql.Timestamp;
 
 @Repository
-public interface A051910_mindataRepository extends JpaRepository<A051910_mindata, Instant> {
+public interface A051910_mindataRepository extends JpaRepository<A051910_mindata, Timestamp> {
 
 }
