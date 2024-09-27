@@ -64,6 +64,7 @@ header {
     margin-bottom: 10px;
     max-width: 70%;
     word-wrap: break-word;
+    white-space: pre-wrap;
 }
 
 .user-message {
@@ -152,13 +153,6 @@ header {
 }
 
 
-.message {
-    font-size: 14px;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #f0f0f0;
-    margin: 5px 0;
-}
 
 
 .input-group {
