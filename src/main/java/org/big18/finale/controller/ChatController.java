@@ -24,6 +24,6 @@ public class ChatController {
 
         String response = chatbotService.sendMessageToChatbot(chatMessage);
         System.out.println(response);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(response );
     }
 }
