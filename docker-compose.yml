@@ -48,7 +48,7 @@ services:
     privileged: true
 
   airflow_kafka:
-    image: hena07/dataprocess:0
+    image: hena07/dataprocess
     ports:
       - "18080:8080"
       - "18081:8081"
@@ -65,6 +65,9 @@ services:
       - "6379:6379"
     networks:
       - myapp-net
+    command: >
+      sh -c "cd redis && src/redis redis.conf"
+      
 
 networks:
   myapp-net:
