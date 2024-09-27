@@ -57,9 +57,6 @@ public class StockTrendsService {
     public StockTrendsData getTrendByCode(String code) {
         JpaRepository repository = repositoryMap.get(code);
         String stockname = allcodeRepository.findById(code).get().getName();
-        if (stockname.isEmpty()) {
-            stockname= stocksRepository.findByCode(code).get().getName();
-        }
         LocalDate today = LocalDate.now();
         if (repository != null) {
             Optional data = repository.findById(today);

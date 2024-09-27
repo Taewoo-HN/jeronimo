@@ -94,18 +94,18 @@ public class MainController {
     @GetMapping("/stock-detail/{code}")
     public String getStockDetail(@PathVariable String code, Model model, HttpSession session) {
         try {
+
             StockTrendsData tdata = stockTrendsService.getTrendByCode(code);
             model.addAttribute("trendata", tdata);
 
             String stockName = tdata.getStock_name();
-
             List<News> relatedNews = newsService.getNewsByStockName(stockName);
 
             model.addAttribute("news", relatedNews);
-
             userNameProvider.setUserAttributes(session, model);
             return "detail";
-        } catch (Exception e) {
+
+        } catch (IllegalArgumentException e) {
             StockTrendsData nodata = new StockTrendsData(code, "Default", -12000, 20000, -15000);
             model.addAttribute("trendata", nodata);
 
@@ -113,6 +113,11 @@ public class MainController {
             model.addAttribute("news", Collections.emptyList());
 
             userNameProvider.setUserAttributes(session, model);
+            return "detail";
+        } catch (Exception e) {
+            StockTrendsData nandata = new StockTrendsData(code, "Example", 12300, -19000, 15000);
+            model.addAttribute("trendata", nandata);
+            model.addAttribute("news", Collections.emptyList());
             return "detail";
         }
     }
