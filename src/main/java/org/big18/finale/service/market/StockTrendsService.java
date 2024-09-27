@@ -22,7 +22,7 @@ public class StockTrendsService {
 
     @Autowired
     public StockTrendsService(AllcodeRepository allcodeRepository,
-                              A000660TrendsRepository a000600TrendsRepository, A003670TrendsRepository a003670TrendsRepository,
+                              A000660TrendsRepository a000660TrendsRepository, A003670TrendsRepository a003670TrendsRepository,
                               A005380TrendsRepository a005380TrendsRepository, A005490TrendsRepository a005490TrendsRepository,
                               A005930TrendsRepository a005930TrendsRepository, A022100TrendsRepository a022100TrendsRepository,
                               A042700TrendsRepository a042700TrendsRepository, A086520TrendsRepository a086520TrendsRepository,
@@ -35,7 +35,7 @@ public class StockTrendsService {
         this.allcodeRepository = allcodeRepository;
         this.stocksRepository = stocksRepository;
         this.repositoryMap = Map.ofEntries(
-                Map.entry("000600", a000600TrendsRepository),
+                Map.entry("000660", a000660TrendsRepository),
                 Map.entry("003670", a003670TrendsRepository),
                 Map.entry("005380", a005380TrendsRepository),
                 Map.entry("005490", a005490TrendsRepository),
