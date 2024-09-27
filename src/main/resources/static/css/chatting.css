@@ -57,6 +57,32 @@ header {
     padding: 20px;
 }
 
+.message {
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    max-width: 70%;
+    word-wrap: break-word;
+}
+
+.user-message {
+    background-color: #ddd;
+    text-align: left;
+    margin-left: 10px;
+    border-radius: 10px 10px 10px 0;
+    color: blue;
+}
+
+.bot-message {
+    background-color: #F9EB54;
+    text-align: right;
+    margin-right: 10px;
+    border-radius: 10px 10px 0 10px;
+    color: green;
+}
+
+
 .chat {
     display: flex;
     align-items: flex-start;
@@ -124,6 +150,16 @@ header {
     content: "▶";
     color: #F9EB54;
 }
+
+
+.message {
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    margin: 5px 0;
+}
+
 
 .input-group {
     display: flex;
