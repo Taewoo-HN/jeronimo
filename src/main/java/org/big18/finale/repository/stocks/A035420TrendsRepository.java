@@ -8,5 +8,5 @@ import java.time.Instant;
 import java.time.LocalDate;
 
 @Repository
-public interface A034520TrendsRepository extends JpaRepository<A035420Trend, LocalDate> {
+public interface A035420TrendsRepository extends JpaRepository<A035420Trend, LocalDate> {
 }

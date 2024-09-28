@@ -26,7 +26,7 @@ public class StockTrendsService {
                               A005930TrendsRepository a005930TrendsRepository, A022100TrendsRepository a022100TrendsRepository,
                               A042700TrendsRepository a042700TrendsRepository, A086520TrendsRepository a086520TrendsRepository,
                               A196170TrendsRepository a196170TrendsRepository, A247540TrendsRepository a247540TrendsRepository,
-                              A034520TrendsRepository a034520TrendsRepository, A035720TrendsRepository a035720TrendsRepository,
+                              A035420TrendsRepository a035420TrendsRepository, A035720TrendsRepository a035720TrendsRepository,
                               A051910TrendsRepository a051910TrendsRepository, A066570TrendRepository a066570TrendRepository,
                               A068270TrendsRepository a068270TrendsRepository, A207940TrendsRepository a207940TrendsRepository
     ) {
@@ -43,7 +43,7 @@ public class StockTrendsService {
                 Map.entry("196170", a196170TrendsRepository),
                 Map.entry("247540", a247540TrendsRepository),
                 Map.entry("066570", a066570TrendRepository),
-                Map.entry("034520", a034520TrendsRepository),
+                Map.entry("035420", a035420TrendsRepository),
                 Map.entry("035720", a035720TrendsRepository),
                 Map.entry("051910", a051910TrendsRepository),
                 Map.entry("068270", a068270TrendsRepository),

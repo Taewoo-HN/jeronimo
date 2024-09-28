@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 @Repository
-public interface A247540TrendsRepository extends JpaRepository< A247540Trends, LocalDate> {
+public interface A247540TrendsRepository extends JpaRepository<A247540Trends, LocalDate> {
     @Query(value = "SELECT * FROM A247540_trends WHERE jdate = CURDATE() - INTERVAL 1 DAY", nativeQuery = true)
     Optional<A247540Trends> findByIdWithYesterdayDate();
 }
