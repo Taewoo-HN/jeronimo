@@ -15,6 +15,7 @@ services:
       - server-port=8028
     volumes:
       - /shared/news:/usr/news
+    privileged: true
 
   AI_api:
     image: hena07/cpumodelapi
