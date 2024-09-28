@@ -19,7 +19,7 @@ public class ApiController {
 
     private final RestTemplate restTemplate;
     private final RssService rssService;
-    HttpHeaders headers = new HttpHeaders();
+
 
     @Autowired
     public ApiController(RestTemplate restTemplate, RssService rssService) {
@@ -69,7 +69,7 @@ public class ApiController {
         }
 
         Map<String, String> requestBody = Collections.singletonMap("news", news_content);
-
+        HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<Map<String, String>> entity = new HttpEntity<>(requestBody, headers);
@@ -96,7 +96,7 @@ public class ApiController {
         }
 
         Map<String, String> requestBody = Collections.singletonMap("content", news_content);
-
+        HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<Map<String, String>> entity = new HttpEntity<>(requestBody, headers);
