@@ -5,7 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.time.Instant;
+import java.time.LocalDate;
 
 @Repository
-public interface A066570TrendRepository extends JpaRepository<A066570Trend, Instant> {
+public interface A066570TrendRepository extends JpaRepository<A066570Trend, LocalDate> {
 }

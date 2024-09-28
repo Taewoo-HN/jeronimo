@@ -4,8 +4,10 @@ import org.big18.finale.entity.stocks.A051910Trend;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
 import java.time.Instant;
+import java.time.LocalDate;
 
 @Repository
-public interface A051910TrendsRepository extends JpaRepository<A051910Trend, Instant> {
+public interface A051910TrendsRepository extends JpaRepository<A051910Trend, LocalDate> {
 }

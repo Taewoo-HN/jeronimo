@@ -17,7 +17,6 @@ public class StockTrendsService {
 
     private final Map<String, JpaRepository> repositoryMap;
     private final AllcodeRepository allcodeRepository;
-    private final StocksRepository stocksRepository;
 
 
     @Autowired
@@ -29,11 +28,9 @@ public class StockTrendsService {
                               A196170TrendsRepository a196170TrendsRepository, A247540TrendsRepository a247540TrendsRepository,
                               A034520TrendsRepository a034520TrendsRepository, A035720TrendsRepository a035720TrendsRepository,
                               A051910TrendsRepository a051910TrendsRepository, A066570TrendRepository a066570TrendRepository,
-                              A068270TrendsRepository a068270TrendsRepository, A207940TrendsRepository a207940TrendsRepository,
-                              StocksRepository stocksRepository
+                              A068270TrendsRepository a068270TrendsRepository, A207940TrendsRepository a207940TrendsRepository
     ) {
         this.allcodeRepository = allcodeRepository;
-        this.stocksRepository = stocksRepository;
         this.repositoryMap = Map.ofEntries(
                 Map.entry("000660", a000660TrendsRepository),
                 Map.entry("003670", a003670TrendsRepository),
@@ -53,7 +50,6 @@ public class StockTrendsService {
                 Map.entry("207940", a207940TrendsRepository)
         );
     }
-
     public StockTrendsData getTrendByCode(String code) {
         JpaRepository repository = repositoryMap.get(code);
         String stockname = allcodeRepository.findById(code).get().getName();

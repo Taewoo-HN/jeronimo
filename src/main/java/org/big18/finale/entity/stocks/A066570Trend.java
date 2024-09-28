@@ -10,6 +10,7 @@ import org.big18.finale.entity.TrendsData;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.time.Instant;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -31,6 +32,6 @@ public class A066570Trend extends TrendsData {
     @Id
     @ColumnDefault("date_format(sysdate(), '%Y-%m-%d')")
     @Column(name = "Jdate")
-    private Instant jdate;
+    private LocalDate jdate;
 
 }
