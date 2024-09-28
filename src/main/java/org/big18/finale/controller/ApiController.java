@@ -7,9 +7,6 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.reactive.function.BodyInserters;
-import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -22,14 +19,12 @@ public class ApiController {
 
     private final RestTemplate restTemplate;
     private final RssService rssService;
-    private final WebClient webClient;
 
 
     @Autowired
-    public ApiController(RestTemplate restTemplate, RssService rssService, WebClient.Builder webClientBuilder) {
+    public ApiController(RestTemplate restTemplate, RssService rssService) {
         this.restTemplate = restTemplate;
         this.rssService = rssService;
-        this.webClient = webClientBuilder.baseUrl(APIURL).build();
     }
 
     @GetMapping("/download-wordcloud")
@@ -58,11 +53,13 @@ public class ApiController {
         return ResponseEntity.status(500).build();
     }
 
+
     @PostMapping("/summarize")
-    public Mono<ResponseEntity<String>> summerizer(@RequestBody Map<String, Object> params) {
+    public ResponseEntity<String> summarizer(@RequestBody Map<String, Object> params) {
         NewsItem newsis = rssService.fetchNewsItemById(Long.valueOf((String) params.get("news_id")));
         String news_content = newsis.getNews_content();
 
+        String URL = APIURL + "/keyword";
         // 정규식으로 특수문자 제거
         String regexContents = news_content.replaceAll("[^a-zA-Z0-9가-힣 ]", "");
         System.out.println(regexContents);
@@ -72,40 +69,45 @@ public class ApiController {
         }
 
         Map<String, String> requestBody = Collections.singletonMap("news", news_content);
-        Mono<String> fastApiResponse = webClient.post().uri("/keyword")
-                .body(BodyInserters.fromValue(requestBody))  // news_content 전송
-                .retrieve()
-                .bodyToMono(String.class);  // FastAPI로부터 응답을 받음
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
 
+        HttpEntity<Map<String, String>> entity = new HttpEntity<>(requestBody, headers);
 
-        // FastAPI로부터 받은 응답을 클라이언트에 반환
-        return fastApiResponse.map(response -> new ResponseEntity<>(response, HttpStatus.OK))
-                .onErrorResume(e -> {
-                    // 에러 발생 시 응답 처리
-                    return Mono.just(new ResponseEntity<>("FastAPI 요청 중 오류 발생: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR));
-                }).defaultIfEmpty(new ResponseEntity<>("FastAPI에서 유효한 응답이 없습니다.", HttpStatus.NO_CONTENT));
+        try {
+            // FastAPI 서버로 POST 요청
+            ResponseEntity<String> response = restTemplate.postForEntity(URL, entity, String.class);
+            return new ResponseEntity<>(response.getBody(), HttpStatus.OK);
+        } catch (Exception e) {
+            // 에러 발생 시 응답 처리
+            return new ResponseEntity<>("FastAPI 요청 중 오류 발생: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping("/extract")
-    public Mono<ResponseEntity<String>> extract(@RequestBody Map<String, Object> params) {
+    public ResponseEntity<String> extract(@RequestBody Map<String, Object> params) {
         NewsItem newsis = rssService.fetchNewsItemById(Long.valueOf((String) params.get("news_id")));
         String news_content = newsis.getNews_content();
         String regexContents = news_content.replaceAll("[^a-zA-Z0-9가-힣 ]", "");
+        String URL = APIURL + "/summarizer";
+
         if (regexContents.length() > 800) {
             news_content = regexContents.substring(0, 799);
         }
 
         Map<String, String> requestBody = Collections.singletonMap("content", news_content);
-        Mono<String> fastApiResponse = webClient.post().uri("/summarizer")
-                .body(BodyInserters.fromValue(requestBody))  // news_content 전송
-                .retrieve()
-                .bodyToMono(String.class);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
 
-        return fastApiResponse.map(response -> new ResponseEntity<>(response, HttpStatus.OK))
-                .onErrorResume(e -> {
-                    // 에러 발생 시 응답 처리
-                    return Mono.just(new ResponseEntity<>("FastAPI 요청 중 오류 발생: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR));
-                }).defaultIfEmpty(new ResponseEntity<>("FastAPI에서 유효한 응답이 없습니다.", HttpStatus.NO_CONTENT));
+        HttpEntity<Map<String, String>> entity = new HttpEntity<>(requestBody, headers);
 
+        try {
+            // FastAPI 서버로 POST 요청
+            ResponseEntity<String> response = restTemplate.postForEntity(URL, entity, String.class);
+            return new ResponseEntity<>(response.getBody(), HttpStatus.OK);
+        } catch (Exception e) {
+            // 에러 발생 시 응답 처리
+            return new ResponseEntity<>("FastAPI 요청 중 오류 발생: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
