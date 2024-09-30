@@ -36,8 +36,9 @@ public class ChatbotService {
 
             ObjectMapper mapper = new ObjectMapper();
             JsonNode jsonNode = mapper.readTree(response.getBody());
+            String jsonString =  jsonNode.toString();
 
-            return jsonNode.toString();
+            return jsonString.replaceAll("[^a-zA-Z0-9가-힣 ]", "");
 
         } catch (HttpClientErrorException e) {
             // 클라이언트 에러 (4xx 응답) 처리

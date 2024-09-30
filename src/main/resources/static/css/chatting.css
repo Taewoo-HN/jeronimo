@@ -126,34 +126,6 @@ header {
     font-size: 1.5rem;
 }
 
-.ch1 .textbox {
-    margin-left: 10px;
-    background-color: #ddd;
-}
-
-.ch1 .textbox::before {
-    left: -15px;
-    content: "◀";
-    color: #ddd;
-}
-
-.ch2 {
-    flex-direction: row-reverse;
-}
-
-.ch2 .textbox {
-    margin-right: 10px;
-    background-color: #F9EB54;
-}
-
-.ch2 .textbox::before {
-    right: -15px;
-    content: "▶";
-    color: #F9EB54;
-}
-
-
-
 
 .input-group {
     display: flex;
