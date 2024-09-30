@@ -60,6 +60,20 @@
         alert('관리자에게 문의하세요 ' + '\n'
                 + '010-1234-5678');
     });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // 성공 메시지 처리
+        var successMessage = "{{success}}";
+        if (successMessage) {
+            alert(successMessage);  // 회원가입 성공 메시지 알림
+        }
+
+        // 오류 메시지 처리
+        var errorMessage = "{{error}}";
+        if (errorMessage) {
+            alert(errorMessage);  // 오류 메시지 알림
+        }
+    });
 </script>
 <script src="/js/logformcheck.js"></script>
 <script src ="/js/loginCheck.js" ></script>

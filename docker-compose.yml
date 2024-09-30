@@ -6,6 +6,8 @@ services:
       - "18028:8028"
     networks:
       - myapp-net
+    depends_on:
+      - nginx
     environment:
       - host-code=database
       - service-port=3306
@@ -21,8 +23,6 @@ services:
     image: nginx:stable-alpine
     ports:
       - "80:80"
-    depends_on:
-      - springboot
     networks:
       - myapp-net
     volumes:

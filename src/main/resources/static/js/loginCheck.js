@@ -11,17 +11,3 @@ document.addEventListener("DOMContentLoaded", function() {
             console.error('Error fetching error message:', error);
         });
 });
-
-document.addEventListener("DOMContentLoaded", function() {
-    // 성공 메시지 처리
-    var successMessage = "{{success}}";
-    if (successMessage) {
-        alert(successMessage);  // 회원가입 성공 메시지 알림
-    }
-
-    // 오류 메시지 처리
-    var errorMessage = "{{error}}";
-    if (errorMessage) {
-        alert(errorMessage);  // 오류 메시지 알림
-    }
-});
