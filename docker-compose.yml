@@ -17,6 +17,17 @@ services:
       - /shared/news:/usr/news
     privileged: true
 
+  nginx:
+    image: nginx:stable-alpine
+    ports:
+      - "80:80"
+    depends_on:
+      - springboot
+    networks:
+      - myapp-net
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+
   AI_api:
     image: hena07/cpumodelapi
     ports:
@@ -29,16 +40,6 @@ services:
       sh -c "ls -l /usr/local/bin/run_api.sh && chmod +x /usr/local/bin/run_api.sh && /usr/local/bin/run_api.sh"
     privileged: true
 
-  nginx:
-    image: nginx:stable-alpine
-    ports:
-      - "80:80"
-    depends_on:
-      - springboot
-    networks:
-      - myapp-net
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
 
   database:
     image: hena07/centos_hn_v3
