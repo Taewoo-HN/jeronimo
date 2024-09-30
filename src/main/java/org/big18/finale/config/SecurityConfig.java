@@ -1,6 +1,5 @@
 package org.big18.finale.config;
 
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.big18.finale.service.auth.CustomAuthenticationProvider;
 import org.big18.finale.service.auth.CustomUserService;
