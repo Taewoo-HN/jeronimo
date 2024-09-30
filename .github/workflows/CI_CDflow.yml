@@ -1,4 +1,25 @@
 name: CI_CDflow.yml
 on:
+  push:
+    branches:
+      - naverlogin
+    paths-ignore:
+      - '.github/**'
+deploy:
+  runs-on: ubuntu-latest
+  needs: build
 
-jobs:
+  steps:
+    # 1. GCP VM으로 SSH 접속 후 도커 컴포즈로 배포
+    - name: Deploy to GCP VM
+      uses: appleboy/ssh-action@v0.1.3
+      with:
+        host: ${{ secrets.GCP_HOST }}
+        username: ${{ secrets.GCP_USER }}
+        key: ${{ secrets.GCP_PRIVATE_KEY }}
+        port: 22
+        script: |
+          cd /path/to/your/docker-compose
+          docker-compose down springboot
+          docker-compose pull springboot
+          docker-compose up springboot -d
