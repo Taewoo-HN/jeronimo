@@ -44,13 +44,9 @@ public class SecurityConfig {
                             // 메인 페이지로 리디렉션
                             response.sendRedirect("/main");
                         })
-                        .failureHandler((request, response, exception) -> {
-                            response.setContentType("application/json");
-                            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-                            response.getWriter().write("{\"success\": false, \"message\": \"로그인 실패: " + exception.getMessage() + "\"}");
-                        })
                         .usernameParameter("username")
                         .passwordParameter("password")
+                        .failureUrl("/login?error=true")
                         .permitAll()
                 ).logout(logout -> logout
                         .logoutUrl("/logout")

@@ -27,6 +27,15 @@ public class UserController {
         this.memberRepository = memberRepository;
     }
 
+    @GetMapping("/login")
+    public String login(@RequestParam(value = "error", required = false) String error, Model model) {
+        if (error != null) {
+            model.addAttribute("error", true);
+        }
+        return "login";
+    }
+
+
     @PostMapping("/register")
     public String register(@RequestParam("user_id") String user_id, @RequestParam("user_pw") String user_pw,
                                       @RequestParam("user_name") String userName, @RequestParam("phone_number") String phoneNumber,

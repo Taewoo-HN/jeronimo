@@ -128,12 +128,6 @@ public class MainController {
         return "chatbot_window";
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
-
-
 }
 
 
