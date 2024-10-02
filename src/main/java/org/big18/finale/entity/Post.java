@@ -1,6 +1,5 @@
 package org.big18.finale.entity;
 
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +16,11 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String stock;
+    private String stock;  // This will store the stock code
+
+    @Transient
+    private String stockName;  // This will store the stock name for display
+
     private String title;
     private String writer;
     private String content;
