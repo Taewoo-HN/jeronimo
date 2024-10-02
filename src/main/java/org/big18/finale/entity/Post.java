@@ -39,4 +39,8 @@ public class Post {
         }
         return formattedDate;
     }
+
+    public void incrementViewCount() {
+        this.count++;
+    }
 }

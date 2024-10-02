@@ -80,12 +80,15 @@ public class PostController {
     public String viewPost(@PathVariable Long id, Model model, HttpSession session) {
         Optional<Post> postOptional = postService.getPostById(id);
         if (postOptional.isPresent()) {
-            model.addAttribute("post", postOptional.get());
+            Post post = postOptional.get();
+            post.incrementViewCount();  // 조회수 증가
+            postService.updatePost(post);  // 변경된 게시글 저장
+
+            model.addAttribute("post", post);
             userNameProvider.setUserAttributes(session, model);
             return "post/bbsdetail";
         } else {
-            // 게시물이 없을 경우의 처리
-            return "redirect:/posts/bbs";  // 또는 에러 페이지로 리다이렉트
+            return "redirect:/posts/bbs";
         }
     }
 
