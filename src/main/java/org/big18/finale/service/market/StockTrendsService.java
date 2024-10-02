@@ -57,7 +57,7 @@ public class StockTrendsService {
         if (repository != null) {
             Optional data = repository.findById(today);
             if (data.isEmpty()) {
-                data = repository.findById(today.minusDays(1));
+                data = repository.findById(today.minusDays(2));
             }
             TrendsData rdata = (TrendsData) data.get();
             StockTrendsData tdata = new StockTrendsData(code, stockname, rdata.getIndividual(), rdata.getForeign(), rdata.getInstitution());
