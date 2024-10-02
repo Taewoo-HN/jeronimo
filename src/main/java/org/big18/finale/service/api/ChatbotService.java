@@ -38,7 +38,16 @@ public class ChatbotService {
             JsonNode jsonNode = mapper.readTree(response.getBody());
             String jsonString =  jsonNode.toString();
 
-            return jsonString.replaceAll("[^a-zA-Z0-9가-힣 ]", "");
+            String regex_string = jsonString.replaceAll("[^a-zA-Z0-9가-힣 ]", "");
+            StringBuilder result = new StringBuilder();
+
+            int length = regex_string.length();
+            int chunkSize = 75;
+
+            for (int i = 0; i < length; i += chunkSize) {
+                result.append(regex_string, i, Math.min(i + chunkSize, length)).append("\n");
+            }
+            return result.toString();
 
         } catch (HttpClientErrorException e) {
             // 클라이언트 에러 (4xx 응답) 처리
