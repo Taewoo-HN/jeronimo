@@ -2,7 +2,6 @@ package org.big18.finale.service.market;
 
 import org.big18.finale.DTO.StockTrendsData;
 import org.big18.finale.entity.TrendsData;
-import org.big18.finale.repository.StocksRepository;
 import org.big18.finale.repository.stocks.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -52,16 +51,15 @@ public class StockTrendsService {
     }
     public StockTrendsData getTrendByCode(String code) {
         JpaRepository repository = repositoryMap.get(code);
-        String stockname = allcodeRepository.findById(code).get().getName();
         LocalDate today = LocalDate.now();
+        String stockname = allcodeRepository.findById(code).get().getName();
         if (repository != null) {
             Optional data = repository.findById(today);
             if (data.isEmpty()) {
-                data = repository.findById(today.minusDays(1));
+                data = repository.findById(today.minusDays(2));
             }
             TrendsData rdata = (TrendsData) data.get();
-            StockTrendsData tdata = new StockTrendsData(code, stockname, rdata.getIndividual(), rdata.getForeign(), rdata.getInstitution());
-            return tdata;
+            return new StockTrendsData(code, stockname, rdata.getIndividual(), rdata.getForeign(), rdata.getInstitution());
         } else {
             throw new IllegalArgumentException("해당 코드에 대한 Repository가 없습니다.");
         }
