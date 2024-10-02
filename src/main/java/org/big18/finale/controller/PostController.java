@@ -3,8 +3,10 @@ package org.big18.finale.controller;
 
 import jakarta.servlet.http.HttpSession;
 import org.big18.finale.entity.Post;
+import org.big18.finale.entity.stocks.Allcode;
 import org.big18.finale.service.PostService;
 import org.big18.finale.service.UserNameProvider;
+import org.big18.finale.service.market.AllcodeService;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,10 +24,12 @@ public class PostController {
 
     private final PostService postService;
     private final UserNameProvider userNameProvider;
+    private final AllcodeService allcodeService;
 
-    public PostController(PostService postService, UserNameProvider userNameProvider) {
+    public PostController(PostService postService, UserNameProvider userNameProvider, AllcodeService allcodeService) {
         this.postService = postService;
         this.userNameProvider = userNameProvider;
+        this.allcodeService = allcodeService;
     }
 
     @GetMapping("/bbs")
@@ -63,6 +67,9 @@ public class PostController {
     public String showWriteForm(Model model, HttpSession session) {
         model.addAttribute("post", new Post());
         model.addAttribute("formTitle", "글쓰기");
+        List<Allcode> allStocks = allcodeService.getAllStocks();
+        System.out.println("Loading stocks for form: " + allStocks.size());
+        model.addAttribute("allStocks", allStocks);
         userNameProvider.setUserAttributes(session, model);
         return "post/write";
     }
@@ -95,7 +102,20 @@ public class PostController {
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable Long id, Model model, HttpSession session) {
         Optional<Post> post = postService.getPostById(id);
-        model.addAttribute("post", post.orElse(new Post()));
+        Post existingPost = post.orElse(new Post());
+
+        List<Allcode> allStocks = allcodeService.getAllStocks();
+        // 현재 선택된 종목에 selected 속성 추가
+        if (existingPost.getStock() != null) {
+            allStocks.forEach(stock -> {
+                if (stock.getCode().equals(existingPost.getStock())) {
+                    stock.setSelected(true);
+                }
+            });
+        }
+
+        model.addAttribute("post", existingPost);
+        model.addAttribute("allStocks", allStocks);
         model.addAttribute("formTitle", "수정하기");
         userNameProvider.setUserAttributes(session, model);
         return "post/write";
@@ -124,4 +144,5 @@ public class PostController {
         userNameProvider.setUserAttributes(session, model);
         return "redirect:/posts/bbs";
     }
+
 }

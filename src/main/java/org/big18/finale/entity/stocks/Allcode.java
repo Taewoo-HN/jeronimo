@@ -1,9 +1,6 @@
 package org.big18.finale.entity.stocks;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
@@ -16,4 +13,7 @@ public class Allcode {
 
     @Column(name = "name", nullable = false, length = 50)
     private String name;  // 종목명
+
+    @Transient  // 이 필드는 DB에 저장되지 않음
+    private boolean selected;
 }

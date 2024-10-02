@@ -23,7 +23,7 @@ public class AllcodeController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<Allcode>> searchStocks(@RequestParam String term) {
+    public ResponseEntity<List<Allcode>> searchStocks(@RequestParam(required = false) String term) {
         List<Allcode> results = allcodeService.searchStocks(term);
         return ResponseEntity.ok(results);
     }

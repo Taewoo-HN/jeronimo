@@ -13,6 +13,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <link rel="stylesheet" href="/css/rootstyle.css" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <style>
         body {
             padding-top: 4rem;
@@ -33,7 +36,12 @@
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <div class="mb-3">
             <label for="stock" class="form-label">주식종목</label>
-            <input type="text" id="stock" name="stock" class="form-control" value="{{#post.stock}}{{post.stock}}{{/post.stock}}" required/>
+            <select class="form-select form-select" id="stock" name="stock" required>
+                <option selected disabled value="">종목을 선택하세요</option>
+                {{#allStocks}}
+                    <option value="{{code}}">{{name}} ({{code}})</option>
+                {{/allStocks}}
+            </select>
         </div>
         <div class="mb-3">
             <label for="title" class="form-label">제목</label>
@@ -51,7 +59,43 @@
         <button type="submit" class="btn btn-primary">저장</button>
     </form>
 </div>
-
+<script>
+    $(document).ready(function() {
+        $('#stock').select2({
+            ajax: {
+                url: '/api/stocks/search',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        term: params.term || ''
+                    };
+                },
+                processResults: function (data) {
+                    return {
+                        results: data.map(function(item) {
+                            return {
+                                id: item.code,
+                                text: item.name + ' (' + item.code + ')'
+                            };
+                        })
+                    };
+                },
+                cache: true
+            },
+            minimumInputLength: 0,  // 빈 검색어도 허용
+            placeholder: '종목을 선택하세요',
+            language: {
+                noResults: function() {
+                    return "검색 결과가 없습니다";
+                },
+                searching: function() {
+                    return "검색 중...";
+                }
+            }
+        });
+    });
+</script>
 {{>layout/chatbot_button}}
 </body>
 {{>layout/footer}}
