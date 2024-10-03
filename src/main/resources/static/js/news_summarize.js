@@ -22,8 +22,10 @@ $(document).ready(function() {
                 } catch (e) {
                     parsedResponse = response;  // 이미 JSON 객체인 경우
                 }
-
                 let keywords = parsedResponse.news_content;
+                if (keywords.length > 120) {
+                    keywords = keywords.substring(0, 120);
+                }
 
 
                 // 클릭한 버튼에 따라 모달 띄우기
