@@ -39,9 +39,6 @@ public class ChatbotService {
             String jsonString =  jsonNode.toString();
 
             String regex_string = jsonString.replaceAll("[^a-zA-Z0-9가-힣 ]", "");
-            if (regex_string.length() > 120) {
-                regex_string = regex_string.substring(0, 100);
-            }
             return regex_string;
 
         } catch (HttpClientErrorException e) {

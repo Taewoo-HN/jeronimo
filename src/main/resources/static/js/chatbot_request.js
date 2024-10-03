@@ -39,7 +39,7 @@ $(document).ready(function() {
 
 // 메시지를 화면에 출력하는 함수
     function showMessage(message, type) {
-        const cleanedMessage = message.replace(/response/g, '');
+        const cleanedMessage = message.replace(/response/g, '').trim();
         const messageClass = type === 'user' ? 'user-message' : 'bot-message';
         $('#messages').append(
             $('<div>').text(type === 'user' ? 'User: ' + cleanedMessage : 'Chatbot: ' + cleanedMessage)
