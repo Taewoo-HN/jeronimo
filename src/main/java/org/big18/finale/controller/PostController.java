@@ -95,7 +95,15 @@ public class PostController {
 
     @GetMapping("/new")
     public String showWriteForm(Model model, HttpSession session) {
-        model.addAttribute("post", new Post());
+        if (!userNameProvider.canWritePost(session)) {
+            return "redirect:/login"; // 또는 적절한 에러 페이지로 리다이렉트
+        }
+
+        Post newPost = new Post();
+        String username = userNameProvider.getUsername(session);
+        newPost.setWriter(username);
+
+        model.addAttribute("post", newPost);
         model.addAttribute("formTitle", "글쓰기");
         List<Allcode> allStocks = allcodeService.getAllStocks();
         model.addAttribute("allStocks", allStocks);
@@ -105,6 +113,13 @@ public class PostController {
 
     @PostMapping("/new")
     public String createPost(@ModelAttribute Post post, HttpSession session, Model model) {
+        if (!userNameProvider.canWritePost(session)) {
+            return "redirect:/login";
+        }
+
+        String username = userNameProvider.getUsername(session);
+        post.setWriter(username);
+
         postService.savePost(post);
         userNameProvider.setUserAttributes(session, model);
         return "redirect:/posts/bbs";
