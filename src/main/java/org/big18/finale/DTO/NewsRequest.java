@@ -1,7 +1,6 @@
 package org.big18.finale.DTO;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

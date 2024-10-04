@@ -4,7 +4,6 @@ import org.big18.finale.entity.stocks.A066570Trend;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.time.Instant;
 import java.time.LocalDate;
 
 @Repository

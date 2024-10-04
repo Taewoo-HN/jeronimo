@@ -9,7 +9,6 @@ import lombok.Setter;
 import org.big18.finale.entity.TrendsData;
 import org.hibernate.annotations.ColumnDefault;
 
-import java.time.Instant;
 import java.time.LocalDate;
 
 @Getter
