@@ -16,6 +16,9 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Transient
+    private Integer displayNumber;
+
     private String stock;  // This will store the stock code
 
     @Transient

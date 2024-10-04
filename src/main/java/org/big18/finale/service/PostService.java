@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -53,7 +54,19 @@ public class PostService {
     @Transactional(readOnly = true)
     public Page<Post> getAllPosts(int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("date").descending());
-        return postRepository.findAll(pageable);
+        Page<Post> postPage = postRepository.findAll(pageable);
+
+        // 전체 게시물 수 조회
+        long totalElements = postRepository.count();
+
+        // 각 페이지의 게시물에 표시 번호 설정
+        List<Post> posts = postPage.getContent();
+        for (int i = 0; i < posts.size(); i++) {
+            int displayNumber = (int) (totalElements - (page * size) - i);
+            posts.get(i).setDisplayNumber(displayNumber);
+        }
+
+        return postPage;
     }
 
     public void deletePost(Long id) {
