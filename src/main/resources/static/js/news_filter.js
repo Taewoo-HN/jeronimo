@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
     const newsItems = document.querySelectorAll('.news-item');
     const newsExcerpt = document.querySelectorAll('.news-excerpt');
-    const title = document.querySelector('.news-title');
+    const title = document.querySelectorAll('.news-title');
+    const content = document.querySelectorAll('.news-content');
     // 필터링할 키워드들
     const filterKeywords = [
         '<b>',
@@ -25,11 +26,16 @@ document.addEventListener('DOMContentLoaded', function () {
         return lines.map(line => line.trim()).join('\n');
     }
 
-    if (title && content) {
+    newsItems.forEach(item => {
+        const title = item.querySelector('.news-title');
+        const content = item.querySelector('.news-content');
+
+        if (title && content) {
         title.addEventListener('click', () => {
             content.style.display = content.style.display === 'none' ? 'block' : 'none';
         });
     }
+});
 
     // 뉴스 콘텐츠 초기화
     document.querySelectorAll('.news-content').forEach(contentElement => {
