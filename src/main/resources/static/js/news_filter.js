@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const newsItems = document.querySelectorAll('.news-item');
-
+    const newsExcerpt = document.querySelectorAll('.news-excerpt');
+    const title = document.querySelector('.news-title');
     // 필터링할 키워드들
     const filterKeywords = [
         '<b>',
@@ -14,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function () {
         '개인 리더 이용 목적으로 허용',
         '피드를 이용한 게시 등의 무단 복제는 금지'
     ];
-
     function cleanArticleContent(content) {
         if (!content) return '';
         let lines = content.split('\n');
@@ -23,6 +23,12 @@ document.addEventListener('DOMContentLoaded', function () {
             line.trim() !== ''
         );
         return lines.map(line => line.trim()).join('\n');
+    }
+
+    if (title && content) {
+        title.addEventListener('click', () => {
+            content.style.display = content.style.display === 'none' ? 'block' : 'none';
+        });
     }
 
     // 뉴스 콘텐츠 초기화
