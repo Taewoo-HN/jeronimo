@@ -23,10 +23,6 @@ $(document).ready(function() {
                     parsedResponse = response;  // 이미 JSON 객체인 경우
                 }
                 let keywords = parsedResponse.news_content;
-                if (keywords.length > 250) {
-                    keywords = keywords.substring(0, 250);
-                }
-
 
                 // 클릭한 버튼에 따라 모달 띄우기
                 if ($(this).hasClass('summary-btn')) {
