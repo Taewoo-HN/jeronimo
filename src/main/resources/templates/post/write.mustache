@@ -30,7 +30,7 @@
 {{>layout/navbar}}
 {{>layout/sidebar}}
 
-<div class="container max-w-lg mx-auto">
+<div class="container">
     <h1 class="mb-4">{{formTitle}}</h1>
     <form id="post-form" method="post" action="{{#post.id}}/posts/edit/{{post.id}}{{/post.id}}{{^post.id}}/posts/new{{/post.id}}">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
