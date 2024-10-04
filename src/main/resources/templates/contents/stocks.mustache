@@ -10,7 +10,7 @@
             <div class="rounded-lg p-4 shadow-md {{#isPercentageChangePositive}}bg-red-100{{/isPercentageChangePositive}}{{^isPercentageChangePositive}}bg-blue-100{{/isPercentageChangePositive}}">
                 <div class="flex flex-col items-center">
                     <img src="/img/{{code}}.png" alt="{{name}}" class="w-10 h-10 mb-2">
-                    <h5 class="text-lg font-bold">{{name}}</h5>
+                    <a href=/stock-detail/{{code}}"><h5 class="text-lg font-bold">{{name}}</h5></a>
                     <p class="text-lg font-bold">{{getFormattedCurrentPrice}}원</p>
                     <p class="text-sm text-{{#isPercentageChangePositive}}red-500{{/isPercentageChangePositive}}{{^isPercentageChangePositive}}blue-500{{/isPercentageChangePositive}}">
                         {{getFormattedDifference}}원 ({{getFormattedPercentageChange}}%)
