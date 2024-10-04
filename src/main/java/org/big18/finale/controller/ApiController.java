@@ -62,7 +62,6 @@ public class ApiController {
         String URL = APIURL + "/keyword";
         // 정규식으로 특수문자 제거
         String regexContents = news_content.replaceAll("[^a-zA-Z0-9가-힣 ]", "");
-        System.out.println(regexContents);
 
         if (regexContents.length() > 1000) {
             news_content = regexContents.substring(0, 999);

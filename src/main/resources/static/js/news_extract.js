@@ -39,6 +39,7 @@ $(document).ready(function() {
                 }
             }.bind(this),  // 'this'를 바인딩하여 버튼에 따라 모달을 띄우도록 함
             error: function(error) {
+                window.hideLoading();
                 console.error("요약 요청 중 에러 발생:", error);
             }
         });
