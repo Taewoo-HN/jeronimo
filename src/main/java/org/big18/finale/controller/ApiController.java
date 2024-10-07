@@ -88,7 +88,9 @@ public class ApiController {
         NewsItem newsis = rssService.fetchNewsItemById(Long.valueOf((String) params.get("news_id")));
         String news_content = newsis.getNews_content();
         String URL = APIURL + "/summarizer";
-        news_content=news_content.substring(0, 799);
+        if (news_content.length() > 800) {
+            news_content = news_content.substring(0, 799);
+        }
 
         Map<String, String> requestBody = Collections.singletonMap("content", news_content);
         HttpHeaders headers = new HttpHeaders();
