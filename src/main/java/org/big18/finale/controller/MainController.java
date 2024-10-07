@@ -62,8 +62,9 @@ public class MainController {
     @GetMapping("/main")
     public String home(Model model, HttpSession session) {
         List<News> newsList = newsService.getAllNews();
-        Collections.shuffle(newsList);
+        Collections.shuffle(newsList.subList(0, 20));
         newsList = newsList.subList(0, 9);
+
 
         List<StockDisplayData> stockDataList = stockService.getAllStockData();
         model.addAttribute("stockDataList", stockDataList);
