@@ -104,18 +104,8 @@ public class MainController {
             model.addAttribute("news", relatedNews);
             userNameProvider.setUserAttributes(session, model);
             return "detail";
-
-        } catch (IllegalArgumentException e) {
-            StockTrendsData nodata = new StockTrendsData(code, "Default", -12000, 20000, -15000);
-            model.addAttribute("trendata", nodata);
-
-            // 예외 발생 시에도 빈 뉴스 리스트 추가
-            model.addAttribute("news", Collections.emptyList());
-
-            userNameProvider.setUserAttributes(session, model);
-            return "detail";
-        } catch (NullPointerException e) {
-            StockTrendsData nandata = new StockTrendsData(code, "Example", 12300, -19000, 15000);
+        } catch (Exception e) {
+            StockTrendsData nandata = new StockTrendsData(code, "Example", 123000, -1900000, 150930);
             model.addAttribute("trendata", nandata);
             model.addAttribute("news", Collections.emptyList());
             userNameProvider.setUserAttributes(session, model);

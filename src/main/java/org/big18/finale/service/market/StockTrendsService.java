@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @Service
 public class StockTrendsService {
@@ -49,19 +50,30 @@ public class StockTrendsService {
                 Map.entry("207940", a207940TrendsRepository)
         );
     }
+
     public StockTrendsData getTrendByCode(String code) {
-        JpaRepository repository = repositoryMap.get(code);
+        JpaRepository<TrendsData, LocalDate> repository = (JpaRepository<TrendsData, LocalDate>) repositoryMap.get(code);
         LocalDate today = LocalDate.now();
-        String stockname = allcodeRepository.findById(code).get().getName();
+        String stockname = allcodeRepository.findById(code).orElseThrow(() ->
+                new IllegalArgumentException("해당 코드에 대한 정보가 없습니다.")
+        ).getName();
+
         if (repository != null) {
-            Optional data = repository.findById(today);
-            if (data.isEmpty()) {
-                data = repository.findById(today.minusDays(2));
+            Optional<?> data = Stream.of(today, today.minusDays(1), today.minusDays(2), today.minusDays(3))
+                    .map(repository::findById)
+                    .filter(Optional::isPresent)
+                    .findFirst()
+                    .orElse(Optional.empty());
+
+            if (data.isPresent()) {
+                TrendsData rdata = (TrendsData) data.get();
+                return new StockTrendsData(code, stockname, rdata.getIndividual(), rdata.getForeign(), rdata.getInstitution());
+            } else {
+                throw new IllegalArgumentException("해당 날짜 범위 내에 데이터가 없습니다.");
             }
-            TrendsData rdata = (TrendsData) data.get();
-            return new StockTrendsData(code, stockname, rdata.getIndividual(), rdata.getForeign(), rdata.getInstitution());
         } else {
             throw new IllegalArgumentException("해당 코드에 대한 Repository가 없습니다.");
         }
     }
 }
+
