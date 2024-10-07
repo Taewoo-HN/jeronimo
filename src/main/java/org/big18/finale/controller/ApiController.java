@@ -87,12 +87,8 @@ public class ApiController {
     public ResponseEntity<String> extract(@RequestBody Map<String, Object> params) {
         NewsItem newsis = rssService.fetchNewsItemById(Long.valueOf((String) params.get("news_id")));
         String news_content = newsis.getNews_content();
-        String regexContents = news_content.replaceAll("[^a-zA-Z0-9가-힣 ]", "");
         String URL = APIURL + "/summarizer";
-
-        if (regexContents.length() > 800) {
-            news_content = regexContents.substring(0, 799);
-        }
+        news_content=news_content.substring(0, 799);
 
         Map<String, String> requestBody = Collections.singletonMap("content", news_content);
         HttpHeaders headers = new HttpHeaders();
