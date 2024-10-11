@@ -22,7 +22,7 @@ $(document).ready(function() {
                 showMessage("챗봇과의 대화를 종료합니다. 감사합니다.", 'bot');
                 setInterval(function() {
                     window.close();
-                }, 3000);
+                }, 2000);
                 return;
             }
         
