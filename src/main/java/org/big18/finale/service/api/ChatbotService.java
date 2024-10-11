@@ -12,7 +12,6 @@ import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 import static org.big18.finale.config.ServerConfiguration.APIURL;
 
-
 @Service
 public class ChatbotService {
 
@@ -24,7 +23,7 @@ public class ChatbotService {
     }
 
     public String sendMessageToChatbot(ChatMessage message) {
-        String URL = APIURL+"/chatbot";  // FastAPI 서버 주소
+        String URL = APIURL + "/chatbot"; // FastAPI 서버 주소
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -36,9 +35,9 @@ public class ChatbotService {
 
             ObjectMapper mapper = new ObjectMapper();
             JsonNode jsonNode = mapper.readTree(response.getBody());
-            String jsonString =  jsonNode.toString();
+            String jsonString = jsonNode.toString();
 
-            String regex_string = jsonString.replaceAll("[^a-zA-Z0-9가-힣 ]", "");
+            String regex_string = jsonString.replaceAll("[^a-zA-Z0-9가-힣 .]", "");
             return regex_string;
 
         } catch (HttpClientErrorException e) {
