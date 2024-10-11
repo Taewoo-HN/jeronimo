@@ -5,7 +5,8 @@ $(document).ready(function() {
         if (e.which == 13) sendMessage();
     });
 
-    showMessage("AI 주식 도우미 Jeronimo입니다. 종료를 원하시면 종료를 입력해주세요", 'bot');
+    showMessage("AI 주식 도우미 Jeronimo입니다." , 'bot');
+    showMessage("종료를 원하시면 종료를 입력해주세요" , 'bot');
 
     // 메시지 전송 함수
     function sendMessage() {

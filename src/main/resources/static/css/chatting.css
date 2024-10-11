@@ -61,7 +61,6 @@ header {
     font-size: 14px;
     padding: 10px;
     border-radius: 10px;
-    display: block;
     margin-bottom: 10px;
     max-width: 70%;
     word-wrap: break-word;
@@ -77,6 +76,7 @@ header {
     margin-left: 10px;
     color: black;
     float: right;
+    display: block;
 }
 
 .bot-message {
@@ -84,6 +84,7 @@ header {
     margin-right: 10px;
     color: black;
     float: left;
+    display: block;
 }
 
 
