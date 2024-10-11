@@ -70,6 +70,7 @@ header {
     font-weight: 200;
     font-style: normal;
     display: block;
+    clear: both;
 }
 
 .user-message {
@@ -78,6 +79,7 @@ header {
     color: black;
     float: right;
     display: block;
+    clear: both;
 }
 
 .bot-message {
