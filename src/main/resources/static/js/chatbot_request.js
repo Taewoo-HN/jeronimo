@@ -10,13 +10,7 @@ $(document).ready(function() {
 
 
     /** 종료를 입력하면 닫히는 코드*/      
-    if (messageContent === "종료") {
-        showMessage("챗봇과의 대화를 종료합니다. 감사합니다.", 'bot');
-        setInterval(function() {
-            window.close();
-        }, 3000);
-    }
-
+   
     // 메시지 전송 함수
     function sendMessage() {
         var messageContent = $('#messageInput').val().trim();
@@ -24,6 +18,14 @@ $(document).ready(function() {
             // 사용자가 입력한 메시지 출력
             showMessage(messageContent, 'user');
             
+            if (messageContent === "종료") {
+                showMessage("챗봇과의 대화를 종료합니다. 감사합니다.", 'bot');
+                setInterval(function() {
+                    window.close();
+                }, 3000);
+                return;
+            }
+        
 
 
             // 서버에 보낼 메시지 형식
