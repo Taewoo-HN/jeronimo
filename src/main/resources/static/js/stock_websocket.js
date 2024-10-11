@@ -35,6 +35,15 @@ function updateStockData(stockData) {
             element.querySelector('.price-difference').classList.add('text-blue-500');
             element.querySelector('.price-difference').classList.remove('text-red-500');
         }
+        element.style.transition = 'transform 0.5s ease-in-out, background-color 0.5s ease-in-out';
+        element.style.transform = 'scale(1.1)';
+        element.style.backgroundColor = '#34088c';
+
+        // 일정 시간 후 원래 상태로 돌아가도록 설정
+        setTimeout(() => {
+            element.style.transform = 'scale(1)';
+            element.style.backgroundColor = '';
+        }, 500);
     } else {
         console.warn(`Stock element for code ${stockData.code} not found.`);
     }
