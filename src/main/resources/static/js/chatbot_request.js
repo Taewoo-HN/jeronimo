@@ -19,7 +19,7 @@ $(document).ready(function() {
                 setInterval(function() {
                     showMessage("챗봇과의 대화를 종료합니다. 감사합니다.", 'bot');
                     window.close();
-                }, 4000);
+                }, 3000);
             }
 
             // 서버에 보낼 메시지 형식

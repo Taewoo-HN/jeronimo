@@ -61,13 +61,14 @@ header {
     font-size: 14px;
     padding: 10px;
     border-radius: 10px;
+    display: block;
     margin-bottom: 10px;
     max-width: 70%;
     word-wrap: break-word;
     white-space: pre-wrap;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    font-family: "Do Hyeon", sans-serif;
-    font-weight: 400;
+    font-family: "jua", sans-serif;
+    font-weight: 200;
     font-style: normal;
 }
 
