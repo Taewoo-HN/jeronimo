@@ -4,6 +4,8 @@ $(document).ready(function() {
     $('#messageInput').on('keypress', function (e) {
         if (e.which == 13) sendMessage();
     });
+    
+    showMessage("AI 주식 도우미입니다. 종료를 원하시면 종료를 입력해주세요", 'bot');
 
     // 메시지 전송 함수
     function sendMessage() {
@@ -11,6 +13,12 @@ $(document).ready(function() {
         if (messageContent) {
             // 사용자가 입력한 메시지 출력
             showMessage(messageContent, 'user');
+            
+            /** 종료를 입력하면 닫히는 코드*/
+            if(messageContent === "종료"){
+                showMessage("챗봇과의 대화를 종료합니다. 감사합니다.", 'bot');
+                window.close();
+            }
 
             // 서버에 보낼 메시지 형식
             var chatMessage = {

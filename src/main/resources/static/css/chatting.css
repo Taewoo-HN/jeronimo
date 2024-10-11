@@ -69,11 +69,10 @@ header {
 
 .user-message {
     background-color: #ddd;
-    text-align: left;
     margin-left: 10px;
     border-radius: 10px 10px 10px 0;
     color: black;
-    float: left;
+    float: right;
 }
 
 .bot-message {
@@ -81,7 +80,7 @@ header {
     margin-right: 10px;
     border-radius: 10px 10px 0 10px;
     color: black;
-    float: right;
+    float: left;
 }
 
 
