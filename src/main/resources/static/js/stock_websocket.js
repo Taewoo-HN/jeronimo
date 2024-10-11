@@ -37,7 +37,11 @@ function updateStockData(stockData) {
         }
         element.style.transition = 'transform 0.5s ease-in-out, background-color 0.5s ease-in-out';
         element.style.transform = 'scale(1.1)';
-        element.style.backgroundColor = '#34088c';
+        if(element.priceDifference > 0){
+            element.style.backgroundColor = '#E30D71';
+        }else{
+            element.style.backgroundColor = '#0D0ADF';
+        }
 
         // 일정 시간 후 원래 상태로 돌아가도록 설정
         setTimeout(() => {
