@@ -17,8 +17,8 @@ $(document).ready(function() {
             
             /** 종료를 입력하면 닫히는 코드*/
             if (messageContent === "종료") {
+                showMessage("챗봇과의 대화를 종료합니다. 감사합니다.", 'bot');
                 setInterval(function() {
-                    showMessage("챗봇과의 대화를 종료합니다. 감사합니다.", 'bot');
                     window.close();
                 }, 3000);
             }
